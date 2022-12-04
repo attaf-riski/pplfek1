@@ -1,9 +1,13 @@
 import React from 'react';
+import { BrowserRouter } from "react-router-dom";
+import Router from './routes/Router';
 
 
 function App() {
   return (
-    <div className=" text-3xl text-center text-green-600">Hello World</div>
+    <BrowserRouter>
+      <Router/>
+    </BrowserRouter>
   );
 }
 

@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 200vh;
+}
+
+.horizontal-line {
+    margin: 0 auto;
+    width: 80%;
+    border-top: 2px solid #000; /* Warna dan ketebalan garis dapat disesuaikan */
+}

@@ -108,20 +108,4 @@ module.exports = {
     },
   },
   plugins: [require("daisyui")],
-  daisyui: {
-    themes: [{
-      light: {
-        ...require("daisyui/src/colors/themes")["[data-theme=light]"],
-        "primary": "#3EC3DC",
-        "primary-focus": "#05ABCA",
-        "primary-content": "#FFFFFF",
-        "secondary": "#2761BA",
-        "secondary-focus": "#234B88",
-        "secondary-content": "#EAF0FB",
-        "accent": "#E55E19",
-        "accent-focus": "#C75216",
-        "accent-content": "#FCEFE8"
-      }
-    }]
-  }
 }

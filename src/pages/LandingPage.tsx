@@ -1,8 +1,10 @@
 import React, { FC } from "react";
+import { MainLayout } from "../components/layouts";
 
 const LandingPage: FC = () => {
 	return (
-		<div>Landing Page</div>
+		<MainLayout>
+		</MainLayout>
 	)
 };
 

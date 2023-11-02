@@ -1,24 +1,27 @@
 import React, { FC, useState } from "react";
 import { CustomInput } from "../../components/input";
-import { useNavigate } from "react-router-dom"
-import InputValidation from "../../helpers/InputValidation";
 import "./Coba.css";
 
-interface DataLogin {
+interface DataRegister {
+	name?: string | null,
 	email?: string | null,
 	password?: string | null,
+	confirmPassword?: string | null,
 }
 
-const Login: FC = () => {
-	const navigate = useNavigate();
-	const [data, setData] = useState<DataLogin>({
+const Register: FC = () => {
+	const [data, setData] = useState<DataRegister>({
+		name: '',
 		email: '',
 		password: '',
+		confirmPassword: ''
 	});
 
-	const [errData, setErrData] = useState<DataLogin>({
+	const [errData, setErrData] = useState<DataRegister>({
+		name: '',
 		email: '',
 		password: '',
+		confirmPassword: ''
 	});
 
 
@@ -27,19 +30,6 @@ const Login: FC = () => {
 		e.preventDefault();
 
 		const { name, value } = e.target;
-
-		let strErr = ""
-		if (name === "email") {
-			strErr = InputValidation.EmailValidation(value, 100, "Email", true);
-		}
-		if (name === "password") {
-			strErr = InputValidation.PasswordValidation(value, 4, 12, "Password", true);
-		}
-
-		setErrData({
-			...errData,
-			[name]: strErr
-		});
 
 		setData({
 			...data,
@@ -50,29 +40,9 @@ const Login: FC = () => {
 
 	/* -------------------------------- OnSubmit -------------------------------- */
 	const onSubmit = () => {
-		const valid = onValidation();
-		if (valid) {
-			console.log(data);
-		}
+		console.log(data);
 	};
 	/* ------------------------------ End OnSubmit ------------------------------ */
-	/* ------------------------------ On Validation ----------------------------- */
-	const onValidation = (): boolean => {
-		const tempValidation: DataLogin = {
-			email: InputValidation.EmailValidation(data.email, 100, "Email", true),
-			password: InputValidation.PasswordValidation(data.password, 4, 12, "Password", true)
-		};
-
-		setErrData(tempValidation);
-
-		for (var key in tempValidation) {
-			if ((tempValidation as any)[key] !== "") {
-				return false;
-			}
-		}
-		return true;
-	};
-	/* ---------------------------- End On Validation --------------------------- */
 
 	return (
 	<div className="container justify-content-center align-items-center">
@@ -112,4 +82,4 @@ const Login: FC = () => {
 	)
 };
 
-export default Login;
+export default Register;

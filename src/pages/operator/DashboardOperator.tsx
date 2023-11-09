@@ -1,6 +1,7 @@
 import React, { FC } from "react";
-import Http from "../helpers/Fetch";
-import AuthUser from "../helpers/AuthUser";
+import Http from "../../helpers/Fetch";
+import AuthUser from "../../helpers/AuthUser";
+import Navbar from "../../components/layouts/Navbar";
 
 const DashboardOperator: FC = () => {
   const user = AuthUser.GetAuth();
@@ -18,7 +19,8 @@ const DashboardOperator: FC = () => {
   };
 
   return (
-    <div className="">
+    <div className="w-full h-screen ">
+      <Navbar></Navbar>
       <p>Ini Dashboard</p>
       <button onClick={GetCurrentUser} className="btn btn-primary normal-case">
         Get Current User

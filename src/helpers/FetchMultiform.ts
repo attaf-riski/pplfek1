@@ -6,6 +6,9 @@ import AuthAttributes from "../inteface/AuthUserInterface";
 const Http = Axios.create({
   baseURL: "http://localhost:5502",
   timeout: 1000,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 Http.interceptors.request.use(

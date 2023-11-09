@@ -9,20 +9,20 @@ import AuthUser from "../../helpers/AuthUser";
 import Swal from "sweetalert2";
 
 interface DataLogin {
-  email?: string | null;
+  username?: string | null;
   password?: string | null;
 }
 
 const Login: FC = () => {
   const navigate = useNavigate();
   const [data, setData] = useState<DataLogin>({
-    email: "",
+    username: "",
     password: "",
   });
   const [loading, setLoading] = useState<boolean>(false);
 
   const [errData, setErrData] = useState<DataLogin>({
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -33,8 +33,8 @@ const Login: FC = () => {
     const { name, value } = e.target;
 
     let strErr = "";
-    if (name === "email") {
-      strErr = InputValidation.EmailValidation(value, 100, "Email", true);
+    if (name === "username") {
+      strErr = InputValidation.UsernameValidation(value, 100, "username", true);
     }
     if (name === "password") {
       strErr = InputValidation.PasswordValidation(
@@ -66,11 +66,13 @@ const Login: FC = () => {
       try {
         const response = await Http.post("/user/login", data, {
           withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
         const responseData: AuthAttributes = {
           id: response.data?.data?.id,
-          name: response.data?.data?.name,
-          email: response.data?.data?.email,
+          username: response.data?.data?.username,
           roleId: response.data?.data?.roleId,
           token: response.data?.data?.token,
           verified: response.data?.data?.verified,
@@ -78,13 +80,23 @@ const Login: FC = () => {
         };
         setData({
           ...data,
-          email: "",
+          username: "",
           password: "",
         });
 
         AuthUser.SetAuth(responseData);
         setLoading(false);
-        navigate("/dashboard");
+        if (responseData.roleId === 1) {
+          navigate("/*");
+        } else if (responseData.roleId === 2) {
+          navigate("/dashboardoperator");
+        } else if (responseData.roleId === 3) {
+          navigate("/*");
+        } else if (responseData.roleId === 4) {
+          navigate("/*");
+        } else if (responseData.roleId === 5) {
+          navigate("/*");
+        }
       } catch (error: any) {
         Swal.fire({
           icon: "error",
@@ -99,7 +111,12 @@ const Login: FC = () => {
   /* ------------------------------ On Validation ----------------------------- */
   const onValidation = (): boolean => {
     const tempValidation: DataLogin = {
-      email: InputValidation.EmailValidation(data.email, 100, "Email", true),
+      username: InputValidation.UsernameValidation(
+        data.username,
+        100,
+        "username",
+        true
+      ),
       password: InputValidation.PasswordValidation(
         data.password,
         4,
@@ -142,12 +159,12 @@ const Login: FC = () => {
         <hr className="horizontal-line" />
         <div className="mb-5 mr-4 ml-4 mt-8">
           <CustomInput
-            name="email"
-            label="Email"
+            name="username"
+            label="username"
             required={true}
-            type="email"
-            value={data.email ?? ""}
-            error={errData.email}
+            type="username"
+            value={data.username ?? ""}
+            error={errData.username}
             onChange={onChange}
           />
         </div>

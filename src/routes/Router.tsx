@@ -1,10 +1,12 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import { DashboardOperatorPage, LandingPage, NotFoundPage } from "../pages";
+import { LandingPage, NotFoundPage } from "../pages";
+import { DashboardOperatorPage } from "../pages/operator";
 
 import { Register, Login, Coba } from "../pages/auth";
 import ProtectRoute from "./ProtectedRoute";
+import { UploudCSV } from "../pages/operator";
 
 const Router = () => {
   return (
@@ -21,6 +23,9 @@ const Router = () => {
           </ProtectRoute>
         }
       />
+      {/* Operator */}
+      <Route path="/dashboardoperator/uploudcsv" element={<UploudCSV />} />
+
       <Route path="/*" element={<NotFoundPage />} />
     </Routes>
   );

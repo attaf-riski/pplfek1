@@ -1,31 +1,29 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require('tailwindcss/defaultTheme');
+const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     container: {
       center: true,
       padding: {
         DEFAULT: "0.5rem",
-        "sm": "1rem",
-        "lg": "2.5rem",
-        "xl": "3.5rem",
-        "2xl": "5rem"
-      }
+        sm: "1rem",
+        lg: "2.5rem",
+        xl: "3.5rem",
+        "2xl": "5rem",
+      },
     },
     extend: {
       fontFamily: {
-        sans: ['Nunito', ...defaultTheme.fontFamily.sans],
-        poppins: ['Poppins', ...defaultTheme.fontFamily.sans]
+        sans: ["Nunito", ...defaultTheme.fontFamily.sans],
+        poppins: ["Poppins", ...defaultTheme.fontFamily.sans],
       },
       colors: {
         "gray-backgraound": "#F6F6F6",
         "primary-first": "#3EC3DC",
         secondary: "#2761BA",
         "menu-label": "#1C3C6E",
-        // "neutral-40": "#6C7280",
+        "neutral-40": "#6C7280",
 
         "primary-10": "#0C3841",
         "primary-20": "#145E6C",
@@ -96,7 +94,6 @@ module.exports = {
         "neutral-10": "#2B2E33",
         "neutral-20": "#41454D",
         "neutral-30": "#565B66",
-        "neutral-40": "#6C7280",
         "neutral-50": "#818999",
         "neutral-60": "#97A0B2",
         "neutral-70": "#B8BECC",
@@ -104,8 +101,8 @@ module.exports = {
         "neutral-90": "#E6EAF2",
         "neutral-95": "#F5F8FF",
         "neutral-100": "#FFFFFF",
-      }
+      },
     },
   },
   plugins: [require("daisyui")],
-}
+};

@@ -1,22 +1,22 @@
 import React, { FC } from "react";
 
 interface MainLayoutAttributes {
-	children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const MainLayout: FC<MainLayoutAttributes> = ({ children }) => {
-    return (
-        <div className="flex">
-        <div className="drawer lg:drawer-open">
-            <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content flex flex-col ">
-                {/* <!-- Page content here --> */}
-                <div className="navbar bg-gray-300 w-full">
-                 <div className="flex-1">
-                     <a className="btn btn-ghost normal-case text-xl">Monitorinq</a>
-                 </div>
-                 <div className="flex-none">
-                     {/* <div className="dropdown dropdown-end">
+  return (
+    <div className="flex">
+      <div className="drawer lg:drawer-open">
+        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content flex flex-col ">
+          {/* <!-- Page content here --> */}
+          <div className="navbar bg-gray-300 w-full">
+            <div className="flex-1">
+              <a className="btn btn-ghost normal-case text-xl">Monitorinq</a>
+            </div>
+            <div className="flex-none">
+              {/* <div className="dropdown dropdown-end">
                          <label tabIndex={0} className="btn btn-ghost btn-circle">
                              <div className="indicator">
                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
@@ -33,48 +33,65 @@ const MainLayout: FC<MainLayoutAttributes> = ({ children }) => {
                              </div>
                          </div>
                      </div> */}
-                     <div className="dropdown dropdown-end">
-                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                             <div className="w-10 rounded-full">
-                                 <img src="/images/logo.png" />
-                             </div>
-                            
-                            
-                         </label>
-                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                             <li>
-                                 <a className="justify-between">
-                                     Profile
-                                     <span className="badge">New</span>
-                                 </a>
-                             </li>
-                             <li><a>Settings</a></li>
-                             <li><a>Logout</a></li>
-                         </ul>
-                     </div>
-                 </div>
-                 
-             </div> 
-                <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
-  
-            </div> 
-            <div className="drawer-side">
-            <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label> 
-            <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-                {/* <!-- Sidebar content here --> */}
-                <li><a>Profil</a></li>
-                <li><a>IRS/KHS</a></li>
-                <li><a>IP</a></li>
-                <li><a>PKL/</a></li>
-            </ul>
-  
+              <div className="dropdown dropdown-end">
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <img src="/images/logo.png" alt="" />
+                  </div>
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <a className="justify-between">
+                      Profile
+                      <span className="badge">New</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a>Settings</a>
+                  </li>
+                  <li>
+                    <a>Logout</a>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <main className="pt-20">
-                     {children}
-                 </main>
+          </div>
+          <label
+            htmlFor="my-drawer-2"
+            className="btn btn-primary drawer-button lg:hidden"
+          >
+            Open drawer
+          </label>
         </div>
+        <div className="drawer-side">
+          <label
+            htmlFor="my-drawer-2"
+            aria-label="close sidebar"
+            className="drawer-overlay"
+          ></label>
+          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+            {/* <!-- Sidebar content here --> */}
+            <li>
+              <a>Profil</a>
+            </li>
+            <li>
+              <a>IRS/KHS</a>
+            </li>
+            <li>
+              <a>IP</a>
+            </li>
+            <li>
+              <a>PKL/</a>
+            </li>
+          </ul>
         </div>
-    );
+        <main className="pt-20">{children}</main>
+      </div>
+    </div>
+  );
 };
 
 export default MainLayout;

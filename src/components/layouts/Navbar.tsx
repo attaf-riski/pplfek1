@@ -9,6 +9,8 @@ import Swal from "sweetalert2";
 function Navbar({ name }: { name: string }, props: any) {
   const navigate = useNavigate();
   const user = AuthUser.GetAuth();
+
+  // Buat component Functional untuk Navbar
   const [showDropdown, setShowDropdown] = useState(false);
 
   const handleProfileClick = () => {

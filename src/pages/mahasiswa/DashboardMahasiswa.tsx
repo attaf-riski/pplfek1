@@ -3,7 +3,7 @@ import Http from "../../helpers/Fetch";
 import AuthUser from "../../helpers/AuthUser";
 import Navbar from "../../components/layouts/Navbar";
 
-const DashboardOperator: FC = () => {
+const DashboardMahasiswa: FC = () => {
   const user = AuthUser.GetAuth();
 
   const GetCurrentUser = async () => {
@@ -20,7 +20,7 @@ const DashboardOperator: FC = () => {
 
   return (
     <div className="w-full h-screen ">
-      <Navbar name="mahmud"></Navbar>
+      <Navbar name="yanto gaming"></Navbar>
       <p>Ini Dashboard</p>
       <button onClick={GetCurrentUser} className="btn btn-primary normal-case">
         Get Current User
@@ -29,4 +29,4 @@ const DashboardOperator: FC = () => {
   );
 };
 
-export default DashboardOperator;
+export default DashboardMahasiswa;

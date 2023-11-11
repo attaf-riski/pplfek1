@@ -95,7 +95,7 @@ const Login: FC = () => {
         } else if (responseData.roleId === 4) {
           navigate("/*");
         } else if (responseData.roleId === 5) {
-          navigate("/*");
+          navigate("/dashboardmahasiswa");
         }
       } catch (error: any) {
         Swal.fire({

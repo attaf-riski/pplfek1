@@ -12,3 +12,7 @@
   width: 80%;
   border-top: 2px solid #000; /* Warna dan ketebalan garis dapat disesuaikan */
 }
+
+.p-container {
+  width: 150px; /* Sesuaikan dengan lebar yang diinginkan */
+}

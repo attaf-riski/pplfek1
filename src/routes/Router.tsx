@@ -3,11 +3,17 @@ import { LandingPage, NotFoundPage } from "../pages";
 import { Register, Login, Coba } from "../pages/auth";
 import ProtectRoute from "./ProtectedRoute";
 import ProtectRouteOperator from "./ProtectedRouteOperator";
-import { DashboardMahasiswaPage } from "../pages/mahasiswa";
+import {
+  DashboardMahasiswaPage,
+  ListIRS,
+  UpdataDataMahasiswa,
+} from "../pages/mahasiswa";
 import ProtectRouteMahasiswa from "./ProtectedRouteMahasiswa";
 import { DashboardOperatorPage, UploudCSV } from "../pages/operator";
 import { DashboardDepartPage, PencarianPage } from "../pages/departemen";
 import { SidebarDepPage } from "../pages/departemen";
+import ProtectRouteDepartemen from "./ProtectedRouteDepartemen";
+import ProtectRouteKelengkapanDataMahasiswa from "./ProtectedRouteKelengkapanDataMahasiswa";
 
 const Router = () => {
   return (
@@ -17,12 +23,32 @@ const Router = () => {
       <Route path="/auth/login" element={<Login />} />
       <Route path="/auth/coba" element={<Coba />} />
 
+      {/* departemen */}
       <Route
-        path="/departemen/dashboarddepart"
-        element={<DashboardDepartPage />}
+        path="/dashboarddepart"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDepartemen>
+              <DashboardDepartPage />
+            </ProtectRouteDepartemen>
+          </ProtectRoute>
+        }
       />
-      <Route path="/departemen/pencarian" element={<PencarianPage />} />
-      <Route path="/departemen/sidebardepart" element={<SidebarDepPage />} />
+
+      <Route
+        path="/dashboarddepart/pencarian"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDepartemen>
+              <PencarianPage />
+            </ProtectRouteDepartemen>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/dashboarddepart/sidebardepart"
+        element={<SidebarDepPage />}
+      />
 
       {/* Operator */}
       <Route
@@ -35,7 +61,6 @@ const Router = () => {
           </ProtectRoute>
         }
       ></Route>
-      <Route path="/dashboardoperator" element={<DashboardOperatorPage />} />
       <Route
         path="/dashboardoperator/uploudcsv"
         element={
@@ -53,7 +78,31 @@ const Router = () => {
         element={
           <ProtectRoute>
             <ProtectRouteMahasiswa>
-              <DashboardMahasiswaPage />
+              <ProtectRouteKelengkapanDataMahasiswa>
+                <DashboardMahasiswaPage />
+              </ProtectRouteKelengkapanDataMahasiswa>
+            </ProtectRouteMahasiswa>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/dashboardmahasiswa/profil"
+        element={
+          <ProtectRoute>
+            <ProtectRouteMahasiswa>
+              <UpdataDataMahasiswa />
+            </ProtectRouteMahasiswa>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/dashboardmahasiswa/irs"
+        element={
+          <ProtectRoute>
+            <ProtectRouteMahasiswa>
+              <ProtectRouteKelengkapanDataMahasiswa>
+                <ListIRS />
+              </ProtectRouteKelengkapanDataMahasiswa>
             </ProtectRouteMahasiswa>
           </ProtectRoute>
         }

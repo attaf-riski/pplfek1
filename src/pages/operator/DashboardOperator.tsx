@@ -1,32 +1,23 @@
 import React, { FC } from "react";
-import Http from "../../helpers/Fetch";
-import AuthUser from "../../helpers/AuthUser";
+// import AuthUser from "../../helpers/AuthUser";
 import Navbar from "../../components/layouts/Navbar";
-import Sidebar from "../../components/layouts/Sidebar";
+import SidebarOp from "./SidebarOp";
 
 const DashboardOperator: FC = () => {
-  const user = AuthUser.GetAuth();
-
-  const GetCurrentUser = async () => {
-    try {
-      const res = await Http.get("/user/detail", {
-        headers: { Authorization: `Bearer ${user?.token}` },
-      });
-
-      console.log(res.data);
-    } catch (error: any) {
-      console.log(error);
-    }
-  };
+  // const user = AuthUser.GetAuth();
 
   return (
-    <div className="w-full h-screen ">
-      <Navbar name="mahmud"></Navbar>
-      <p>Ini Dashboard</p>
-      <button onClick={GetCurrentUser} className="btn btn-primary normal-case">
-        Get Current User
-      </button>
-    </div>
+    <>
+      <Navbar></Navbar>
+      <div className="w-full flex h-screen ">
+        <SidebarOp />
+        <section className="bg-white dark:bg-gray-900 flex justify-center items-center h-screen ml-20">
+          <div className="flex-1 flex flex-col h-screen">
+            <h3>Hehehehehe</h3>
+          </div>
+        </section>
+      </div>
+    </>
   );
 };
 

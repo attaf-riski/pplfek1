@@ -11,7 +11,6 @@ const GetAuth = (): AuthAttributes | null => {
 
   return null;
 };
-
 const SetAuth = (data: AuthAttributes) => {
   const userString = JSON.stringify(data);
 

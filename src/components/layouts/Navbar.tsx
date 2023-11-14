@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 // Buat component Functional untuk Navbar
-function Navbar({ name }: { name: string }, props: any) {
+function Navbar() {
   const navigate = useNavigate();
   const user = AuthUser.GetAuth();
 
@@ -46,10 +46,10 @@ function Navbar({ name }: { name: string }, props: any) {
         </p>
       </div>
       <div className="flex items-center space-x-3">
-        <p className="text-white mr-2">Selamat Datang, {user?.username}</p>
+        <p className="text-white mr-2">Logout</p>
         <div className="relative">
           <img
-            src="/images/leaf.png"
+            src="/images/logout.png"
             alt="Foto Profil"
             className="w-[40px] h-[40px] rounded-full cursor-pointer mr-8"
             onClick={handleProfileClick}

@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import AuthUser from "../../helpers/AuthUser";
 import { LoadingLayout } from "../../components/layouts";
 import Navbar from "../../components/layouts/Navbar";
+import SidebarOp from "./SidebarOp";
 
 const UploudCSV = () => {
   const user = AuthUser.GetAuth();
@@ -101,32 +102,37 @@ const UploudCSV = () => {
   return loading ? (
     <LoadingLayout></LoadingLayout>
   ) : (
-    <div className="w-full h-screen">
-      <Navbar name="jaka"></Navbar>
-      <div className="w-full h-full flex flex-col justify-center items-center gap-10">
-        <input type="file" accept=".csv" onChange={handleChange} />
-        <button
-          onClick={onSubmit}
-          className="w-[312px] h-[99px] border border-black text-3xl font-inter"
-        >
-          Upload File
-        </button>
-        <button
-          className={`w-[312px] h-[99px] border border-black text-3xl font-inter ${
-            link === "" ? "hidden" : ""
-          }`}
-        >
-          <a
-            onClick={DeleteCSV}
-            href={`http://localhost:5502/uploud/${link}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Download Akses Akun
-          </a>
-        </button>
+    <>
+      <Navbar></Navbar>
+      <div className="w-full flex h-screen">
+        <SidebarOp />
+        <div className="flex-1 flex flex-col h-screen">
+          <div className="w-full h-full flex flex-col justify-center items-center gap-10">
+            <input type="file" accept=".csv" onChange={handleChange} />
+            <button
+              onClick={onSubmit}
+              className="w-[312px] h-[99px] border border-black text-3xl font-inter"
+            >
+              Upload File
+            </button>
+            <button
+              className={`w-[312px] h-[99px] border border-black text-3xl font-inter ${
+                link === "" ? "hidden" : ""
+              }`}
+            >
+              <a
+                onClick={DeleteCSV}
+                href={`http://localhost:5502/uploud/${link}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Download Akses Akun
+              </a>
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

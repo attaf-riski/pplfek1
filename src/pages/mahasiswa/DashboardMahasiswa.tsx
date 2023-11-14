@@ -7,7 +7,6 @@ import { FC } from "react";
 const DashboardMahasiswa: FC = () => {
   const user = AuthUser.GetAuth();
   const mahasiswa = LokalMahasiswa.GetMahasiswa();
-
   return (
     <>
       <Navbar></Navbar>

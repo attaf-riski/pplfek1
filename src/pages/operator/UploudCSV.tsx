@@ -8,8 +8,8 @@ import SidebarOp from "./SidebarOp";
 
 const UploudCSV = () => {
   const user = AuthUser.GetAuth();
-  const [file, setFile] = useState(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [file, setFile] = useState(null);
   const [link, setLink] = useState<string>("");
 
   const onSubmit = async () => {

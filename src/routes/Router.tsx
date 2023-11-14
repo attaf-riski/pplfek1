@@ -4,7 +4,9 @@ import { Register, Login, Coba } from "../pages/auth";
 import ProtectRoute from "./ProtectedRoute";
 import ProtectRouteOperator from "./ProtectedRouteOperator";
 import {
+  CreateIRS,
   DashboardMahasiswaPage,
+  DetailIRS,
   ListIRS,
   UpdataDataMahasiswa,
 } from "../pages/mahasiswa";
@@ -102,6 +104,30 @@ const Router = () => {
             <ProtectRouteMahasiswa>
               <ProtectRouteKelengkapanDataMahasiswa>
                 <ListIRS />
+              </ProtectRouteKelengkapanDataMahasiswa>
+            </ProtectRouteMahasiswa>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/dashboardmahasiswa/irs/create"
+        element={
+          <ProtectRoute>
+            <ProtectRouteMahasiswa>
+              <ProtectRouteKelengkapanDataMahasiswa>
+                <CreateIRS />
+              </ProtectRouteKelengkapanDataMahasiswa>
+            </ProtectRouteMahasiswa>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/dashboardmahasiswa/irs/detail/:semester"
+        element={
+          <ProtectRoute>
+            <ProtectRouteMahasiswa>
+              <ProtectRouteKelengkapanDataMahasiswa>
+                <DetailIRS />
               </ProtectRouteKelengkapanDataMahasiswa>
             </ProtectRouteMahasiswa>
           </ProtectRoute>

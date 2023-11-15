@@ -8,7 +8,7 @@ import { DashboardOperatorPage } from "../pages/operator";
 import { Register, Login, Coba } from "../pages/auth";
 import ProtectRoute from "./ProtectedRoute";
 import { UploudCSV } from "../pages/operator";
-import { DashboardDepartPage, PencarianPage } from "../pages/departemen";
+import { DashboardDepartPage, HasilCariPage, PencarianPage } from "../pages/departemen";
 import { SidebarDepPage } from "../pages/departemen";
 
 const Router = () => {
@@ -20,6 +20,7 @@ const Router = () => {
       <Route path="/auth/coba" element={<Coba />} />
       <Route path="/departemen/dashboarddepart" element={<DashboardDepartPage />} />
       <Route path="/departemen/pencarian" element={<PencarianPage />} />
+      <Route path="/departemen/hasilcari" element={<HasilCariPage />} />
       <Route path="/departemen/sidebardepart" element={<SidebarDepPage />} />
       <Route
         path="/dashboardoperator"

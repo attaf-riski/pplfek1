@@ -4,6 +4,7 @@ import AuthUser from "../../helpers/AuthUser";
 import Navbar from "../../components/layouts/Navbar";
 import Sidebar from "../../components/layouts/Sidebar";
 import SidebarDep from "./SidebarDep";
+import { Link } from 'react-router-dom';
 import "../auth/Coba.css";
 
 const Pencarian: FC = () => {
@@ -39,9 +40,9 @@ const Pencarian: FC = () => {
                         placeholder="Search"
                     />
 
-                    <button className="px-4 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-700 rounded-md sm:mx-2 hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+                    < Link to="/departemen/dashboarddepart" className="px-4 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-700 rounded-md sm:mx-2 hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
                         Search
-                    </button>
+                    </Link>
                 </div>
             </div>
           </div>

@@ -24,6 +24,7 @@ const DashboardDepart: FC = () => {
   return (
     <div className="flex">
       <SidebarDep />
+      
       <div className="flex-1 flex flex-col justify-center items-center h-screen">
         <div className="w-full max-w-md px-8 py-4 bg-gray rounded-lg shadow-lg dark:bg-gray-800">
           <div className="flex justify-center mb-6">
@@ -33,7 +34,6 @@ const DashboardDepart: FC = () => {
               src="https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=76&q=80"
             />
           </div>
-
           <h2 className="mt-2 mb-5 text-xl font-semibold text-gray-800 dark:text-white md:mt-0">Departemen, S.Kom, M.Kom</h2>
 
           <p className="mt-2 text-sm text-gray-600 dark:text-gray-200 p-container">NIP : 1980101100123</p>

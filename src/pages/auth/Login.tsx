@@ -7,6 +7,7 @@ import Http from "../../helpers/Fetch";
 import AuthAttributes from "../../inteface/AuthUserInterface";
 import AuthUser from "../../helpers/AuthUser";
 import Swal from "sweetalert2";
+import LokalMahasiswa from "../../helpers/LokalMahasiswa";
 
 interface DataLogin {
   username?: string | null;
@@ -95,7 +96,14 @@ const Login: FC = () => {
         } else if (responseData.roleId === 4) {
           navigate("/*");
         } else if (responseData.roleId === 5) {
-          navigate("/*");
+          const result = await Http.get("/mahasiswa/" + responseData.id, {
+            headers: {
+              Authorization: `Bearer ${responseData.token}`,
+              "Content-Type": "application/json",
+            },
+          });
+          LokalMahasiswa.SetMahasiswa(result.data.data);
+          navigate("/dashboardmahasiswa");
         }
       } catch (error: any) {
         Swal.fire({

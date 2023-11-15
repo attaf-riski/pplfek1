@@ -1,3 +1,4 @@
+import { read } from "fs";
 import React, { FC, InputHTMLAttributes } from "react";
 
 interface CustomInputAttributes extends InputHTMLAttributes<HTMLInputElement> {
@@ -12,6 +13,7 @@ const CustomInput: FC<CustomInputAttributes> = ({
   label,
   error,
   required,
+  readOnly,
   ...rest
 }) => {
   return (
@@ -23,11 +25,15 @@ const CustomInput: FC<CustomInputAttributes> = ({
         {label}
       </label>
       <input
-        className={`bg-white text-black input input-bordered input-primary w-full ${
+        className={` text-black input input-bordered input-primary w-full ${
           error ? "input-error" : ""
-        }`}
+        }
+        ${readOnly ? " bg-gray-200 " : "bg-white"}
+        
+        `}
         name={name}
         required={required}
+        readOnly={readOnly}
         {...rest}
       />
       <span className=" text-sm text-red-500">{error}</span>

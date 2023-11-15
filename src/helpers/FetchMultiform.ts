@@ -2,16 +2,18 @@ import Axios, { AxiosRequestConfig } from "axios";
 import jwtDecode from "jwt-decode";
 import AuthUser from "./AuthUser";
 import AuthAttributes from "../inteface/AuthUserInterface";
+import Http from "./Fetch";
 
-const Http = Axios.create({
+const HttpMultipart = Axios.create({
   baseURL: "http://localhost:5502",
   timeout: 1000,
   headers: {
-    "Content-Type": "application/json",
+    "Content-Type":
+      "multipart/form-data; boundary=<calculated when request is sent>",
   },
 });
 
-Http.interceptors.request.use(
+HttpMultipart.interceptors.request.use(
   async (req: AxiosRequestConfig) => {
     if (req.headers?.Authorization) {
       const authHeader = req.headers?.Authorization;
@@ -26,7 +28,12 @@ Http.interceptors.request.use(
       if (expired * 1000 < currentDate.getTime()) {
         const resData = await Http.get(
           "http://localhost:5502/user/refresh-token",
-          { withCredentials: true }
+          {
+            withCredentials: true,
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
         );
         const response: AuthAttributes = {
           id: resData.data?.data?.id,
@@ -51,7 +58,7 @@ Http.interceptors.request.use(
   }
 );
 
-Http.interceptors.request.use(
+HttpMultipart.interceptors.request.use(
   (response) => {
     return response;
   },
@@ -60,4 +67,4 @@ Http.interceptors.request.use(
   }
 );
 
-export default Http;
+export default HttpMultipart;

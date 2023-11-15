@@ -16,15 +16,16 @@ import { DashboardDepartPage, PencarianPage } from "../pages/departemen";
 import { SidebarDepPage } from "../pages/departemen";
 import ProtectRouteDepartemen from "./ProtectedRouteDepartemen";
 import ProtectRouteKelengkapanDataMahasiswa from "./ProtectedRouteKelengkapanDataMahasiswa";
+import { CreateKHS, DetailKHS, ListKHS } from "../pages/mahasiswa/khs";
 
 const Router = () => {
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
+      <Route path="/" element={<Login />} />{" "}
+      {/* Kalau masih aktif tokennya langsung masuk dashboard kalau sudah tidak aktif langsung login */}
       <Route path="/auth/register" element={<Register />} />
       <Route path="/auth/login" element={<Login />} />
       <Route path="/auth/coba" element={<Coba />} />
-
       {/* departemen */}
       <Route
         path="/dashboarddepart"
@@ -36,7 +37,6 @@ const Router = () => {
           </ProtectRoute>
         }
       />
-
       <Route
         path="/dashboarddepart/pencarian"
         element={
@@ -51,7 +51,6 @@ const Router = () => {
         path="/dashboarddepart/sidebardepart"
         element={<SidebarDepPage />}
       />
-
       {/* Operator */}
       <Route
         path="/dashboardoperator"
@@ -73,7 +72,6 @@ const Router = () => {
           </ProtectRoute>
         }
       />
-
       {/* Mahasiswa */}
       <Route
         path="/dashboardmahasiswa"
@@ -133,9 +131,43 @@ const Router = () => {
           </ProtectRoute>
         }
       />
-
+      <Route
+        path="/dashboardmahasiswa/khs"
+        element={
+          <ProtectRoute>
+            <ProtectRouteMahasiswa>
+              <ProtectRouteKelengkapanDataMahasiswa>
+                <ListKHS />
+              </ProtectRouteKelengkapanDataMahasiswa>
+            </ProtectRouteMahasiswa>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/dashboardmahasiswa/khs/create"
+        element={
+          <ProtectRoute>
+            <ProtectRouteMahasiswa>
+              <ProtectRouteKelengkapanDataMahasiswa>
+                <CreateKHS />
+              </ProtectRouteKelengkapanDataMahasiswa>
+            </ProtectRouteMahasiswa>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/dashboardmahasiswa/khs/detail/:semester"
+        element={
+          <ProtectRoute>
+            <ProtectRouteMahasiswa>
+              <ProtectRouteKelengkapanDataMahasiswa>
+                <DetailKHS />
+              </ProtectRouteKelengkapanDataMahasiswa>
+            </ProtectRouteMahasiswa>
+          </ProtectRoute>
+        }
+      />
       {/* Dosen */}
-
       <Route path="/*" element={<NotFoundPage />} />
     </Routes>
   );

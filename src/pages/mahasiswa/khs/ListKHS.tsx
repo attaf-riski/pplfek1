@@ -1,30 +1,34 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../components/layouts/Navbar";
-import SidebarMahasiswa from "./SidebarMahasiswa";
-import LokalMahasiswa from "../../helpers/LokalMahasiswa";
-import Http from "../../helpers/Fetch";
-import AuthUser from "../../helpers/AuthUser";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import LokalMahasiswa from "../../../helpers/LokalMahasiswa";
+import AuthUser from "../../../helpers/AuthUser";
+import Http from "../../../helpers/Fetch";
+import Navbar from "../../../components/layouts/Navbar";
+import SidebarMahasiswa from "../SidebarMahasiswa";
 
-interface DataIRS {
+interface DataKHS {
   semesterAktif?: number | 0;
-  jumlahSks?: number | 0;
-  scanIRS?: string | "";
+  jumlahSksSemester?: number | 0;
+  jumlahSksKumulatif?: number | 0;
+  IPS?: number | 0;
+  IPK?: number | 0;
+  scanKHS?: string | "";
   NIM?: string | "";
   verified?: boolean | false;
 }
 
-const ListIRS = () => {
+const ListKHS = () => {
   const mahasiswa = LokalMahasiswa.GetMahasiswa();
   const user = AuthUser.GetAuth();
-  const [kumpulanIRS, setKumpulanIRS] = useState<DataIRS[]>([]);
+  const [kumpulanKHS, setKumpulanKHS] = useState<DataKHS[]>([]);
 
   useEffect(() => {
-    getAllIRSByNIM();
+    getAllKHSByNIM();
   }, []);
 
-  const getAllIRSByNIM = async () => {
-    const result = await Http.get("/irs/" + mahasiswa?.NIM, {
+  const getAllKHSByNIM = async () => {
+    const result = await Http.get("/khs/" + mahasiswa?.NIM, {
       headers: {
         Authorization: `Bearer ${user?.token}`,
         "Content-Type": "application/json",
@@ -32,7 +36,7 @@ const ListIRS = () => {
     });
     if (result.status === 200) {
       console.log(result.data?.data);
-      setKumpulanIRS(result.data?.data);
+      setKumpulanKHS(result.data?.data);
     }
   };
   return (
@@ -44,22 +48,22 @@ const ListIRS = () => {
           photo={mahasiswa?.photo}
         />
         <div className="flex-1 flex flex-col p-4">
-          <h1 className="text-4xl font-bold">Daftar IRS</h1>
+          <h1 className="text-4xl font-bold">Daftar KHS</h1>
           <Link
-            to="/dashboardmahasiswa/irs/create"
+            to="/dashboardmahasiswa/KHS/create"
             className="flex items-center justify-end px-4 py-2 mt-4 text-gray-700  rounded-lg dark:bg-gray-800 dark:text-gray-200"
           >
             <button className="bg-[#162953] text-white rounded-xl px-4 py-2 mt-4 mr-5">
-              Tambahkan IRS
+              Tambahkan KHS
             </button>
           </Link>
 
           <div className="flex flex-col mt-4">
             <div className="flex flex-col mt-4">
-              {kumpulanIRS.length === 0 ? (
-                <h2>Belum Ada IRS yang Ditambahkan</h2>
+              {kumpulanKHS.length === 0 ? (
+                <h2>Belum Ada KHS yang Ditambahkan</h2>
               ) : (
-                kumpulanIRS?.map((item, index) => {
+                kumpulanKHS?.map((item, index) => {
                   return (
                     <div
                       key={index}
@@ -67,21 +71,26 @@ const ListIRS = () => {
                     >
                       <div className="flex flex-col">
                         <h1 className="text-white font-bold">
-                          IRS Semester {item.semesterAktif}
+                          KHS Semester {item.semesterAktif}
                         </h1>
                         <h1 className="text-white">
-                          Total SKS : {item.jumlahSks}
+                          Total SKS : {item.jumlahSksSemester}
                         </h1>
+                        <h1 className="text-white">
+                          Total SKS : {item.jumlahSksKumulatif}
+                        </h1>
+                        <h1 className="text-white">IPS : {item.IPS}</h1>
+                        <h1 className="text-white">IPK : {item.IPK}</h1>
                       </div>
                       <div className="flex flex-row">
                         <Link
                           to={
-                            `/dashboardmahasiswa/irs/detail/` +
+                            `/dashboardmahasiswa/KHS/detail/` +
                             item.semesterAktif
                           }
                         >
                           <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
-                            Lihat IRS
+                            Lihat KHS
                           </button>
                         </Link>
                       </div>
@@ -98,4 +107,4 @@ const ListIRS = () => {
   );
 };
 
-export default ListIRS;
+export default ListKHS;

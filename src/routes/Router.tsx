@@ -2,6 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import { LandingPage, NotFoundPage } from "../pages";
 import { Register, Login, Coba } from "../pages/auth";
 import ProtectRoute from "./ProtectedRoute";
+import { UploudCSV } from "../pages/operator";
+import { DashboardDepartPage, HasilCariPage, PencarianPage } from "../pages/departemen";
 import ProtectRouteOperator from "./ProtectedRouteOperator";
 import {
   CreateIRS,
@@ -13,6 +15,7 @@ import {
 import ProtectRouteMahasiswa from "./ProtectedRouteMahasiswa";
 import { DashboardOperatorPage, UploudCSV } from "../pages/operator";
 import { DashboardDepartPage, PencarianPage } from "../pages/departemen";
+
 import { SidebarDepPage } from "../pages/departemen";
 import ProtectRouteDepartemen from "./ProtectedRouteDepartemen";
 import ProtectRouteKelengkapanDataMahasiswa from "./ProtectedRouteKelengkapanDataMahasiswa";
@@ -24,6 +27,10 @@ const Router = () => {
       <Route path="/auth/register" element={<Register />} />
       <Route path="/auth/login" element={<Login />} />
       <Route path="/auth/coba" element={<Coba />} />
+      <Route path="/departemen/dashboarddepart" element={<DashboardDepartPage />} />
+      <Route path="/departemen/pencarian" element={<PencarianPage />} />
+      <Route path="/departemen/hasilcari" element={<HasilCariPage />} />
+      <Route path="/departemen/sidebardepart" element={<SidebarDepPage />} />
 
       {/* departemen */}
       <Route

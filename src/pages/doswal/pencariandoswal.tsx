@@ -3,11 +3,11 @@ import Http from "../../helpers/Fetch";
 import AuthUser from "../../helpers/AuthUser";
 import Navbar from "../../components/layouts/Navbar";
 import Sidebar from "../../components/layouts/Sidebar";
-import SidebarDep from "./SidebarDep";
+import SidebarDoswal from "./SidebarDoswal";
 import { Link } from 'react-router-dom';
 import "../auth/Coba.css";
 
-const HasilCari: FC = () => {
+const PencarianDoswal: FC = () => {
   const user = AuthUser.GetAuth();
 
   const GetCurrentUser = async () => {
@@ -26,7 +26,7 @@ const HasilCari: FC = () => {
     <>
       <Navbar></Navbar>
       <div className="w-full flex h-screen">
-        <SidebarDep/>
+        <SidebarDoswal/>
         <div className="flex-1 flex flex-col p-4">
         <h1 className="text-4xl font-bold mb-4">Pencarian</h1>
           <div className="flex items-center mb-4">
@@ -39,6 +39,7 @@ const HasilCari: FC = () => {
             Cari
           </button>
           </div>
+          <h4 className=" font-normal mb-4">Jumlah Mahasiswa Perwalian : berapa sekian</h4>
           
           {/* <Link
             to="/dashboardmahasiswa/irs/create"
@@ -49,8 +50,8 @@ const HasilCari: FC = () => {
             </button>
           </Link> */}
 
-          <div className="flex flex-col mt-4">
-            <div className="flex flex-col mt-4">
+          <div className="flex flex-col">
+            <div className="flex flex-col mt-2">
                     <div
                       className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2"
                     >
@@ -156,4 +157,4 @@ const HasilCari: FC = () => {
     );
 };
 
-export default HasilCari;
+export default PencarianDoswal;

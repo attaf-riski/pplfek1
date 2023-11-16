@@ -2,8 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import { LandingPage, NotFoundPage } from "../pages";
 import { Register, Login, Coba } from "../pages/auth";
 import ProtectRoute from "./ProtectedRoute";
-import { UploudCSV } from "../pages/operator";
 import { DashboardDepartPage, HasilCariPage, PencarianPage } from "../pages/departemen";
+import { ProfilDoswalPage, SidebarDoswalPage, PencarianDoswalPage, VerifikasiPage, LihatIRSPage, DetailIRSPage, VeriIRSPage } from "../pages/doswal";
 import ProtectRouteOperator from "./ProtectedRouteOperator";
 import {
   CreateIRS,
@@ -14,7 +14,6 @@ import {
 } from "../pages/mahasiswa";
 import ProtectRouteMahasiswa from "./ProtectedRouteMahasiswa";
 import { DashboardOperatorPage, UploudCSV } from "../pages/operator";
-import { DashboardDepartPage, PencarianPage } from "../pages/departemen";
 
 import { SidebarDepPage } from "../pages/departemen";
 import ProtectRouteDepartemen from "./ProtectedRouteDepartemen";
@@ -31,6 +30,13 @@ const Router = () => {
       <Route path="/departemen/pencarian" element={<PencarianPage />} />
       <Route path="/departemen/hasilcari" element={<HasilCariPage />} />
       <Route path="/departemen/sidebardepart" element={<SidebarDepPage />} />
+      <Route path="/doswal/sidebardoswal" element={<SidebarDoswalPage />} />
+      <Route path="/doswal/profildoswal" element={<ProfilDoswalPage />} />
+      <Route path="/doswal/pencariandoswal" element={<PencarianDoswalPage />} />
+      <Route path="/doswal/verifikasi" element={<VerifikasiPage />} />
+      <Route path="/doswal/LihatIRS" element={<LihatIRSPage />} />
+      <Route path="/doswal/DetailIRS" element={<DetailIRSPage />} />
+      <Route path="/doswal/veriIRS" element={<VeriIRSPage />} />
 
       {/* departemen */}
       <Route

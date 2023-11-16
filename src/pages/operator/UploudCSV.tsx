@@ -33,7 +33,7 @@ const UploudCSV = () => {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${user?.token}`,
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "text/csv",
         },
       });
       // tunggu 3 detik

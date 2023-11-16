@@ -7,7 +7,7 @@ import SidebarDoswal from "./SidebarDoswal";
 import { Link } from 'react-router-dom';
 import "../auth/Coba.css";
 
-const Verifikasi: FC = () => {
+const DetailKHS: FC = () => {
   const user = AuthUser.GetAuth();
 
   const GetCurrentUser = async () => {
@@ -28,7 +28,9 @@ const Verifikasi: FC = () => {
       <div className="w-full flex h-screen">
         <SidebarDoswal/>
         <div className="flex-1 flex flex-col p-4">
-        <h1 className="text-4xl font-bold mb-4">Verifikasi</h1>
+        <h1 className="text-4xl font-bold mb-5">KHS</h1>
+        <h2 className="text-3xl font-bold ">Attaf Riski Putra Ramadhan</h2>
+        <h4 className=" font-normal ">NIM : 24060121120002</h4>
           
           
           {/* <Link
@@ -41,26 +43,26 @@ const Verifikasi: FC = () => {
           </Link> */}
 
           <div className="flex flex-col mt-4">
-            <div className="flex flex-col mt-4 ">
+            <div className="flex flex-col ">
                     <div
                       className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2"
                     >
                       <div className="flex flex-col">
-                        <h1 className="text-white font-bold text-3xl">
-                          IRS
+                        <h1 className="text-white font-bold text-2xl">
+                          Semester 1
                         </h1>
                         <h1 className="text-white">
-                          ( Isian Rencana Studi )
+                          ( 21 SKS )
                         </h1>
                       </div>
                       <div className="flex flex-row">
                         <Link
                           to={
-                            `/doswal/LihatIRS` 
+                            `/doswal/veriKHS` 
                           }
                         >
                           <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
-                            Lihat 
+                            Lihat Detail
                           </button>
                         </Link>
                       </div>
@@ -70,59 +72,11 @@ const Verifikasi: FC = () => {
                       className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2"
                     >
                       <div className="flex flex-col">
-                        <h1 className="text-white font-bold text-3xl">
-                          KHS
+                        <h1 className="text-white font-bold text-2xl">
+                          Semester 2
                         </h1>
                         <h1 className="text-white">
-                          ( Kartu Hasil Studi ) 
-                        </h1>
-                      </div>
-                      <div className="flex flex-row">
-                        <Link
-                          to={
-                            `/doswal/LihatKHS` 
-                          }
-                        >
-                          <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
-                            Lihat 
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
-
-                    <div
-                      className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2"
-                    >
-                      <div className="flex flex-col">
-                        <h1 className="text-white font-bold text-3xl">
-                          PKL
-                        </h1>
-                        <h1 className="text-white">
-                          ( Praktik Kerja Lapangan )
-                        </h1>
-                      </div>
-                      <div className="flex flex-row">
-                        <Link
-                          to={
-                            `/doswal/LihatPKL` 
-                          }
-                        >
-                          <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
-                            Lihat
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
-
-                    <div
-                      className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2"
-                    >
-                      <div className="flex flex-col">
-                        <h1 className="text-white font-bold text-3xl">
-                          SKRIPSI
-                        </h1>
-                        <h1 className="text-white">
-                          ( Tugas Akhir )
+                          ( 24 SKS )
                         </h1>
                       </div>
                       <div className="flex flex-row">
@@ -132,12 +86,87 @@ const Verifikasi: FC = () => {
                           }
                         >
                           <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
-                            Lihat 
+                            Lihat Detail
                           </button>
                         </Link>
                       </div>
                     </div>
-                  
+
+                    <div
+                      className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2"
+                    >
+                      <div className="flex flex-col">
+                        <h1 className="text-white font-bold text-2xl">
+                          Semester 3
+                        </h1>
+                        <h1 className="text-white">
+                          ( 24 SKS )
+                        </h1>
+                      </div>
+                      <div className="flex flex-row">
+                        <Link
+                          to={
+                            `/dashboardmahasiswa/irs/detail/` 
+                          }
+                        >
+                          <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
+                            Lihat Detail
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
+
+                    <div
+                      className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2"
+                    >
+                      <div className="flex flex-col">
+                        <h1 className="text-white font-bold text-2xl">
+                          Semester 4
+                        </h1>
+                        <h1 className="text-white">
+                          ( 21 SKS )
+                        </h1>
+                      </div>
+                      <div className="flex flex-row">
+                        <Link
+                          to={
+                            `/dashboardmahasiswa/irs/detail/` 
+                          }
+                        >
+                          <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
+                            Lihat Detail
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
+
+                    <div
+                      className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2"
+                    >
+                      <div className="flex flex-col">
+                        <h1 className="text-white font-bold text-2xl">
+                          Semester 5
+                        </h1>
+                        <h1 className="text-white">
+                          ( 24 SKS )
+                        </h1>
+                      </div>
+                      <div className="flex flex-row">
+                        <Link
+                          to={
+                            `/dashboardmahasiswa/irs/detail/` 
+                          }
+                        >
+                          <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
+                            Lihat Detail
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
+
+                    
+
+                    
             </div>
           </div>
         </div>
@@ -147,4 +176,4 @@ const Verifikasi: FC = () => {
     );
 };
 
-export default Verifikasi;
+export default DetailKHS;

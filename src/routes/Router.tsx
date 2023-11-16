@@ -3,7 +3,7 @@ import { LandingPage, NotFoundPage } from "../pages";
 import { Register, Login, Coba } from "../pages/auth";
 import ProtectRoute from "./ProtectedRoute";
 import { DashboardDepartPage, HasilCariPage, PencarianPage } from "../pages/departemen";
-import { ProfilDoswalPage, SidebarDoswalPage, PencarianDoswalPage, VerifikasiPage, LihatIRSPage, DetailIRSPage, VeriIRSPage } from "../pages/doswal";
+import { ProfilDoswalPage, SidebarDoswalPage, PencarianDoswalPage, VerifikasiPage, LihatIRSPage, DetailIRSPage, VeriIRSPage, LihatKHSPage, DetailKHSPage, VeriKHSPage, LihatPKLPage, DetailPKLPage } from "../pages/doswal";
 import ProtectRouteOperator from "./ProtectedRouteOperator";
 import {
   CreateIRS,
@@ -37,6 +37,11 @@ const Router = () => {
       <Route path="/doswal/LihatIRS" element={<LihatIRSPage />} />
       <Route path="/doswal/DetailIRS" element={<DetailIRSPage />} />
       <Route path="/doswal/veriIRS" element={<VeriIRSPage />} />
+      <Route path="/doswal/LihatKHS" element={<LihatKHSPage />} />
+      <Route path="/doswal/DetailKHS" element={<DetailKHSPage />} />
+      <Route path="/doswal/veriKHS" element={<VeriKHSPage />} />
+      <Route path="/doswal/LihatPKL" element={<LihatPKLPage />} />
+      <Route path="/doswal/DetailPKL" element={<DetailPKLPage />} />
 
       {/* departemen */}
       <Route

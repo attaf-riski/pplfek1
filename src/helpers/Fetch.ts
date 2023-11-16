@@ -14,7 +14,7 @@ Http.interceptors.request.use(
       const authHeader = req.headers?.Authorization;
 
       const currentToken = authHeader && authHeader.toString().split(" ")[1];
-
+      
       const decoded: any = currentToken && jwtDecode(currentToken);
 
       const expired = decoded?.exp;

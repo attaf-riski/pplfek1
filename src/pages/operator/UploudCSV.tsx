@@ -105,7 +105,7 @@ const UploudCSV = () => {
     <>
       <Navbar></Navbar>
       <div className="w-full flex h-screen">
-        <SidebarOp />
+        <SidebarOp name="" />
         <div className="flex-1 flex flex-col h-screen">
           <div className="w-full h-full flex flex-col justify-center items-center gap-10">
             <input type="file" accept=".csv" onChange={handleChange} />

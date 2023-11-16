@@ -13,6 +13,8 @@ import {
   DashboardMahasiswaPage,
   DetailIRS,
   ListIRS,
+  PKL,
+  Skripsi,
   UpdataDataMahasiswa,
 } from "../pages/mahasiswa";
 import ProtectRouteMahasiswa from "./ProtectedRouteMahasiswa";
@@ -174,6 +176,30 @@ const Router = () => {
             <ProtectRouteMahasiswa>
               <ProtectRouteKelengkapanDataMahasiswa>
                 <DetailKHS />
+              </ProtectRouteKelengkapanDataMahasiswa>
+            </ProtectRouteMahasiswa>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/dashboardmahasiswa/pkl"
+        element={
+          <ProtectRoute>
+            <ProtectRouteMahasiswa>
+              <ProtectRouteKelengkapanDataMahasiswa>
+                <PKL />
+              </ProtectRouteKelengkapanDataMahasiswa>
+            </ProtectRouteMahasiswa>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/dashboardmahasiswa/skripsi"
+        element={
+          <ProtectRoute>
+            <ProtectRouteMahasiswa>
+              <ProtectRouteKelengkapanDataMahasiswa>
+                <Skripsi />
               </ProtectRouteKelengkapanDataMahasiswa>
             </ProtectRouteMahasiswa>
           </ProtectRoute>

@@ -1,49 +1,52 @@
-import React, { FC, useEffect, useState } from "react";
-import Navbar from "../../components/layouts/Navbar";
-import SidebarMahasiswa from "./SidebarMahasiswa";
-import LokalMahasiswa from "../../helpers/LokalMahasiswa";
-import Http from "../../helpers/Fetch";
-import AuthUser from "../../helpers/AuthUser";
-import { CustomInput } from "../../components/input";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { LoadingLayout } from "../../components/layouts";
+import LokalMahasiswa from "../../../helpers/LokalMahasiswa";
+import AuthUser from "../../../helpers/AuthUser";
+import Http from "../../../helpers/Fetch";
+import Navbar from "../../../components/layouts/Navbar";
+import SidebarMahasiswa from "../SidebarMahasiswa";
+import { LoadingLayout } from "../../../components/layouts";
+import { CustomInput } from "../../../components/input";
 import { useParams } from "react-router-dom";
 
-interface DataIRS {
-  semesterAktif?: number | 1;
-  jumlahSks?: number | 0;
-  scanIRS?: string | "";
+interface DataKHS {
+  semesterAktif?: number | 0;
+  jumlahSksSemester?: number | 0;
+  jumlahSksKumulatif?: number | 0;
+  IPS?: number | 0;
+  IPK?: number | 0;
+  scanKHS?: string | "";
   NIM?: string | "";
   verified?: boolean | false;
 }
 
-const DetailIRS = () => {
+const CreateKHS = () => {
   const { semester } = useParams();
   const mahasiswa = LokalMahasiswa.GetMahasiswa();
   const user = AuthUser.GetAuth();
-  const [dataIRS, setDataIRS] = useState<DataIRS>({});
+  const [dataKHS, setdataKHS] = useState<DataKHS>({});
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    getIRSByNIMSemester();
+    getKHSByNIMSemester();
   }, []);
 
   const onChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setDataIRS({ ...dataIRS, [e.target.name]: Number(e.target.value) });
+    setdataKHS({ ...dataKHS, [e.target.name]: e.target.value });
   };
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDataIRS({ ...dataIRS, [e.target.name]: Number(e.target.value) });
+    setdataKHS({ ...dataKHS, [e.target.name]: e.target.value });
   };
 
   const handleChange = (e: any) => {
     setFile(e.target.files[0]);
   };
 
-  const getIRSByNIMSemester = async () => {
+  const getKHSByNIMSemester = async () => {
     const result = await Http.get(
-      "/irs/detail/" + mahasiswa?.NIM + "&" + semester,
+      "/khs/detail/" + mahasiswa?.NIM + "&" + semester,
       {
         headers: {
           Authorization: `Bearer ${user?.token}`,
@@ -53,19 +56,28 @@ const DetailIRS = () => {
     );
     if (result.status === 200) {
       console.log(result.data?.data);
-      setDataIRS(result.data?.data);
+      setdataKHS(result.data?.data);
     }
   };
 
   const onSubmit = async (e: any) => {
-    console.log(dataIRS);
     setLoading(true);
+    const newDataIRS = {
+      semesterAktif: Number(dataKHS.semesterAktif),
+      jumlahSksSemester: Number(dataKHS.jumlahSksSemester),
+      jumlahSksKumulatif: Number(dataKHS.jumlahSksKumulatif),
+      IPS: Number(dataKHS.IPS),
+      IPK: Number(dataKHS.IPK),
+    };
     e.preventDefault();
     try {
       // uploud json
+      dataKHS.semesterAktif = dataKHS.semesterAktif || 1;
+      dataKHS.NIM = mahasiswa?.NIM || "";
+      dataKHS.verified = false;
       const response2 = await Http.post(
-        "/irs/update/" + mahasiswa?.NIM + "&" + semester,
-        dataIRS,
+        "/khs/update/" + mahasiswa?.NIM + "&" + semester,
+        newDataIRS,
         {
           withCredentials: true,
           headers: {
@@ -80,7 +92,7 @@ const DetailIRS = () => {
         if (file) {
           fd.append("pdf", file);
           const response = await Http.post(
-            "/irs/scan/" + mahasiswa?.NIM + "&" + dataIRS.semesterAktif,
+            "/khs/scan/" + mahasiswa?.NIM + "&" + dataKHS.semesterAktif,
             fd,
             {
               withCredentials: true,
@@ -94,25 +106,24 @@ const DetailIRS = () => {
             await Swal.fire({
               icon: "success",
               title: "Berhasil",
-              text: "IRS Berhasil Diperbarui",
+              text: "KHS Berhasil Ditambahkan dan Scan KHS diperbarui",
             });
             setLoading(false);
           }
-
-          setLoading(false);
         } else {
           await Swal.fire({
             icon: "success",
             title: "Berhasil",
-            text: "IRS Berhasil Diperbarui",
+            text: "KHS Berhasil Diperbarui",
           });
-          setLoading(false);
         }
+
+        setLoading(false);
       } else {
         await Swal.fire({
           icon: "error",
           title: "Gagal",
-          text: "IRS Gagal Ditambahkan" + response2.data?.message,
+          text: "KHS Gagal Ditambahkan" + response2.data?.message,
         });
         setLoading(false);
       }
@@ -135,52 +146,88 @@ const DetailIRS = () => {
           <LoadingLayout></LoadingLayout>
         ) : (
           <div className="flex-1 flex flex-col p-4">
-            <h1 className="text-4xl font-bold">Detail IRS</h1>
-            <div className="p-5">
+            <h1 className="text-4xl font-bold">Detail KHS</h1>
+            <div>
               <div className="mb-5 mr-4 ml-4 mt-8">
                 <CustomInput
                   name="semesterAktif"
-                  label="Semester Aktif"
+                  label="Semester"
                   required={true}
                   type="text"
-                  value={dataIRS.semesterAktif ?? 0}
+                  value={dataKHS.semesterAktif ?? 0}
+                  onChange={onChangeInput}
                   readOnly={true}
                   // error={errData.username}
                 />
               </div>
               <div className="mb-5 mr-4 ml-4 mt-8">
                 <CustomInput
-                  name="jumlahSks"
-                  label="Jumlah SKS"
+                  name="jumlahSksSemester"
+                  label="Jumlah SKS Semester"
                   required={true}
                   type="text"
-                  value={dataIRS.jumlahSks ?? 0}
+                  value={dataKHS.jumlahSksSemester ?? 0}
                   onChange={onChangeInput}
+                  // error={errData.username}
+                />
+              </div>
+              <div className="mb-5 mr-4 ml-4 mt-8">
+                <CustomInput
+                  name="jumlahSksKumulatif"
+                  label="Jumlah SKS Kumulatif"
+                  required={true}
+                  type="text"
+                  value={dataKHS.jumlahSksKumulatif ?? 0}
+                  onChange={onChangeInput}
+                  // error={errData.username}
+                />
+              </div>
+              <div className="mb-5 mr-4 ml-4 mt-8">
+                <CustomInput
+                  name="IPS"
+                  label="IPS"
+                  required={true}
+                  type="text"
+                  value={dataKHS.IPS ?? 0}
+                  onChange={onChangeInput}
+                  step=".01"
+                  // error={errData.username}
+                />
+              </div>
+              <div className="mb-5 mr-4 ml-4 mt-8">
+                <CustomInput
+                  name="IPK"
+                  label="IPK"
+                  required={true}
+                  type="text"
+                  value={dataKHS.IPK ?? 0}
+                  onChange={onChangeInput}
+                  step=".01"
                   // error={errData.username}
                 />
               </div>
               {/* tampilkan pdf ambil dari lokal */}
               <div className="mb-5 mr-4 ml-4 mt-8">
                 <label className={`text-sm text-slate-400`}>
-                  Scan IRS - PDF
+                  Scan KHS - PDF
                 </label>
                 <object
                   data={
                     file
                       ? URL.createObjectURL(file)
-                      : "http://localhost:5502/pdf/" + dataIRS.scanIRS
+                      : "http://localhost:5502/pdf/" + dataKHS.scanKHS
                   }
                   type="application/pdf"
                   className={`w-full h-screen`}
                 >
-                  <p>Scan IRS</p>
+                  <p>Scan KHS</p>
                 </object>
                 <input
                   type="file"
                   accept="application/pdf"
                   className="bg-white text-black input input-bordered input-primary w-full mt-2"
                   onChange={handleChange}
-                  name="scanIRS"
+                  name="scanKHS"
                 />
               </div>
               <button
@@ -198,4 +245,4 @@ const DetailIRS = () => {
   );
 };
 
-export default DetailIRS;
+export default CreateKHS;

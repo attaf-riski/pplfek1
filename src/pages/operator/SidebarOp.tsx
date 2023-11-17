@@ -1,15 +1,19 @@
-import React from "react";
+import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import AuthUser from "../../helpers/AuthUser";
 
-const SidebarOp = () => {
+interface SidebarOperatorAttributes {
+  name: string;
+}
+
+const SidebarOp: FC<SidebarOperatorAttributes> = ({ name }) => {
   const user = AuthUser.GetAuth();
   return (
     <aside className="flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
       <div className="flex flex-col items-center mt-6 -mx-2">
         <img
           className="object-cover w-24 h-24 mx-2 rounded-full"
-          src="http://localhost:5502/images/ppiconic_rounded.png"
+          src="/images/operator.png"
           alt="avatar"
         />
         <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200">

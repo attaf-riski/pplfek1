@@ -10,12 +10,13 @@ const DashboardOperator: FC = () => {
     <>
       <Navbar></Navbar>
       <div className="w-full flex h-screen ">
-        <SidebarOp />
-        <section className="bg-white dark:bg-gray-900 flex justify-center items-center h-screen ml-20">
-          <div className="flex-1 flex flex-col h-screen">
-            <h3>Hehehehehe</h3>
+        <SidebarOp name="" />
+        <div className="flex-1 flex flex-col p-4">
+          <div className="w-full h-screen flex flex-col justify-center items-center gap-10">
+            <img src="/images/logo.png" alt="" className="w-[100px]" />
+            <h1 className="text-3xl font-bold">404 - Coming Sooooon...</h1>
           </div>
-        </section>
+        </div>
       </div>
     </>
   );

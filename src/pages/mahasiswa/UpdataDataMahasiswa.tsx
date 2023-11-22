@@ -223,6 +223,83 @@ const UpdataDataMahasiswa: FC = () => {
                 <div
                   className="absolute top-0 right-0 h-7 w-7 my-1 border-2 border-white rounded-full bg-green-400 z-2"
                   onClick={uploudGambar}
+                <input
+                  type="file"
+                  accept=".png,.jpg,.jpeg"
+                  onChange={handleChange}
+                  ref={hiddenFileInput}
+                  style={{ display: "none" }}
+                />
+              </div>
+            </div>
+            <div className="grid grid-flow-row w-full">
+              <div className="mb-5 mr-4 ml-4 mt-8">
+                <CustomInput
+                  name="nim"
+                  label="NIM"
+                  required={true}
+                  type="text"
+                  readOnly={true}
+                  value={data.NIM ?? ""}
+                  onChange={onChange}
+                  // error={errData.username}
+                />
+              </div>
+              <div className="mb-5 mr-4 ml-4 mt-8">
+                <CustomInput
+                  name="nama"
+                  label="Nama"
+                  required={true}
+                  type="text"
+                  value={data.nama ?? ""}
+                  onChange={onChange}
+                  // error={errData.username}
+                />
+              </div>
+              <div className="mb-5 mr-4 ml-4 mt-8 ">
+                <CustomTextarea
+                  name="alamat"
+                  label="Alamat"
+                  required={true}
+                  type="text"
+                  value={data.alamat ?? ""}
+                  onChange={(e) => {
+                    setData({
+                      ...data,
+                      alamat: e.target.value,
+                    });
+                  }}
+                ></CustomTextarea>
+              </div>
+              {/* provinsi dan kota/kab */}
+              <div className="mb-5 mr-4 ml-4 mt-8">
+                <label className={`text-sm text-slate-400`}>Provinsi</label>
+                <select
+                  name="provinsi"
+                  className="bg-white text-black input input-bordered input-primary w-full"
+                  onChange={changeProvinsi}
+                >
+                  {data.provinsi === "" ? (
+                    <option>Pilih Provinsi</option>
+                  ) : (
+                    <option>{data.provinsi}</option>
+                  )}
+                  {provinsi.map((item: any) => (
+                    <option key={item.id} value={item.id}>
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              {/* provinsi dan kota/kab */}
+              <div className="mb-5 mr-4 ml-4 mt-8">
+                <label className={`text-sm text-slate-400`}>
+                  Kabupaten / Kota
+                </label>
+                <select
+                  name="kabkota"
+                  className="bg-white text-black input input-bordered input-primary w-full"
+                  onChange={onChangeKabupaten}
                 >
                   <img
                     className="rounded-full bg-white shadow-sm"

@@ -10,3 +10,4 @@ export { default as DetailKHSPage } from "./DetailKHS";
 export { default as DetailPKLPage } from "./DetailPKL";
 export { default as VeriKHSPage } from "./veriKHS";
 export { default as LihatPKLPage } from "./LihatPKL";
+export { default as DashboardDoswalPage } from "./DashboardDoswal";

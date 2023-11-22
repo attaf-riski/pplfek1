@@ -2,6 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import { LandingPage, NotFoundPage } from "../pages";
 import { Register, Login, Coba } from "../pages/auth";
 import ProtectRoute from "./ProtectedRoute";
+import { DashboardDepartPage, HasilCariPage, PencarianPage } from "../pages/departemen";
+import { ProfilDoswalPage, SidebarDoswalPage, PencarianDoswalPage, VerifikasiPage, LihatIRSPage, DetailIRSPage, VeriIRSPage, LihatKHSPage, DetailKHSPage, VeriKHSPage, LihatPKLPage, DetailPKLPage } from "../pages/doswal";
 import {
   DashboardDepartPage,
   HasilCariPage,
@@ -29,7 +31,7 @@ import {
   UpdataDataMahasiswa,
 } from "../pages/mahasiswa";
 import ProtectRouteMahasiswa from "./ProtectedRouteMahasiswa";
-import { DashboardOperatorPage, UploudCSV } from "../pages/operator";
+import { DashboardOperatorPage, UploudCSV, GenerateManualPage } from "../pages/operator";
 
 import { SidebarDepPage } from "../pages/departemen";
 import ProtectRouteDepartemen from "./ProtectedRouteDepartemen";
@@ -72,6 +74,15 @@ const Router = () => {
       <Route path="/doswal/LihatIRS" element={<LihatIRSPage />} />
       <Route path="/doswal/DetailIRS" element={<DetailIRSPage />} />
       <Route path="/doswal/veriIRS" element={<VeriIRSPage />} />
+
+      <Route path="/doswal/LihatKHS" element={<LihatKHSPage />} />
+      <Route path="/doswal/DetailKHS" element={<DetailKHSPage />} />
+      <Route path="/doswal/veriKHS" element={<VeriKHSPage />} />
+      <Route path="/doswal/LihatPKL" element={<LihatPKLPage />} />
+      <Route path="/doswal/DetailPKL" element={<DetailPKLPage />} />
+
+      <Route path="/operator/GenerateManual" element={<GenerateManualPage />} />
+
       {/* departemen */}
       <Route
         path="/dashboarddepart"
@@ -150,11 +161,11 @@ const Router = () => {
       <Route
         path="/dashboardmahasiswa/profil"
         element={
-          <ProtectRoute>
-            <ProtectRouteMahasiswa>
+          // <ProtectRoute>
+            // <ProtectRouteMahasiswa>
               <UpdataDataMahasiswa />
-            </ProtectRouteMahasiswa>
-          </ProtectRoute>
+          //   </ProtectRouteMahasiswa>
+          // </ProtectRoute>
         }
       />
       <Route

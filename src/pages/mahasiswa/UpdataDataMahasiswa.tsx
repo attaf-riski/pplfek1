@@ -209,26 +209,20 @@ const UpdataDataMahasiswa: FC = () => {
   return (
     <>
       <Navbar></Navbar>
-      <div className="w-full flex h-screen">
-        <SidebarMahasiswa name={data.nama || ""} photo={data.photo} />
-        <div className="flex-1 flex flex-col p-4">
-          <h1 className="text-4xl font-bold">Update Data Mahasiswa</h1>
-          <div className="p-4 mt-5 rounded-2xl bg-[#EFF2FB] flex flex-col justify-center items-center">
-            <div className="relative w-32 h-32">
-              <img
-                className="object-cover w-24 h-24 mx-2 rounded-full border bg-gray-200 border-gray-100 shadow-sm"
-                src={file ? URL.createObjectURL(file) : data.photo!}
-                alt="user profil"
-              />
-              <div
-                className="absolute top-0 right-0 h-7 w-7 my-1 border-2 border-white rounded-full bg-green-400 z-2"
-                onClick={uploudGambar}
-              >
+        <div className="w-full flex h-screen">
+          <SidebarMahasiswa name={data.nama || ""} photo={data.photo} />
+          <div className="flex-1 flex flex-col p-4">
+            <h1 className="text-4xl font-bold">Update Data Mahasiswa</h1>
+            <div className="p-4 mt-5 rounded-2xl bg-[#EFF2FB] flex flex-col justify-center items-center">
+              <div className="relative w-32 h-32">
                 <img
-                  className="rounded-full bg-white shadow-sm"
-                  src="/images/edit.png"
-                  alt="edit"
+                  className="object-cover w-24 h-24 mx-2 rounded-full border bg-gray-200 border-gray-100 shadow-sm"
+                  src={file ? URL.createObjectURL(file) : data.photo!}
+                  alt="user profil"
                 />
+                <div
+                  className="absolute top-0 right-0 h-7 w-7 my-1 border-2 border-white rounded-full bg-green-400 z-2"
+                  onClick={uploudGambar}
                 <input
                   type="file"
                   accept=".png,.jpg,.jpeg"
@@ -307,115 +301,188 @@ const UpdataDataMahasiswa: FC = () => {
                   className="bg-white text-black input input-bordered input-primary w-full"
                   onChange={onChangeKabupaten}
                 >
-                  {data.kabkota === "" ? (
-                    <option>Pilih Kota</option>
-                  ) : (
-                    <option>{data.kabkota}</option>
-                  )}
-                  {kabupaten.map((item: any) => (
-                    <option key={item.id} value={item.id}>
-                      {item.name}
-                    </option>
-                  ))}
-                </select>
+                  <img
+                    className="rounded-full bg-white shadow-sm"
+                    src="/images/edit.png"
+                    alt="edit"
+                  />
+                  <input
+                    type="file"
+                    accept=".png,.jpg,.jpeg"
+                    onChange={handleChange}
+                    ref={hiddenFileInput}
+                    style={{ display: "none" }}
+                  />
+                </div>
               </div>
-
-              <div className="mb-5 mr-4 ml-4 mt-8">
-                <CustomInput
-                  name="angkatan"
-                  label="Angkatan"
-                  required={true}
-                  type="text"
-                  value={data.angkatan ?? ""}
-                  readOnly={true}
-                  // error={errData.username}
-                  // onChange={onChange}
-                />
+              <div className="grid grid-cols-1 w-full mt-4 gap-2">
+                <div className="mb-2">
+                  <CustomInput
+                    name="nim"
+                    label="NIM"
+                    required={true}
+                    type="text"
+                    readOnly={true}
+                    value={data.NIM ?? ""}
+                    onChange={onChange}
+                  />
+                </div>
+                <div className="mb-2">
+                  <CustomInput
+                    name="nama"
+                    label="Nama"
+                    required={true}
+                    type="text"
+                    value={data.nama ?? ""}
+                    onChange={onChange}
+                  />
+                </div>
+                <div className="mb-2">
+                  <CustomTextarea
+                    name="alamat"
+                    label="Alamat"
+                    required={true}
+                    type="text"
+                    value={data.alamat ?? ""}
+                    onChange={(e) => {
+                      setData({
+                        ...data,
+                        alamat: e.target.value,
+                      });
+                    }}
+                  ></CustomTextarea>
+                </div>
+                <div className="mb-2">
+                  <label className={`text-sm text-slate-400`}>Provinsi</label>
+                  <select
+                    name="provinsi"
+                    className="bg-white text-black input input-bordered input-primary w-full"
+                    onChange={changeProvinsi}
+                  >
+                    {data.provinsi === "" ? (
+                      <option>Pilih Provinsi</option>
+                    ) : (
+                      <option>{data.provinsi}</option>
+                    )}
+                    {provinsi.map((item: any) => (
+                      <option key={item.id} value={item.id}>
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="mb-2">
+                  <label className={`text-sm text-slate-400`}>
+                    Kabupaten / Kota
+                  </label>
+                  <select
+                    name="kabkota"
+                    className="bg-white text-black input input-bordered input-primary w-full"
+                    onChange={onChangeKabupaten}
+                  >
+                    {data.kabkota === "" ? (
+                      <option>Pilih Kota</option>
+                    ) : (
+                      <option>{data.kabkota}</option>
+                    )}
+                    {kabupaten.map((item: any) => (
+                      <option key={item.id} value={item.id}>
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="mb-2">
+                  <CustomInput
+                    name="angkatan"
+                    label="Angkatan"
+                    required={true}
+                    type="text"
+                    value={data.angkatan ?? ""}
+                    readOnly={true}
+                  />
+                </div>
+                <div className="mb-2">
+                  <label className={`text-sm text-slate-400`}>Jalur Masuk</label>
+                  <select
+                    name="jalurMasuk"
+                    className="bg-white text-black input input-bordered input-primary w-full"
+                    onChange={onChangeSelect}
+                  >
+                    {data.jalurMasuk === "" ? (
+                      <option>Pilih Jalur Masuk</option>
+                    ) : (
+                      <option>{data.jalurMasuk}</option>
+                    )}
+                    <option>SNMPTN</option>
+                    <option>SBMPTN</option>
+                    <option>Mandiri</option>
+                    <option>Lainnya</option>
+                  </select>
+                </div>
+                <div className="mb-2">
+                  <CustomInput
+                    name="email"
+                    label="Email"
+                    required={true}
+                    type="email"
+                    value={data.email ?? ""}
+                    readOnly={false}
+                    onChange={onChange}
+                  />
+                </div>
+                <div className="mb-2">
+                  <CustomInput
+                    name="noHP"
+                    label="No Ponsel"
+                    required={true}
+                    type="text"
+                    value={data.noHP ?? ""}
+                    onChange={onChange}
+                  />
+                </div>
+                <div className="mb-2">
+                  <label className={`text-sm text-slate-400`}>
+                    Status Sekarang
+                  </label>
+                  <select
+                    name="status"
+                    className="bg-white text-black input input-bordered input-primary w-full"
+                    onChange={onChangeSelect}
+                  >
+                    {data.status === "" ? (
+                      <option>Pilih Status</option>
+                    ) : (
+                      <option>{data.status}</option>
+                    )}
+                    <option>AKTIF</option>
+                    <option>CUTI</option>
+                  </select>
+                </div>
+                <div className="mb-2">
+                  <CustomInput
+                    name="doswal"
+                    label="Dosen Wali"
+                    required={true}
+                    type="text"
+                    value={data.dosenWaliNIP ?? ""}
+                    readOnly={true}
+                  />
+                </div>
               </div>
-              <div className="mb-5 mr-4 ml-4 mt-8">
-                <label className={`text-sm text-slate-400`}>Jalur Masuk</label>
-                <select
-                  name="jalurMasuk"
-                  className="bg-white text-black input input-bordered input-primary w-full"
-                  onChange={onChangeSelect}
+              <div className="w-full flex justify-end items-end">
+                <button
+                  className="bg-[#162953] text-white rounded-xl px-4 py-2 mt-4 mr-5"
+                  onClick={onSubmit}
                 >
-                  {data.jalurMasuk === "" ? (
-                    <option>Pilih Jalur Masuk</option>
-                  ) : (
-                    <option>{data.jalurMasuk}</option>
-                  )}
-                  <option>SNMPTN</option>
-                  <option>SBMPTN</option>
-                  <option>Mandiri</option>
-                  <option>Lainnya</option>
-                </select>
+                  Simpan
+                </button>
               </div>
-              <div className="mb-5 mr-4 ml-4 mt-8">
-                <CustomInput
-                  name="email"
-                  label="Email"
-                  required={true}
-                  type="email"
-                  value={data.email ?? ""}
-                  readOnly={false}
-                  onChange={onChange}
-                  // error={errData.username}
-                />
-              </div>
-              <div className="mb-5 mr-4 ml-4 mt-8">
-                <CustomInput
-                  name="noHP"
-                  label="No Ponsel"
-                  required={true}
-                  type="text"
-                  value={data.noHP ?? ""}
-                  onChange={onChange}
-                  // error={errData.username}
-                />
-              </div>
-              {/* untuk mahasiswa hanya bisa ganti aktif atau cuti */}
-              <div className="mb-5 mr-4 ml-4 mt-8">
-                <label className={`text-sm text-slate-400`}>
-                  Status Sekarang
-                </label>
-                <select
-                  name="status"
-                  className="bg-white text-black input input-bordered input-primary w-full"
-                  onChange={onChangeSelect}
-                >
-                  {data.status === "" ? (
-                    <option>Pilih Status</option>
-                  ) : (
-                    <option>{data.status}</option>
-                  )}
-                  <option>AKTIF</option>
-                  <option>CUTI</option>
-                </select>
-              </div>
-              <div className="mb-5 mr-4 ml-4 mt-8">
-                <CustomInput
-                  name="doswal"
-                  label="Dosen Wali"
-                  required={true}
-                  type="text"
-                  value={data.dosenWaliNIP ?? ""}
-                  readOnly={true}
-                  // error={errData.username}
-                  // onChange={onChange}
-                />
-              </div>
-            </div>
-            <div className="w-full flex justify-end items-end">
-              <button
-                className="bg-[#162953] text-white rounded-xl px-4 py-2 mt-4 mr-5"
-                onClick={onSubmit}
-              >
-                Simpan
-              </button>
             </div>
           </div>
         </div>
-      </div>
+
+
     </>
   );
 };

@@ -15,7 +15,7 @@ import {
   UpdataDataMahasiswa,
 } from "../pages/mahasiswa";
 import ProtectRouteMahasiswa from "./ProtectedRouteMahasiswa";
-import { DashboardOperatorPage, UploudCSV } from "../pages/operator";
+import { DashboardOperatorPage, UploudCSV, GenerateManualPage } from "../pages/operator";
 
 import { SidebarDepPage } from "../pages/departemen";
 import ProtectRouteDepartemen from "./ProtectedRouteDepartemen";
@@ -50,6 +50,8 @@ const Router = () => {
       <Route path="/doswal/veriKHS" element={<VeriKHSPage />} />
       <Route path="/doswal/LihatPKL" element={<LihatPKLPage />} />
       <Route path="/doswal/DetailPKL" element={<DetailPKLPage />} />
+
+      <Route path="/operator/GenerateManual" element={<GenerateManualPage />} />
 
       {/* departemen */}
       <Route
@@ -113,11 +115,11 @@ const Router = () => {
       <Route
         path="/dashboardmahasiswa/profil"
         element={
-          <ProtectRoute>
-            <ProtectRouteMahasiswa>
+          // <ProtectRoute>
+            // <ProtectRouteMahasiswa>
               <UpdataDataMahasiswa />
-            </ProtectRouteMahasiswa>
-          </ProtectRoute>
+          //   </ProtectRouteMahasiswa>
+          // </ProtectRoute>
         }
       />
       <Route

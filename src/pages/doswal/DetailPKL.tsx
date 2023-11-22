@@ -4,11 +4,13 @@ import AuthUser from "../../helpers/AuthUser";
 import Navbar from "../../components/layouts/Navbar";
 import Sidebar from "../../components/layouts/Sidebar";
 import SidebarDoswal from "./SidebarDoswal";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import "../auth/Coba.css";
+import LokalDoswal from "../../helpers/LokalDoswal";
 
 const DetailPKL: FC = () => {
   const user = AuthUser.GetAuth();
+  const doswal = LokalDoswal.GetDoswal();
 
   const GetCurrentUser = async () => {
     try {
@@ -26,13 +28,12 @@ const DetailPKL: FC = () => {
     <>
       <Navbar></Navbar>
       <div className="w-full flex h-screen">
-        <SidebarDoswal/>
+        <SidebarDoswal name={doswal?.nama || ""} />
         <div className="flex-1 flex flex-col p-4">
-        <h1 className="text-4xl font-bold mb-5">Verifikasi PKL</h1>
-        <h2 className="text-3xl font-bold ">Attaf Riski Putra Ramadhan</h2>
-        <h4 className=" font-normal ">NIM : 24060121120002</h4>
-          
-          
+          <h1 className="text-4xl font-bold mb-5">Verifikasi PKL</h1>
+          <h2 className="text-3xl font-bold ">Attaf Riski Putra Ramadhan</h2>
+          <h4 className=" font-normal ">NIM : 24060121120002</h4>
+
           {/* <Link
             to="/dashboardmahasiswa/irs/create"
             className="flex items-center justify-end px-4 py-2 mt-4 text-gray-700  rounded-lg dark:bg-gray-800 dark:text-gray-200"
@@ -42,13 +43,12 @@ const DetailPKL: FC = () => {
             </button>
           </Link> */}
 
-          <div className="flex flex-col mt-4">
-        </div>
+          <div className="flex flex-col mt-4"></div>
         </div>
       </div>
       ;
     </>
-    );
+  );
 };
 
 export default DetailPKL;

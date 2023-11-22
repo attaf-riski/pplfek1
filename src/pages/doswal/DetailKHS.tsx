@@ -4,7 +4,7 @@ import AuthUser from "../../helpers/AuthUser";
 import Navbar from "../../components/layouts/Navbar";
 import Sidebar from "../../components/layouts/Sidebar";
 import SidebarDoswal from "./SidebarDoswal";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import "../auth/Coba.css";
 
 const DetailKHS: FC = () => {
@@ -26,13 +26,12 @@ const DetailKHS: FC = () => {
     <>
       <Navbar></Navbar>
       <div className="w-full flex h-screen">
-        <SidebarDoswal/>
+        <SidebarDoswal name="" />
         <div className="flex-1 flex flex-col p-4">
-        <h1 className="text-4xl font-bold mb-5">KHS</h1>
-        <h2 className="text-3xl font-bold ">Attaf Riski Putra Ramadhan</h2>
-        <h4 className=" font-normal ">NIM : 24060121120002</h4>
-          
-          
+          <h1 className="text-4xl font-bold mb-5">KHS</h1>
+          <h2 className="text-3xl font-bold ">Attaf Riski Putra Ramadhan</h2>
+          <h4 className=" font-normal ">NIM : 24060121120002</h4>
+
           {/* <Link
             to="/dashboardmahasiswa/irs/create"
             className="flex items-center justify-end px-4 py-2 mt-4 text-gray-700  rounded-lg dark:bg-gray-800 dark:text-gray-200"
@@ -44,136 +43,82 @@ const DetailKHS: FC = () => {
 
           <div className="flex flex-col mt-4">
             <div className="flex flex-col ">
-                    <div
-                      className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2"
-                    >
-                      <div className="flex flex-col">
-                        <h1 className="text-white font-bold text-2xl">
-                          Semester 1
-                        </h1>
-                        <h1 className="text-white">
-                          ( 21 SKS )
-                        </h1>
-                      </div>
-                      <div className="flex flex-row">
-                        <Link
-                          to={
-                            `/doswal/veriKHS` 
-                          }
-                        >
-                          <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
-                            Lihat Detail
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
+              <div className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2">
+                <div className="flex flex-col">
+                  <h1 className="text-white font-bold text-2xl">Semester 1</h1>
+                  <h1 className="text-white">( 21 SKS )</h1>
+                </div>
+                <div className="flex flex-row">
+                  <Link to={`/doswal/veriKHS`}>
+                    <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
+                      Lihat Detail
+                    </button>
+                  </Link>
+                </div>
+              </div>
 
-                    <div
-                      className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2"
-                    >
-                      <div className="flex flex-col">
-                        <h1 className="text-white font-bold text-2xl">
-                          Semester 2
-                        </h1>
-                        <h1 className="text-white">
-                          ( 24 SKS )
-                        </h1>
-                      </div>
-                      <div className="flex flex-row">
-                        <Link
-                          to={
-                            `/dashboardmahasiswa/irs/detail/` 
-                          }
-                        >
-                          <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
-                            Lihat Detail
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
+              <div className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2">
+                <div className="flex flex-col">
+                  <h1 className="text-white font-bold text-2xl">Semester 2</h1>
+                  <h1 className="text-white">( 24 SKS )</h1>
+                </div>
+                <div className="flex flex-row">
+                  <Link to={`/dashboardmahasiswa/irs/detail/`}>
+                    <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
+                      Lihat Detail
+                    </button>
+                  </Link>
+                </div>
+              </div>
 
-                    <div
-                      className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2"
-                    >
-                      <div className="flex flex-col">
-                        <h1 className="text-white font-bold text-2xl">
-                          Semester 3
-                        </h1>
-                        <h1 className="text-white">
-                          ( 24 SKS )
-                        </h1>
-                      </div>
-                      <div className="flex flex-row">
-                        <Link
-                          to={
-                            `/dashboardmahasiswa/irs/detail/` 
-                          }
-                        >
-                          <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
-                            Lihat Detail
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
+              <div className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2">
+                <div className="flex flex-col">
+                  <h1 className="text-white font-bold text-2xl">Semester 3</h1>
+                  <h1 className="text-white">( 24 SKS )</h1>
+                </div>
+                <div className="flex flex-row">
+                  <Link to={`/dashboardmahasiswa/irs/detail/`}>
+                    <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
+                      Lihat Detail
+                    </button>
+                  </Link>
+                </div>
+              </div>
 
-                    <div
-                      className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2"
-                    >
-                      <div className="flex flex-col">
-                        <h1 className="text-white font-bold text-2xl">
-                          Semester 4
-                        </h1>
-                        <h1 className="text-white">
-                          ( 21 SKS )
-                        </h1>
-                      </div>
-                      <div className="flex flex-row">
-                        <Link
-                          to={
-                            `/dashboardmahasiswa/irs/detail/` 
-                          }
-                        >
-                          <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
-                            Lihat Detail
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
+              <div className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2">
+                <div className="flex flex-col">
+                  <h1 className="text-white font-bold text-2xl">Semester 4</h1>
+                  <h1 className="text-white">( 21 SKS )</h1>
+                </div>
+                <div className="flex flex-row">
+                  <Link to={`/dashboardmahasiswa/irs/detail/`}>
+                    <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
+                      Lihat Detail
+                    </button>
+                  </Link>
+                </div>
+              </div>
 
-                    <div
-                      className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2"
-                    >
-                      <div className="flex flex-col">
-                        <h1 className="text-white font-bold text-2xl">
-                          Semester 5
-                        </h1>
-                        <h1 className="text-white">
-                          ( 24 SKS )
-                        </h1>
-                      </div>
-                      <div className="flex flex-row">
-                        <Link
-                          to={
-                            `/dashboardmahasiswa/irs/detail/` 
-                          }
-                        >
-                          <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
-                            Lihat Detail
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
-
-                    
-
-                    
+              <div className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2">
+                <div className="flex flex-col">
+                  <h1 className="text-white font-bold text-2xl">Semester 5</h1>
+                  <h1 className="text-white">( 24 SKS )</h1>
+                </div>
+                <div className="flex flex-row">
+                  <Link to={`/dashboardmahasiswa/irs/detail/`}>
+                    <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
+                      Lihat Detail
+                    </button>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
       ;
     </>
-    );
+  );
 };
 
 export default DetailKHS;

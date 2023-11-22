@@ -238,7 +238,7 @@ const UpdataDataMahasiswa: FC = () => {
                 />
               </div>
             </div>
-            <div className="grid grid-flow-col grid-cols-4 grid-rows-3 ">
+            <div className="grid grid-flow-row w-full">
               <div className="mb-5 mr-4 ml-4 mt-8">
                 <CustomInput
                   name="nim"

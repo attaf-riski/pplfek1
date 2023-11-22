@@ -8,6 +8,7 @@ import AuthAttributes from "../../inteface/AuthUserInterface";
 import AuthUser from "../../helpers/AuthUser";
 import Swal from "sweetalert2";
 import LokalMahasiswa from "../../helpers/LokalMahasiswa";
+import LokalDoswal from "../../helpers/LokalDoswal";
 
 interface DataLogin {
   username?: string | null;
@@ -92,9 +93,16 @@ const Login: FC = () => {
         } else if (responseData.roleId === 2) {
           navigate("/dashboardoperator");
         } else if (responseData.roleId === 3) {
-          navigate("/*");
+          navigate("/dashboarddepart");
         } else if (responseData.roleId === 4) {
-          navigate("/*");
+          const result = await Http.get("/doswal/" + responseData.id, {
+            headers: {
+              Authorization: `Bearer ${responseData.token}`,
+              "Content-Type": "application/json",
+            },
+          });
+          LokalDoswal.SetDoswal(result.data.data);
+          navigate("/dashboarddoswal");
         } else if (responseData.roleId === 5) {
           const result = await Http.get("/mahasiswa/" + responseData.id, {
             headers: {
@@ -103,7 +111,7 @@ const Login: FC = () => {
             },
           });
           LokalMahasiswa.SetMahasiswa(result.data.data);
-          navigate("/dashboardmahasiswa");
+          navigate("/dashboardmahasiswa/profil");
         }
       } catch (error: any) {
         Swal.fire({

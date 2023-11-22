@@ -1,31 +1,20 @@
 import React, { FC } from "react";
-import Http from "../../helpers/Fetch";
-import AuthUser from "../../helpers/AuthUser";
+// import AuthUser from "../../helpers/AuthUser";
 import Navbar from "../../components/layouts/Navbar";
-import Sidebar from "../../components/layouts/Sidebar";
-import SidebarDep from "./SidebarDep";
-import "../auth/Coba.css";
+import SidebarDoswal from "./SidebarDoswal";
+import { Link } from "react-router-dom";
+import AuthUser from "../../helpers/AuthUser";
+import LokalDoswal from "../../helpers/LokalDoswal";
 
-const DashboardDepart: FC = () => {
+const DashboardDoswal: FC = () => {
   const user = AuthUser.GetAuth();
-
-  const GetCurrentUser = async () => {
-    try {
-      const res = await Http.get("/user/detail", {
-        headers: { Authorization: `Bearer ${user?.token}` },
-      });
-
-      console.log(res.data);
-    } catch (error: any) {
-      console.log(error);
-    }
-  };
+  const doswal = LokalDoswal.GetDoswal();
 
   return (
     <>
       <Navbar></Navbar>
       <div className="w-full flex h-screen">
-        <SidebarDep />
+        <SidebarDoswal name={doswal?.nama || ""} />
         <div className="flex-1 flex flex-col p-4">
           <div className="w-full h-screen flex flex-col justify-center items-center gap-10">
             <img src="/images/logo.png" alt="" className="w-[100px]" />
@@ -37,4 +26,4 @@ const DashboardDepart: FC = () => {
   );
 };
 
-export default DashboardDepart;
+export default DashboardDoswal;

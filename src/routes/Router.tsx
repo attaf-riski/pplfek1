@@ -2,8 +2,22 @@ import { Routes, Route } from "react-router-dom";
 import { LandingPage, NotFoundPage } from "../pages";
 import { Register, Login, Coba } from "../pages/auth";
 import ProtectRoute from "./ProtectedRoute";
-import { DashboardDepartPage, HasilCariPage, PencarianPage } from "../pages/departemen";
-import { ProfilDoswalPage, SidebarDoswalPage, PencarianDoswalPage, VerifikasiPage, LihatIRSPage, DetailIRSPage, VeriIRSPage } from "../pages/doswal";
+import {
+  DashboardDepartPage,
+  HasilCariPage,
+  PencarianPage,
+  ProfilDepart,
+} from "../pages/departemen";
+import {
+  ProfilDoswalPage,
+  SidebarDoswalPage,
+  PencarianDoswalPage,
+  VerifikasiPage,
+  LihatIRSPage,
+  DetailIRSPage,
+  VeriIRSPage,
+  DashboardDoswalPage,
+} from "../pages/doswal";
 import ProtectRouteOperator from "./ProtectedRouteOperator";
 import {
   CreateIRS,
@@ -21,6 +35,7 @@ import { SidebarDepPage } from "../pages/departemen";
 import ProtectRouteDepartemen from "./ProtectedRouteDepartemen";
 import ProtectRouteKelengkapanDataMahasiswa from "./ProtectedRouteKelengkapanDataMahasiswa";
 import { CreateKHS, DetailKHS, ListKHS } from "../pages/mahasiswa/khs";
+import ProtectRouteDoswal from "./ProtectedRouteDoswal";
 
 const Router = () => {
   return (
@@ -30,14 +45,27 @@ const Router = () => {
       <Route path="/auth/register" element={<Register />} />
       <Route path="/auth/login" element={<Login />} />
       <Route path="/auth/coba" element={<Coba />} />
+      {/* doswal */}
       <Route
-        path="/departemen/dashboarddepart"
-        element={<DashboardDepartPage />}
+        path="/dashboarddoswal"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDoswal>
+              <DashboardDoswalPage />
+            </ProtectRouteDoswal>
+          </ProtectRoute>
+        }
       />
-      <Route path="/departemen/pencarian" element={<PencarianPage />} />
-      <Route path="/departemen/hasilcari" element={<HasilCariPage />} />
-      <Route path="/departemen/sidebardepart" element={<SidebarDepPage />} />
-      <Route path="/doswal/sidebardoswal" element={<SidebarDoswalPage />} />
+      <Route
+        path="/dashboarddoswal/profildoswal"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDoswal>
+              <ProfilDoswalPage />
+            </ProtectRouteDoswal>
+          </ProtectRoute>
+        }
+      />
       <Route path="/doswal/profildoswal" element={<ProfilDoswalPage />} />
       <Route path="/doswal/pencariandoswal" element={<PencarianDoswalPage />} />
       <Route path="/doswal/verifikasi" element={<VerifikasiPage />} />
@@ -55,6 +83,22 @@ const Router = () => {
           </ProtectRoute>
         }
       />
+      <Route
+        path="/dashboarddepart/profil"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDepartemen>
+              <ProfilDepart />
+            </ProtectRouteDepartemen>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/departemen/dashboarddepart"
+        element={<DashboardDepartPage />}
+      />
+      <Route path="/departemen/hasilcari" element={<HasilCariPage />} />
+      <Route path="/departemen/sidebardepart" element={<SidebarDepPage />} />
       <Route
         path="/dashboarddepart/pencarian"
         element={

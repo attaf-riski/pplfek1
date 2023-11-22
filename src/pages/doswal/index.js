@@ -5,3 +5,4 @@ export { default as VerifikasiPage } from "./verifikasi";
 export { default as LihatIRSPage } from "./LihatIRS";
 export { default as DetailIRSPage } from "./DetailIRS";
 export { default as VeriIRSPage } from "./veriIRS";
+export { default as DashboardDoswalPage } from "./DashboardDoswal";

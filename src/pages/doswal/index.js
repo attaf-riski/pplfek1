@@ -13,3 +13,4 @@ export { default as LihatPKLPage } from "./LihatPKL";
 export { default as DetailSkripsiPage } from "./DetailSkripsi";
 export { default as LihatSkripsiPage } from "./LihatSkripsi";
 export { default as DashboardDoswalPage } from "./DashboardDoswal";
+export { default as ProgressStudiPage } from "./ProgressStudi";

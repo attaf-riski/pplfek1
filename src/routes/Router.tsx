@@ -48,6 +48,7 @@ import ProtectRouteDepartemen from "./ProtectedRouteDepartemen";
 import ProtectRouteKelengkapanDataMahasiswa from "./ProtectedRouteKelengkapanDataMahasiswa";
 import { CreateKHS, DetailKHS, ListKHS } from "../pages/mahasiswa/khs";
 import ProtectRouteDoswal from "./ProtectedRouteDoswal";
+import { ProgressStudiPage } from "../pages/doswal";
 
 const Router = () => {
   return (
@@ -200,6 +201,7 @@ const Router = () => {
         }
       />
       <Route path="/operator/GenerateManual" element={<GenerateManualPage />} />
+      <Route path="/doswal/ProgressStudi" element={<ProgressStudiPage />} />
       {/* departemen */}
       <Route
         path="/dashboarddepart"

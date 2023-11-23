@@ -23,6 +23,8 @@ import {
   VeriKHSPage,
   LihatPKLPage,
   DetailPKLPage,
+  DetailSkripsiPage,
+  LihatSkripsiPage,
 } from "../pages/doswal";
 import ProtectRouteOperator from "./ProtectedRouteOperator";
 import {
@@ -76,17 +78,127 @@ const Router = () => {
           </ProtectRoute>
         }
       />
-      <Route path="/doswal/profildoswal" element={<ProfilDoswalPage />} />
+      <Route
+        path="/doswal/profildoswal"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDoswal>
+              <ProfilDoswalPage />
+            </ProtectRouteDoswal>
+          </ProtectRoute>
+        }
+      />
       <Route path="/doswal/pencariandoswal" element={<PencarianDoswalPage />} />
-      <Route path="/doswal/verifikasi" element={<VerifikasiPage />} />
-      <Route path="/doswal/LihatIRS" element={<LihatIRSPage />} />
-      <Route path="/doswal/DetailIRS" element={<DetailIRSPage />} />
-      <Route path="/doswal/veriIRS" element={<VeriIRSPage />} />
-      <Route path="/doswal/LihatKHS" element={<LihatKHSPage />} />
-      <Route path="/doswal/DetailKHS" element={<DetailKHSPage />} />
-      <Route path="/doswal/veriKHS" element={<VeriKHSPage />} />
-      <Route path="/doswal/LihatPKL" element={<LihatPKLPage />} />
-      <Route path="/doswal/DetailPKL" element={<DetailPKLPage />} />
+      <Route
+        path="/doswal/verifikasi"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDoswal>
+              <VerifikasiPage />
+            </ProtectRouteDoswal>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/doswal/LihatIRS"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDoswal>
+              <LihatIRSPage />
+            </ProtectRouteDoswal>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/doswal/DetailIRS/:NIM"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDoswal>
+              <DetailIRSPage />
+            </ProtectRouteDoswal>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/doswal/veriIRS/:NIM&:semester"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDoswal>
+              <VeriIRSPage />
+            </ProtectRouteDoswal>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/doswal/LihatKHS"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDoswal>
+              <LihatKHSPage />
+            </ProtectRouteDoswal>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/doswal/DetailKHS/:NIM"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDoswal>
+              <DetailKHSPage />
+            </ProtectRouteDoswal>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/doswal/veriKHS/:NIM&:semester"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDoswal>
+              <VeriKHSPage />
+            </ProtectRouteDoswal>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/doswal/LihatPKL"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDoswal>
+              <LihatPKLPage />
+            </ProtectRouteDoswal>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/doswal/DetailPKL/:NIM"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDoswal>
+              <DetailPKLPage />
+            </ProtectRouteDoswal>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/doswal/LihatSkripsi"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDoswal>
+              <LihatSkripsiPage />
+            </ProtectRouteDoswal>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/doswal/DetailSkripsi/:NIM"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDoswal>
+              <DetailSkripsiPage />
+            </ProtectRouteDoswal>
+          </ProtectRoute>
+        }
+      />
       <Route path="/operator/GenerateManual" element={<GenerateManualPage />} />
       {/* departemen */}
       <Route

@@ -56,60 +56,13 @@ const Verifikasi: FC = () => {
                   </Link>
                 </div>
               </div>
-                    <div
-                      className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2"
-                    >
-                      <div className="flex flex-col">
-                        <h1 className="text-white font-bold text-3xl">
-                          KHS
-                        </h1>
-                        <h1 className="text-white">
-                          ( Kartu Hasil Studi ) 
-                        </h1>
-                      </div>
-                      <div className="flex flex-row">
-                        <Link
-                          to={
-                            `/doswal/LihatKHS` 
-                          }
-                        >
-                          <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
-                            Lihat 
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
-
-                    <div
-                      className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2"
-                    >
-                      <div className="flex flex-col">
-                        <h1 className="text-white font-bold text-3xl">
-                          PKL
-                        </h1>
-                        <h1 className="text-white">
-                          ( Praktik Kerja Lapangan )
-                        </h1>
-                      </div>
-                      <div className="flex flex-row">
-                        <Link
-                          to={
-                            `/doswal/LihatPKL` 
-                          }
-                        >
-                          <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
-                            Lihat
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
               <div className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2">
                 <div className="flex flex-col">
                   <h1 className="text-white font-bold text-3xl">KHS</h1>
                   <h1 className="text-white">( Kartu Hasil Studi )</h1>
                 </div>
                 <div className="flex flex-row">
-                  <Link to={`/dashboardmahasiswa/irs/detail/`}>
+                  <Link to={`/doswal/LihatKHS`}>
                     <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
                       Lihat
                     </button>
@@ -123,7 +76,7 @@ const Verifikasi: FC = () => {
                   <h1 className="text-white">( Praktik Kerja Lapangan )</h1>
                 </div>
                 <div className="flex flex-row">
-                  <Link to={`/dashboardmahasiswa/irs/detail/`}>
+                  <Link to={`/doswal/LihatPKL`}>
                     <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
                       Lihat
                     </button>
@@ -137,7 +90,7 @@ const Verifikasi: FC = () => {
                   <h1 className="text-white">( Tugas Akhir )</h1>
                 </div>
                 <div className="flex flex-row">
-                  <Link to={`/dashboardmahasiswa/irs/detail/`}>
+                  <Link to={`/doswal/LihatSkripsi`}>
                     <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
                       Lihat
                     </button>

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Http from "../../helpers/Fetch";
 import AuthUser from "../../helpers/AuthUser";
 import Navbar from "../../components/layouts/Navbar";
@@ -7,20 +7,32 @@ import SidebarDoswal from "./SidebarDoswal";
 import { Link } from "react-router-dom";
 import "../auth/Coba.css";
 import LokalDoswal from "../../helpers/LokalDoswal";
+import Swal from "sweetalert2";
+import DataMahasiswa from "../../inteface/MahasiswaInterface";
 
 const LihatKHS: FC = () => {
   const user = AuthUser.GetAuth();
   const doswal = LokalDoswal.GetDoswal();
 
-  const GetCurrentUser = async () => {
+  const [daftarMahasiswa, setDaftarMahasiswa] = useState<DataMahasiswa[]>([]);
+
+  useEffect(() => {
+    GetMahasiswaByKHSNotVerified();
+  }, []);
+
+  const GetMahasiswaByKHSNotVerified = async () => {
     try {
-      const res = await Http.get("/user/detail", {
+      const res = await Http.get("/doswal/khs/" + doswal?.NIP, {
         headers: { Authorization: `Bearer ${user?.token}` },
       });
 
-      console.log(res.data);
+      setDaftarMahasiswa(res.data.data);
     } catch (error: any) {
-      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+      });
     }
   };
 
@@ -42,7 +54,8 @@ const LihatKHS: FC = () => {
             </button>
           </div>
           <h4 className=" font-normal mb-4">
-            Jumlah Mahasiswa Perwalian : berapa sekian
+            Jumlah Mahasiswa Perwalian KHS perlu diverifikasi :{" "}
+            {daftarMahasiswa.length}
           </h4>
           {/* <Link
             to="/dashboardmahasiswa/irs/create"
@@ -55,65 +68,32 @@ const LihatKHS: FC = () => {
 
           <div className="flex flex-col ">
             <div className="flex flex-col mt-2">
-              <div className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2">
-                <div className="flex flex-col">
-                  <h1 className="text-white font-bold">
-                    Attaf Riski Putra Ramadhan
-                  </h1>
-                  <h1 className="text-white">NIM : 24060121120002</h1>
-                </div>
-                <div className="flex flex-row">
-                  <Link to={`/doswal/DetailKHS`}>
-                    <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
-                      Lihat KHS
-                    </button>
-                  </Link>
-                </div>
-              </div>
+              {/* tampilkan data daftar mahasiswa */}
+              {daftarMahasiswa.map((mahasiswa, index) => (
+                <div
+                  key={index}
+                  className="flex flex-row space-x-3 items-center bg-[#162953] rounded-xl px-4 py-2 mb-2"
+                >
+                  <img
+                    src={mahasiswa.photo || ""}
+                    alt=""
+                    className="w-20 h-20 rounded-full bg-white"
+                  />
+                  <div className="flex flex-col">
+                    {/* tambahkan gambar */}
 
-              <div className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2">
-                <div className="flex flex-col">
-                  <h1 className="text-white font-bold">
-                    Raihan Gilang Firdausy
-                  </h1>
-                  <h1 className="text-white">NIM : 24060121130065</h1>
+                    <h1 className="text-white font-bold">{mahasiswa.nama}</h1>
+                    <h1 className="text-white">NIM : {mahasiswa.NIM}</h1>
+                  </div>
+                  <div className="flex flex-row">
+                    <Link to={`/doswal/DetailKHS/` + mahasiswa.NIM}>
+                      <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
+                        Lihat KHS
+                      </button>
+                    </Link>
+                  </div>
                 </div>
-                <div className="flex flex-row">
-                  <Link to={`/dashboardmahasiswa/irs/detail/`}>
-                    <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
-                      Lihat KHS
-                    </button>
-                  </Link>
-                </div>
-              </div>
-
-              <div className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2">
-                <div className="flex flex-col">
-                  <h1 className="text-white font-bold">Majid Ilham Adhim</h1>
-                  <h1 className="text-white">NIM : 24060121130069</h1>
-                </div>
-                <div className="flex flex-row">
-                  <Link to={`/dashboardmahasiswa/irs/detail/`}>
-                    <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
-                      Lihat KHS
-                    </button>
-                  </Link>
-                </div>
-              </div>
-
-              <div className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2">
-                <div className="flex flex-col">
-                  <h1 className="text-white font-bold">Michael Jonadi</h1>
-                  <h1 className="text-white">NIM : 24060121130069</h1>
-                </div>
-                <div className="flex flex-row">
-                  <Link to={`/dashboardmahasiswa/irs/detail/`}>
-                    <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
-                      Lihat KHS
-                    </button>
-                  </Link>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

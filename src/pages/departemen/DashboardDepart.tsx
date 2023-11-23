@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import Http from "../../helpers/Fetch";
 import AuthUser from "../../helpers/AuthUser";
 import Navbar from "../../components/layouts/Navbar";
-import Sidebar from "../../components/layouts/Sidebar";
 import SidebarDep from "./SidebarDep";
 import "../auth/Coba.css";
 

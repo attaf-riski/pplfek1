@@ -6,28 +6,28 @@ import SidebarDoswal from "./SidebarDoswal";
 import "../auth/Coba.css";
 import LokalDoswal from "../../helpers/LokalDoswal";
 import { useParams } from "react-router-dom";
-import dataPKL from "../../inteface/PKLInterface";
+import dataSkripsi from "../../inteface/SkripsiInterface";
 import Swal from "sweetalert2";
 import { CustomInput } from "../../components/input";
 
-const DetailPKL: FC = () => {
+const DetailSkripsi: FC = () => {
   const user = AuthUser.GetAuth();
   const doswal = LokalDoswal.GetDoswal();
   const { NIM } = useParams();
-  const [dataPKLLokal, setDataPKL] = useState<dataPKL>({
+  const [dataSkripsiLokal, setDataSkripsi] = useState<dataSkripsi>({
     NIM: "",
     status: "",
     nilai: "",
     scanBeritaAcara: "",
     tanggalSidang: "",
-    semesterLulus: 0,
     verified: false,
+    lamaStudi: 0,
   });
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    getPKLByNIM();
+    getSkripsiByNIM();
   }, []);
 
   const onSubmitSetuju = async (e: any) => {
@@ -39,7 +39,7 @@ const DetailPKL: FC = () => {
     };
 
     try {
-      const response = await Http.post("/pkl/approve/" + NIM, data, {
+      const response = await Http.post("/Skripsi/approve/" + NIM, data, {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${user?.token}`,
@@ -50,14 +50,14 @@ const DetailPKL: FC = () => {
         await Swal.fire({
           icon: "success",
           title: "Berhasil",
-          text: "PKL Berhasil Diverifikasi",
+          text: "Skripsi Berhasil Diverifikasi",
         });
         setLoading(false);
       } else {
         await Swal.fire({
           icon: "error",
           title: "Gagal",
-          text: "PKL Gagal Diverifikasi" + response.data?.message,
+          text: "Skripsi Gagal Diverifikasi" + response.data?.message,
         });
         setLoading(false);
       }
@@ -76,16 +76,16 @@ const DetailPKL: FC = () => {
     setFile(e.target.files[0]);
   };
 
-  const getPKLByNIM = async () => {
+  const getSkripsiByNIM = async () => {
     try {
-      const result = await Http.get("/pkl/" + NIM, {
+      const result = await Http.get("/Skripsi/" + NIM, {
         headers: {
           Authorization: `Bearer ${user?.token}`,
         },
       });
       if (result.status === 200) {
         console.log(result.data?.data);
-        setDataPKL(result.data?.data);
+        setDataSkripsi(result.data?.data);
       } else {
         console.log("masuk");
       }
@@ -99,26 +99,26 @@ const DetailPKL: FC = () => {
   };
 
   const onChangeSelect = (e: any) => {
-    dataPKLLokal.status = e.target.value;
+    dataSkripsiLokal.status = e.target.value;
     if (e.target.name !== "Lulus") {
-      setDataPKL({ ...dataPKLLokal, nilai: "Kosong" });
+      setDataSkripsi({ ...dataSkripsiLokal, nilai: "Kosong" });
     }
   };
 
   const onChangeInput = (e: any) => {
-    setDataPKL({ ...dataPKLLokal, [e.target.name]: e.target.value });
+    setDataSkripsi({ ...dataSkripsiLokal, [e.target.name]: e.target.value });
   };
 
   const onUpdate = async (e: any) => {
-    dataPKLLokal.NIM = NIM || "";
+    dataSkripsiLokal.NIM = NIM || "";
 
-    const newDataPKL = {
-      NIM: dataPKLLokal.NIM,
-      status: dataPKLLokal.status,
-      nilai: dataPKLLokal.nilai,
-      scanBeritaAcara: dataPKLLokal.scanBeritaAcara,
-      tanggalSidang: dataPKLLokal.tanggalSidang,
-      semesterLulus: dataPKLLokal.semesterLulus,
+    const newDataSkripsi = {
+      NIM: dataSkripsiLokal.NIM,
+      status: dataSkripsiLokal.status,
+      nilai: dataSkripsiLokal.nilai,
+      scanBeritaAcara: dataSkripsiLokal.scanBeritaAcara,
+      tanggalSidang: dataSkripsiLokal.tanggalSidang,
+      lamaStudi: dataSkripsiLokal.lamaStudi,
       verified: true,
     };
 
@@ -126,8 +126,8 @@ const DetailPKL: FC = () => {
     //uploud json
     try {
       const response = await Http.post(
-        "/pkl/approve/update/" + NIM,
-        newDataPKL,
+        "/Skripsi/approve/update/" + NIM,
+        newDataSkripsi,
         {
           withCredentials: true,
           headers: {
@@ -142,7 +142,7 @@ const DetailPKL: FC = () => {
         const fd = new FormData();
         if (file) {
           fd.append("pdf", file);
-          const response2 = await Http.post("/pkl/scan/" + NIM, fd, {
+          const response2 = await Http.post("/Skripsi/scan/" + NIM, fd, {
             withCredentials: true,
             headers: {
               Authorization: `Bearer ${user?.token}`,
@@ -153,7 +153,7 @@ const DetailPKL: FC = () => {
             await Swal.fire({
               icon: "success",
               title: "Berhasil",
-              text: "PKL Berhasil Diperbarui",
+              text: "Skripsi Berhasil Diperbarui",
             });
             setLoading(false);
           }
@@ -161,7 +161,7 @@ const DetailPKL: FC = () => {
           await Swal.fire({
             icon: "success",
             title: "Berhasil",
-            text: "PKL Berhasil Diperbarui",
+            text: "Skripsi Berhasil Diperbarui",
           });
           setLoading(false);
         }
@@ -169,7 +169,7 @@ const DetailPKL: FC = () => {
         await Swal.fire({
           icon: "error",
           title: "Gagal",
-          text: "PKL Gagal Diperbarui",
+          text: "Skripsi Gagal Diperbarui",
         });
         setLoading(false);
       }
@@ -178,7 +178,7 @@ const DetailPKL: FC = () => {
       await Swal.fire({
         icon: "error",
         title: "Gagal",
-        text: "PKL Gagal Diperbarui " + error?.response?.data?.message,
+        text: "Skripsi Gagal Diperbarui " + error?.response?.data?.message,
       });
       setLoading(false);
     }
@@ -190,32 +190,35 @@ const DetailPKL: FC = () => {
       <div className="w-full flex h-screen">
         <SidebarDoswal name={doswal?.nama || ""} />
         <div className="flex-1 flex flex-col p-4">
-          <h1 className="text-4xl font-bold mb-5">Verifikasi PKL</h1>
+          <h1 className="text-4xl font-bold mb-5">Verifikasi Skripsi</h1>
           <div className="flex-1 flex flex-col p-4">
-            <h1 className="text-4xl font-bold">PKL</h1>
+            <h1 className="text-4xl font-bold">Skripsi</h1>
             <div className="mr-4 ml-4 mt-8">
               <CustomInput
                 name="status"
                 label="Status"
                 required={true}
                 type="text"
-                value={dataPKLLokal.status}
+                value={dataSkripsiLokal.status}
                 readOnly={true}
               />
             </div>
             <div className={`mr-4 ml-4 mt-4`}>
-              <label className={`text-sm text-slate-400`}>Status PKL</label>
+              <label className={`text-sm text-slate-400`}>Status Skripsi</label>
               <select
                 name="nilai"
                 className="bg-white text-black input input-bordered input-primary w-full"
                 onChange={(e) => {
-                  setDataPKL({ ...dataPKLLokal, nilai: e.target.value });
+                  setDataSkripsi({
+                    ...dataSkripsiLokal,
+                    nilai: e.target.value,
+                  });
                 }}
               >
-                {dataPKLLokal.nilai === "Kosong" ? (
+                {dataSkripsiLokal.nilai === "Kosong" ? (
                   <option>Masukkan Nilai</option>
                 ) : (
-                  <option>{dataPKLLokal.nilai}</option>
+                  <option>{dataSkripsiLokal.nilai}</option>
                 )}
                 <option key={"A"} value="A">
                   A
@@ -241,13 +244,13 @@ const DetailPKL: FC = () => {
                 required={true}
                 type="date"
                 value={
-                  dataPKLLokal.tanggalSidang === "2002-7-28"
+                  dataSkripsiLokal.tanggalSidang === "2002-7-28"
                     ? "2002-7-28"
-                    : dataPKLLokal.tanggalSidang
+                    : dataSkripsiLokal.tanggalSidang
                 }
                 onChange={(e) => {
-                  setDataPKL({
-                    ...dataPKLLokal,
+                  setDataSkripsi({
+                    ...dataSkripsiLokal,
                     tanggalSidang: e.target.value,
                   });
                 }}
@@ -257,19 +260,19 @@ const DetailPKL: FC = () => {
             <div className={`mr-4 ml-4 mt-4`}>
               <label className={`text-sm text-slate-400`}>Semester Lulus</label>
               <select
-                name="semesterLulus"
+                name="lamaStudi"
                 className="bg-white text-black input input-bordered input-primary w-full"
                 onChange={(e) => {
-                  setDataPKL({
-                    ...dataPKLLokal,
-                    semesterLulus: Number(e.target.value),
+                  setDataSkripsi({
+                    ...dataSkripsiLokal,
+                    lamaStudi: Number(e.target.value),
                   });
                 }}
               >
-                {dataPKLLokal.semesterLulus === 0 ? (
+                {dataSkripsiLokal.lamaStudi === 0 ? (
                   <option>Pilih Semester</option>
                 ) : (
-                  <option>{dataPKLLokal.semesterLulus}</option>
+                  <option>{dataSkripsiLokal.lamaStudi}</option>
                 )}
                 <option key={1} value={1}>
                   1
@@ -317,19 +320,19 @@ const DetailPKL: FC = () => {
             </div>
             <div className={`mr-4 ml-4 mt-4`}>
               <label className={`text-sm text-slate-400`}>
-                Scan Berita Acara PKL - PDF
+                Scan Berita Acara Skripsi - PDF
               </label>
               <object
                 data={
                   file
                     ? URL.createObjectURL(file)
                     : "http://localhost:5502/pdf/" +
-                      dataPKLLokal.scanBeritaAcara
+                      dataSkripsiLokal.scanBeritaAcara
                 }
                 type="application/pdf"
                 className={`w-full h-screen`}
               >
-                <p>Scan Berita Acara PKL</p>
+                <p>Scan Berita Acara Skripsi</p>
               </object>
               <input
                 type="file"
@@ -361,4 +364,4 @@ const DetailPKL: FC = () => {
   );
 };
 
-export default DetailPKL;
+export default DetailSkripsi;

@@ -9,19 +9,19 @@ import LokalDoswal from "../../helpers/LokalDoswal";
 import Swal from "sweetalert2";
 import DataMahasiswa from "../../inteface/MahasiswaInterface";
 
-const LihatPKL: FC = () => {
+const LihatSkripsi: FC = () => {
   const user = AuthUser.GetAuth();
   const doswal = LokalDoswal.GetDoswal();
 
   const [daftarMahasiswa, setDaftarMahasiswa] = useState<DataMahasiswa[]>([]);
 
   useEffect(() => {
-    GetMahasiswaByPKLNotVerified();
+    GetMahasiswaBySkripsiNotVerified();
   }, []);
 
-  const GetMahasiswaByPKLNotVerified = async () => {
+  const GetMahasiswaBySkripsiNotVerified = async () => {
     try {
-      const res = await Http.get("/doswal/pkl/" + doswal?.NIP, {
+      const res = await Http.get("/doswal/skripsi/" + doswal?.NIP, {
         headers: { Authorization: `Bearer ${user?.token}` },
       });
 
@@ -41,7 +41,7 @@ const LihatPKL: FC = () => {
       <div className="w-full flex h-screen">
         <SidebarDoswal name={doswal?.nama || ""} />
         <div className="flex-1 flex flex-col p-4">
-          <h1 className="text-4xl font-bold mb-4">Verifikasi PKL</h1>
+          <h1 className="text-4xl font-bold mb-4">Verifikasi Skripsi</h1>
           <div className="flex items-center mb-4">
             <input
               type="text"
@@ -84,9 +84,9 @@ const LihatPKL: FC = () => {
                     <h1 className="text-white">NIM : {mahasiswa.NIM}</h1>
                   </div>
                   <div className="flex flex-row">
-                    <Link to={`/doswal/DetailPKL/` + mahasiswa.NIM}>
+                    <Link to={`/doswal/DetailSkripsi/` + mahasiswa.NIM}>
                       <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
-                        Lihat PKL
+                        Lihat Skripsi
                       </button>
                     </Link>
                   </div>
@@ -101,4 +101,4 @@ const LihatPKL: FC = () => {
   );
 };
 
-export default LihatPKL;
+export default LihatSkripsi;

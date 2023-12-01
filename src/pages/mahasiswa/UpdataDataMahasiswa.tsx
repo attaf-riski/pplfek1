@@ -174,7 +174,6 @@ const UpdataDataMahasiswa: FC = () => {
       });
 
       if (response.status === 200) {
-        console.log(response);
         LokalMahasiswa.SetMahasiswa(response.data.data);
         Swal.fire({
           title: "Berhasil",
@@ -378,8 +377,8 @@ const UpdataDataMahasiswa: FC = () => {
                   ) : (
                     <option>{data.status}</option>
                   )}
-                  <option>AKTIF</option>
-                  <option>CUTI</option>
+                  <option>Aktif</option>
+                  <option>Cuti</option>
                 </select>
               </div>
               <div className="mb-2">

@@ -84,7 +84,6 @@ const DetailPKL: FC = () => {
         },
       });
       if (result.status === 200) {
-        console.log(result.data?.data);
         setDataPKL(result.data?.data);
       } else {
         console.log("masuk");

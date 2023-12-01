@@ -1,27 +1,62 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Http from "../../helpers/Fetch";
 import AuthUser from "../../helpers/AuthUser";
 import Navbar from "../../components/layouts/Navbar";
 import Sidebar from "../../components/layouts/Sidebar";
 import SidebarDoswal from "./SidebarDoswal";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../auth/Coba.css";
 import LokalDoswal from "../../helpers/LokalDoswal";
 import { CustomInput, CustomTextarea } from "../../components/input";
+import DataMahasiswa from "../../inteface/MahasiswaInterface";
 
 const ProgressStudi: FC = () => {
   const user = AuthUser.GetAuth();
   const doswal = LokalDoswal.GetDoswal();
+  const { NIM } = useParams();
 
-  const GetCurrentUser = async () => {
-    try {
-      const res = await Http.get("/user/detail", {
-        headers: { Authorization: `Bearer ${user?.token}` },
-      });
+  const [dataMahasiswa, setDataMahasiswa] = useState<DataMahasiswa>({
+    NIM: "",
+    nama: "",
+    angkatan: 0,
+    dosenWaliNIP: "",
+    photo: "",
+  });
 
-      console.log(res.data);
-    } catch (error: any) {
-      console.log(error);
+  const [dataColorBox, setDataColorBox] = useState([{ i: 1 }]);
+  const [stringdataColorBox, stringsetDataColorBox] = useState([{}]);
+
+  useEffect(() => {
+    GetMahasiswaByNIM();
+    GetColorBox();
+  }, []);
+
+  const GetMahasiswaByNIM = async () => {
+    const result = await Http.get(
+      "/pencarianmahasiswa/detailmahasiswa/" + NIM,
+      {
+        headers: {
+          Authorization: `Bearer ${user?.token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (result.status === 200) {
+      setDataMahasiswa(result.data?.data);
+    }
+  };
+
+  const GetColorBox = async () => {
+    const result = await Http.get("/dashboarddoswal/colorbox/" + NIM, {
+      headers: {
+        Authorization: `Bearer ${user?.token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (result.status === 200) {
+      setDataColorBox(result.data?.data);
     }
   };
 
@@ -33,40 +68,22 @@ const ProgressStudi: FC = () => {
         <div className="flex-1 flex flex-col p-4">
           <h1 className="text-4xl font-bold mb-4">Progress Studi</h1>
           <div className="p-4 mt-5 rounded-2xl bg-[#EFF2FB] flex flex-col justify-center items-center">
-          <div className="relative w-32 h-32">
+            <div className="relative w-32 h-32">
               <img
                 className="object-cover w-24 h-24 mx-2 rounded-full border bg-gray-200 border-gray-100 shadow-sm"
-                // src={file ? URL.createObjectURL(file) : data.photo!}
+                src={dataMahasiswa.photo || "/images/profile.png"}
                 alt="mhs profil"
               />
-              <div
-                className="absolute top-0 right-0 h-7 w-7 my-1 border-2 border-white rounded-full bg-green-400 z-2"
-                // onClick={uploudGambar}
-              >
-                <img
-                  className="rounded-full bg-white shadow-sm"
-                  src="/images/edit.png"
-                  alt="edit"
-                />
-                <input
-                  type="file"
-                  accept=".png,.jpg,.jpeg"
-                //   onChange={handleChange}
-                //   ref={hiddenFileInput}
-                  style={{ display: "none" }}
-                />
-              </div>
             </div>
-          <div className="grid grid-cols-1 w-full mt-1 gap-2">
-            <div className="mb-2">
+            <div className="grid grid-cols-1 w-full mt-1 gap-2">
+              <div className="mb-2">
                 <CustomInput
                   name="nama"
                   label="Nama"
                   required={true}
                   type="text"
                   readOnly={true}
-                  
-                
+                  value={dataMahasiswa.nama || ""}
                 />
               </div>
               <div className="mb-2">
@@ -76,9 +93,10 @@ const ProgressStudi: FC = () => {
                   required={true}
                   type="text"
                   readOnly={true}
+                  value={dataMahasiswa.NIM || ""}
                 />
               </div>
-              
+
               <div className="mb-2">
                 <CustomInput
                   name="angkatan"
@@ -86,97 +104,95 @@ const ProgressStudi: FC = () => {
                   required={true}
                   type="text"
                   readOnly={true}
+                  value={dataMahasiswa.angkatan || 0}
+                />
+              </div>
+
+              <div className="mb-2">
+                <CustomInput
+                  name="dosenWaliNIP"
+                  label="Dosen Wali"
+                  required={true}
+                  type="text"
+                  readOnly={true}
+                  value={doswal?.nama || ""}
                 />
               </div>
 
               <h1 className="text-4xl font-bold mb-4 mt-5 ">Semester</h1>
 
-                <div className="flex">
-                <div className="w-20 h-20 bg-blue-400 mb-4 mr-4 flex items-center justify-center">
-                    <span className="text-white font-bold">1</span>
-                </div>
-                <div className="w-20 h-20 bg-blue-400 mb-4 mr-4 flex items-center justify-center">
-                    <span className="text-white font-bold">2</span>
-                </div>
-                <div className="w-20 h-20 bg-blue-400 mb-4 mr-4 flex items-center justify-center">
-                    <span className="text-white font-bold">3</span>
-                </div>
-                <div className="w-20 h-20 bg-blue-400 mb-4 mr-4 flex items-center justify-center">
-                    <span className="text-white font-bold">4</span>
-                </div>
-                <div className="w-20 h-20 bg-blue-400 mb-4 mr-4 flex items-center justify-center">
-                    <span className="text-white font-bold">5</span>
-                </div>
-                <div className="w-20 h-20 bg-yellow-400 mb-4 mr-4 flex items-center justify-center">
-                    <span className="text-white font-bold">6</span>
-                </div>
-                <div className="w-20 h-20 bg-blue-400 mb-4 mr-4 flex items-center justify-center">
-                    <span className="text-white font-bold">7</span>
-                </div>
-                <div className="w-20 h-20 bg-green-400 mb-4 mr-4 flex items-center justify-center">
-                    <span className="text-white font-bold">8</span>
-                </div>
-                <div className="w-20 h-20 bg-red-400 mb-4 mr-4 flex items-center justify-center">
-                    <span className="text-white font-bold">9</span>
-                </div>
-                <div className="w-20 h-20 bg-red-400 mb-4 mr-4 flex items-center justify-center">
-                    <span className="text-white font-bold">10</span>
-                </div>
+              <div className="grid grid-cols-7 grid-rows-2 ">
+                {dataColorBox.map((color, index) =>
+                  color.i === 1 ? (
+                    <div
+                      className={`w-20 h-20  mb-4 mr-4 flex items-center justify-center bg-red-400 }`}
+                    >
+                      <span className="text-white font-bold">{index + 1}</span>
+                    </div>
+                  ) : color.i === 2 ? (
+                    <Link to={`/doswal/irskhs/${NIM}&${index + 1}`}>
+                      <div
+                        className={`w-20 h-20  mb-4 mr-4 flex items-center justify-center bg-blue-400 }`}
+                      >
+                        <span className="text-white font-bold">
+                          {index + 1}
+                        </span>
+                      </div>
+                    </Link>
+                  ) : color.i === 3 ? (
+                    <div
+                      className={`w-20 h-20  mb-4 mr-4 flex items-center justify-center bg-yellow-400 }`}
+                    >
+                      <span className="text-white font-bold">{index + 1}</span>
+                    </div>
+                  ) : (
+                    <div
+                      className={`w-20 h-20  mb-4 mr-4 flex items-center justify-center bg-green-400 }`}
+                    >
+                      <span className="text-white font-bold">{index + 1}</span>
+                    </div>
+                  )
+                )}
+              </div>
+
+              <h4 className="text-1xl font-normal">Keterangan</h4>
+              <div className="flex">
+                <div className="w-5 h-5 bg-red-400 mb-1 mr-2 flex items-center justify-center">
+                  <span className="text-white font-bold"></span>
                 </div>
 
-                <div className="flex">
-                <div className="w-20 h-20 bg-red-400 mb-4 mr-4 flex items-center justify-center">
-                    <span className="text-white font-bold">11</span>
-                </div>
-                <div className="w-20 h-20 bg-red-400 mb-4 mr-4 flex items-center justify-center">
-                    <span className="text-white font-bold">12</span>
-                </div>
-                <div className="w-20 h-20 bg-red-400 mb-4 mr-4 flex items-center justify-center">
-                    <span className="text-white font-bold">13</span>
-                </div>
-                <div className="w-20 h-20 bg-red-400 mb-4 mr-4 flex items-center justify-center">
-                    <span className="text-white font-bold">14</span>
-                </div>
+                <span className="text-black font-normal">
+                  Belum diisikan (IRS dan KHS) atau tidak digunakan
+                </span>
+              </div>
+              <div className="flex">
+                <div className="w-5 h-5 bg-blue-400 mb-1 mr-2 flex items-center justify-center">
+                  <span className="text-white font-bold"></span>
                 </div>
 
-                
-                <h4 className="text-1xl font-normal">Keterangan</h4>
-                <div className="flex">
-                    <div className="w-5 h-5 bg-red-400 mb-1 mr-2 flex items-center justify-center">
-                        <span className="text-white font-bold"></span>
-                    </div>
-                    
-                        <span className="text-black font-normal">Belum diisikan (IRS dan KHS) atau tidak digunakan</span>
-                   
+                <span className="text-black font-normal">
+                  Sudah diisikan (IRS dan KHS){" "}
+                </span>
+              </div>
+              <div className="flex">
+                <div className="w-5 h-5 bg-yellow-400 mb-1 mr-2 flex items-center justify-center">
+                  <span className="text-white font-bold"></span>
                 </div>
-                <div className="flex">
-                    <div className="w-5 h-5 bg-blue-400 mb-1 mr-2 flex items-center justify-center">
-                        <span className="text-white font-bold"></span>
-                    </div>
-                    
-                        <span className="text-black font-normal">Sudah diisikan (IRS dan KHS) </span>
-                   
+
+                <span className="text-black font-normal">
+                  Sudah lulus PKL (IRS, KHS, dan PKL){" "}
+                </span>
+              </div>
+              <div className="flex">
+                <div className="w-5 h-5 bg-green-400 mb-1 mr-2 flex items-center justify-center">
+                  <span className="text-white font-bold"></span>
                 </div>
-                <div className="flex">
-                    <div className="w-5 h-5 bg-yellow-400 mb-1 mr-2 flex items-center justify-center">
-                        <span className="text-white font-bold"></span>
-                    </div>
-                    
-                        <span className="text-black font-normal">Sudah lulus PKL (IRS, KHS, dan PKL) </span>
-                   
-                   
-                </div>
-                <div className="flex">
-                    <div className="w-5 h-5 bg-green-400 mb-1 mr-2 flex items-center justify-center">
-                        <span className="text-white font-bold"></span>
-                    </div>
-                    
-                        <span className="text-black font-normal">Sudah lulus Skripsi</span>
-                   
-                   
-                </div>
-               
-          </div>
+
+                <span className="text-black font-normal">
+                  Sudah lulus Skripsi
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

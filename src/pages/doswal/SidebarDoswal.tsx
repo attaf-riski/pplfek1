@@ -8,13 +8,6 @@ interface SidebarDepartAttributes {
 const SidebarDoswal: FC<SidebarDepartAttributes> = ({ name }) => {
   return (
     <aside className="flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
-      <a href="#" className="mx-auto">
-        {/* <img className="w-auto h-6 sm:h-7" src="/images/logo.png" alt="" /> */}
-        <p className="font-poppins text-gray text-3xl font-bold ml-3">
-          MonitorinQ
-        </p>
-      </a>
-
       <div className="flex flex-col items-center mt-6 -mx-2">
         <img
           className="object-cover w-24 h-24 mx-2 rounded-full"
@@ -32,8 +25,28 @@ const SidebarDoswal: FC<SidebarDepartAttributes> = ({ name }) => {
       <div className="flex flex-col justify-between flex-1 mt-6">
         <nav>
           <Link
-            to="/doswal/profildoswal"
+            to="/dashboarddoswal"
             className="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-800 dark:text-gray-200"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+              />
+            </svg>
+            <span className="mx-4 font-medium">Dashboard</span>
+          </Link>
+          <Link
+            to="/doswal/profildoswal"
+            className="flex items-center px-4 py-2 mt-4 text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-800 dark:text-gray-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

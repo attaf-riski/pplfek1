@@ -26,7 +26,7 @@ const PKL = () => {
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(false);
   const [dataPKL, setDataPKL] = useState<dataPKL>({
-    status: "",
+    status: "Lulus",
     nilai: "Kosong",
     scanBeritaAcara: "",
     tanggalSidang: "2002-7-28",
@@ -50,13 +50,10 @@ const PKL = () => {
         },
       });
       if (result.status === 200) {
-        console.log(result.data?.data);
         setDataPKL(result.data?.data);
         setEditMode(true);
-        console.log("masuk");
         setDataPKLsudahAda(true);
       } else {
-        console.log("masuk");
         setDataPKLsudahAda(false);
       }
     } catch (error: any) {
@@ -81,7 +78,7 @@ const PKL = () => {
     console.log(dataPKL);
     const newDataPKL = {
       NIM: dataPKL.NIM,
-      status: dataPKL.status,
+      status: "Lulus",
       nilai: dataPKL.nilai,
       scanBeritaAcara: "",
       tanggalSidang: dataPKL.tanggalSidang,
@@ -142,6 +139,15 @@ const PKL = () => {
   };
 
   const onUpdate = async (e: any) => {
+    if (dataPKL.verified) {
+      await Swal.fire({
+        icon: "error",
+        title: "Gagal",
+        text: "PKL Sudah Diverifikasi",
+      });
+      return;
+    }
+
     dataPKL.NIM = mahasiswa?.NIM || "";
 
     const newDataPKL = {
@@ -230,35 +236,12 @@ const PKL = () => {
           editMode ? (
             <div className="flex-1 flex flex-col p-4">
               <h1 className="text-4xl font-bold">PKL</h1>
-              <div className="mr-4 ml-4 mt-8">
-                <label className={`text-sm text-slate-400`}>Status PKL</label>
-                <select
-                  name="status"
-                  className="bg-white text-black input input-bordered input-primary w-full"
-                  onChange={onChangeSelect}
-                >
-                  {dataPKL.status === "" ? (
-                    <option>Pilih Status</option>
-                  ) : (
-                    <option>{dataPKL.status}</option>
-                  )}
-                  <option key={1} value="Belum Ambil">
-                    Belum Ambil
-                  </option>
-                  <option key={2} value="Sedang Ambil">
-                    Sedang Ambil
-                  </option>
-                  <option key={3} value="Lulus">
-                    Lulus
-                  </option>
-                </select>
-              </div>
               <div
                 className={`${
                   dataPKL.status !== "Lulus" ? "hidden" : ""
                 } mr-4 ml-4 mt-4`}
               >
-                <label className={`text-sm text-slate-400`}>Status PKL</label>
+                <label className={`text-sm text-slate-400`}>Nilai</label>
                 <select
                   name="nilai"
                   className="bg-white text-black input input-bordered input-primary w-full"
@@ -301,7 +284,6 @@ const PKL = () => {
                   value={dataPKL.tanggalSidang ?? "2011-11-11"}
                   onChange={(e) => {
                     setDataPKL({ ...dataPKL, tanggalSidang: e.target.value });
-                    console.log(dataPKL.tanggalSidang);
                   }}
                   // error={errData.username}
                 />
@@ -424,29 +406,9 @@ const PKL = () => {
         ) : (
           <div className="flex-1 flex flex-col p-4">
             <h1 className="text-4xl font-bold">PKL</h1>
-            <div className="mr-4 ml-4 mt-8">
-              <label className={`text-sm text-slate-400`}>Status PKL</label>
-              <select
-                name="status"
-                className="bg-white text-black input input-bordered input-primary w-full"
-                onChange={onChangeSelect}
-              >
-                {dataPKL.status === "" ? (
-                  <option>Pilih Status</option>
-                ) : (
-                  <option>{dataPKL.status}</option>
-                )}
-                <option key={1} value="Belum Ambil">
-                  Belum Ambil
-                </option>
-                <option key={2} value="Sedang Ambil">
-                  Sedang Ambil
-                </option>
-                <option key={3} value="Lulus">
-                  Lulus
-                </option>
-              </select>
-            </div>
+            <h2 className={`text-xl ${dataPKL.verified ? "" : "hidden"}`}>
+              Sudah diverfikasi dosen wali, hubungi dosen wali untuk perubahan
+            </h2>
             <div
               className={`${
                 dataPKL.status !== "Lulus" ? "hidden" : ""
@@ -499,7 +461,6 @@ const PKL = () => {
                 }
                 onChange={(e) => {
                   setDataPKL({ ...dataPKL, tanggalSidang: e.target.value });
-                  console.log(dataPKL.tanggalSidang);
                 }}
                 // error={errData.username}
               />

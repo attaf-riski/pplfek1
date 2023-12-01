@@ -1,0 +1,153 @@
+Date : 2023-11-23 22:07:18
+Directory : /Users/attaf-riski/Desktop/ppl/pplfek1
+Total : 101 files,  39278 codes, 295 comments, 687 blanks, all 40260 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          3 |     31,267 |          0 |          3 |     31,270 |
+| TypeScript JSX     |         58 |      7,329 |        253 |        532 |      8,114 |
+| TypeScript         |         21 |        402 |          5 |         98 |        505 |
+| JavaScript         |         12 |        154 |          1 |         20 |        175 |
+| CSS                |          3 |         53 |         13 |         11 |         77 |
+| JSON with Comments |          1 |         26 |          0 |          1 |         27 |
+| Markdown           |          1 |         26 |          0 |         21 |         47 |
+| HTML               |          1 |         20 |         23 |          1 |         44 |
+| XML                |          1 |          1 |          0 |          0 |          1 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                         | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                            |        101 |     39,278 |        295 |        687 |     40,260 |
+| . (Files)                                                                                    |          6 |     31,400 |          1 |         33 |     31,434 |
+| public                                                                                       |          2 |         45 |         23 |          2 |         70 |
+| src                                                                                          |         93 |      7,833 |        271 |        652 |      8,756 |
+| src (Files)                                                                                  |          9 |         81 |         21 |         22 |        124 |
+| src/components                                                                               |          9 |        286 |         23 |         36 |        345 |
+| src/components (Files)                                                                       |          1 |          0 |          0 |          1 |          1 |
+| src/components/input                                                                         |          3 |         89 |          0 |          9 |         98 |
+| src/components/layouts                                                                       |          5 |        197 |         23 |         26 |        246 |
+| src/helpers                                                                                  |          9 |        303 |          0 |         75 |        378 |
+| src/inteface                                                                                 |          9 |         85 |          0 |         18 |        103 |
+| src/pages                                                                                    |         50 |      6,546 |        211 |        468 |      7,225 |
+| src/pages (Files)                                                                            |          3 |         22 |          0 |          6 |         28 |
+| src/pages/auth                                                                               |          5 |        345 |         61 |         42 |        448 |
+| src/pages/departemen                                                                         |          6 |        418 |         11 |         44 |        473 |
+| src/pages/doswal                                                                             |         18 |      2,563 |         93 |        194 |      2,850 |
+| src/pages/mahasiswa                                                                          |         13 |      2,691 |         39 |        134 |      2,864 |
+| src/pages/mahasiswa (Files)                                                                  |          9 |      2,121 |         24 |        104 |      2,249 |
+| src/pages/mahasiswa/khs                                                                      |          4 |        570 |         15 |         30 |        615 |
+| src/pages/operator                                                                           |          5 |        507 |          7 |         48 |        562 |
+| src/routes                                                                                   |          7 |        532 |         16 |         33 |        581 |
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                     | language           | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| /Users/attaf-riski/Desktop/ppl/pplfek1/README.md                                             | Markdown           |         26 |          0 |         21 |         47 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/package-lock.json                                     | JSON               |     31,183 |          0 |          1 |     31,184 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/package.json                                          | JSON               |         59 |          0 |          1 |         60 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/postcss.config.js                                     | JavaScript         |          6 |          0 |          1 |          7 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/public/index.html                                     | HTML               |         20 |         23 |          1 |         44 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/public/manifest.json                                  | JSON               |         25 |          0 |          1 |         26 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/App.css                                           | CSS                |         33 |          0 |          6 |         39 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/App.test.tsx                                      | TypeScript JSX     |          8 |          0 |          2 |         10 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/App.tsx                                           | TypeScript JSX     |         11 |          0 |          4 |         15 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/components/index.js                               | JavaScript         |          0 |          0 |          1 |          1 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/components/input/CustomInput.tsx                  | TypeScript JSX     |         41 |          0 |          4 |         45 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/components/input/CustomTextarea.tsx               | TypeScript JSX     |         46 |          0 |          4 |         50 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/components/input/index.js                         | JavaScript         |          2 |          0 |          1 |          3 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/components/layouts/LoadingLayout.tsx              | TypeScript JSX     |         11 |          0 |          3 |         14 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/components/layouts/MainLayout.tsx                 | TypeScript JSX     |         75 |         19 |          4 |         98 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/components/layouts/Navbar.tsx                     | TypeScript JSX     |         63 |          2 |          8 |         73 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/components/layouts/Sidebar.tsx                    | TypeScript JSX     |         44 |          2 |          9 |         55 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/components/layouts/index.js                       | JavaScript         |          4 |          0 |          2 |          6 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/helpers/AuthUser.ts                               | TypeScript         |         20 |          0 |          7 |         27 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/helpers/Fetch.ts                                  | TypeScript         |         49 |          0 |         12 |         61 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/helpers/FetchKabKota.ts                           | TypeScript         |         14 |          0 |          3 |         17 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/helpers/FetchMultiform.ts                         | TypeScript         |         59 |          0 |         12 |         71 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/helpers/InputValidation.ts                        | TypeScript         |         81 |          0 |          9 |         90 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/helpers/LokalDepartemen.ts                        | TypeScript         |         20 |          0 |          8 |         28 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/helpers/LokalDoswal.ts                            | TypeScript         |         20 |          0 |          8 |         28 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/helpers/LokalMahasiswa.ts                         | TypeScript         |         20 |          0 |          8 |         28 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/helpers/LokalOperator.ts                          | TypeScript         |         20 |          0 |          8 |         28 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/index.css                                         | CSS                |          4 |         13 |          2 |         19 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/index.tsx                                         | TypeScript JSX     |         10 |          3 |          3 |         16 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/inteface/AuthUserInterface.ts                     | TypeScript         |         11 |          0 |          2 |         13 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/inteface/DepartemenInterface.ts                   | TypeScript         |          7 |          0 |          2 |          9 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/inteface/DoswalInterface.ts                       | TypeScript         |          6 |          0 |          2 |          8 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/inteface/IRSInterface.ts                          | TypeScript         |          8 |          0 |          2 |         10 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/inteface/KHSInterface.ts                          | TypeScript         |         11 |          0 |          2 |         13 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/inteface/MahasiswaInterface.ts                    | TypeScript         |         15 |          0 |          2 |         17 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/inteface/OperatorInterface.ts                     | TypeScript         |          7 |          0 |          2 |          9 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/inteface/PKLInterface.ts                          | TypeScript         |         10 |          0 |          2 |         12 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/inteface/SkripsiInterface.ts                      | TypeScript         |         10 |          0 |          2 |         12 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/logo.svg                                          | XML                |          1 |          0 |          0 |          1 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/LandingPage.tsx                             | TypeScript JSX     |          9 |          0 |          2 |         11 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/NotFoundPage.tsx                            | TypeScript JSX     |         10 |          0 |          3 |         13 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/auth/Coba.css                               | CSS                |         16 |          0 |          3 |         19 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/auth/Coba.tsx                               | TypeScript JSX     |         70 |          4 |         11 |         85 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/auth/Login.tsx                              | TypeScript JSX     |        160 |         53 |         16 |        229 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/auth/Register.tsx                           | TypeScript JSX     |         96 |          4 |         11 |        111 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/auth/index.js                               | JavaScript         |          3 |          0 |          1 |          4 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/departemen/DashboardDepart.tsx              | TypeScript JSX     |         75 |          1 |         10 |         86 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/departemen/HasilCari.tsx                    | TypeScript JSX     |        105 |          8 |         10 |        123 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/departemen/Pencarian.tsx                    | TypeScript JSX     |         56 |          0 |          7 |         63 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/departemen/ProfilDepart.tsx                 | TypeScript JSX     |         43 |          0 |          5 |         48 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/departemen/SidebarDep.tsx                   | TypeScript JSX     |        134 |          2 |         11 |        147 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/departemen/index.js                         | JavaScript         |          5 |          0 |          1 |          6 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/DashboardDoswal.tsx                  | TypeScript JSX     |         75 |          2 |          9 |         86 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/DetailIRS.tsx                        | TypeScript JSX     |         74 |          1 |          8 |         83 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/DetailKHS.tsx                        | TypeScript JSX     |         77 |          9 |         10 |         96 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/DetailPKL.tsx                        | TypeScript JSX     |        345 |          3 |         16 |        364 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/DetailSkripsi.tsx                    | TypeScript JSX     |        347 |          3 |         16 |        366 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/IRSKHS.tsx                           | TypeScript JSX     |        275 |          9 |         14 |        298 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/LihatIRS.tsx                         | TypeScript JSX     |         87 |          3 |         11 |        101 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/LihatKHS.tsx                         | TypeScript JSX     |         87 |         10 |         10 |        107 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/LihatPKL.tsx                         | TypeScript JSX     |         85 |         10 |         10 |        105 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/LihatSkripsi.tsx                     | TypeScript JSX     |         85 |         10 |         10 |        105 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/ProgressStudi.tsx                    | TypeScript JSX     |        185 |          0 |         20 |        205 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/SidebarDoswal.tsx                    | TypeScript JSX     |        114 |          2 |         10 |        126 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/index.js                             | JavaScript         |         17 |          0 |          1 |         18 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/pencariandoswal.tsx                  | TypeScript JSX     |         80 |          9 |          9 |         98 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/profildoswal.tsx                     | TypeScript JSX     |         39 |          1 |          5 |         45 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/veriIRS.tsx                          | TypeScript JSX     |        235 |          5 |         13 |        253 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/veriKHS.tsx                          | TypeScript JSX     |        264 |          8 |         12 |        284 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/verifikasi.tsx                       | TypeScript JSX     |         92 |          8 |         10 |        110 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/index.js                                    | JavaScript         |          3 |          0 |          1 |          4 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/CreateIRS.tsx                     | TypeScript JSX     |        195 |          4 |         10 |        209 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/DashboardMahasiswa.tsx            | TypeScript JSX     |         27 |          0 |          3 |         30 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/DetailIRS.tsx                     | TypeScript JSX     |        183 |          5 |         12 |        200 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/ListIRS.tsx                       | TypeScript JSX     |         95 |          0 |          7 |        102 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/PKL.tsx                           | TypeScript JSX     |        540 |          6 |         18 |        564 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/SidebarMahasiswa.tsx              | TypeScript JSX     |        132 |          1 |         11 |        144 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/Skripsi.tsx                       | TypeScript JSX     |        557 |          6 |         18 |        581 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/UpdataDataMahasiswa.tsx           | TypeScript JSX     |        385 |          2 |         24 |        411 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/index.js                          | JavaScript         |          7 |          0 |          1 |          8 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/khs/CreateKHS.tsx                 | TypeScript JSX     |        236 |          7 |         10 |        253 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/khs/DetailKHS.tsx                 | TypeScript JSX     |        228 |          8 |         12 |        248 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/khs/ListKHS.tsx                   | TypeScript JSX     |        103 |          0 |          7 |        110 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/khs/index.js                      | JavaScript         |          3 |          0 |          1 |          4 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/operator/DashboardOperator.tsx              | TypeScript JSX     |         20 |          2 |          4 |         26 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/operator/GenerateManual.tsx                 | TypeScript JSX     |        264 |          2 |         25 |        291 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/operator/SidebarOp.tsx                      | TypeScript JSX     |         91 |          1 |          9 |        101 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/operator/UploudCSV.tsx                      | TypeScript JSX     |        128 |          2 |          9 |        139 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/operator/index.js                           | JavaScript         |          4 |          0 |          1 |          5 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/react-app-env.d.ts                                | TypeScript         |          0 |          1 |          1 |          2 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/reportWebVitals.ts                                | TypeScript         |         13 |          0 |          3 |         16 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/routes/ProtectedRoute.tsx                         | TypeScript JSX     |         12 |          0 |          5 |         17 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/routes/ProtectedRouteDepartemen.tsx               | TypeScript JSX     |         18 |          0 |          5 |         23 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/routes/ProtectedRouteDoswal.tsx                   | TypeScript JSX     |         18 |          0 |          5 |         23 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/routes/ProtectedRouteKelengkapanDataMahasiswa.tsx | TypeScript JSX     |         40 |          0 |          5 |         45 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/routes/ProtectedRouteMahasiswa.tsx                | TypeScript JSX     |         18 |          0 |          5 |         23 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/routes/ProtectedRouteOperator.tsx                 | TypeScript JSX     |         18 |          0 |          5 |         23 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/routes/Router.tsx                                 | TypeScript JSX     |        408 |         16 |          3 |        427 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/src/setupTests.ts                                     | TypeScript         |          1 |          4 |          1 |          6 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/tailwind.config.js                                    | JavaScript         |        100 |          1 |          8 |        109 |
+| /Users/attaf-riski/Desktop/ppl/pplfek1/tsconfig.json                                         | JSON with Comments |         26 |          0 |          1 |         27 |
+| Total                                                                                        |                    |     39,278 |        295 |        687 |     40,260 |
++----------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

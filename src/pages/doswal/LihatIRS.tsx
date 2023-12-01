@@ -59,14 +59,6 @@ const LihatIRS: FC = () => {
             Jumlah Mahasiswa Perwalian IRS perlu diverifikasi :{" "}
             {daftarMahasiswa.length}
           </h4>
-          {/* <Link
-            to="/dashboardmahasiswa/irs/create"
-            className="flex items-center justify-end px-4 py-2 mt-4 text-gray-700  rounded-lg dark:bg-gray-800 dark:text-gray-200"
-          >
-            <button className="bg-[#162953] text-white rounded-xl px-4 py-2 mt-4 mr-5">
-              Tambahkan IRS
-            </button>
-          </Link> */}
 
           <div className="flex flex-col ">
             <div className="flex flex-col mt-2">

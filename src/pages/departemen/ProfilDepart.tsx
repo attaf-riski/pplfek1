@@ -4,57 +4,40 @@ import AuthUser from "../../helpers/AuthUser";
 import Navbar from "../../components/layouts/Navbar";
 import SidebarDep from "./SidebarDep";
 import "../auth/Coba.css";
+import LokalDepartemen from "../../helpers/LokalDepartemen";
+import { Link } from "react-router-dom";
 
 const ProfilDepart: FC = () => {
   const user = AuthUser.GetAuth();
-
-  const GetCurrentUser = async () => {
-    try {
-      const res = await Http.get("/user/detail", {
-        headers: { Authorization: `Bearer ${user?.token}` },
-      });
-
-      console.log(res.data);
-    } catch (error: any) {
-      console.log(error);
-    }
-  };
+  const departemen = LokalDepartemen.GetDepartemen();
 
   return (
     <>
       <Navbar></Navbar>
       <div className="w-full flex h-screen">
-        <SidebarDep />
+        <SidebarDep name={departemen?.nama || ""} />
         <div className="flex-1 flex flex-col p-4">
-          <div className="w-full max-w-md px-8 py-4 bg-gray rounded-lg shadow-lg dark:bg-gray-800">
-            <div className="flex justify-center mb-6">
-              <img
-                className="object-cover w-20 h-20 border-2 border-blue-500 rounded-full dark:border-blue-400"
-                alt="Testimonial avatar"
-                src="https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=76&q=80"
-              />
+          <h1 className="text-4xl font-bold mb-5">Profil Departemen</h1>
+          <div className="flex flex-row justify-between items-center bg-[#162953] rounded-xl px-4 py-2 mb-2 mt-2">
+            <div className="flex flex-col ">
+              <h1 className="text-white font-bold text-3xl mb-4">
+                {departemen?.nama || ""}
+              </h1>
+              <h1 className="text-white">NIP : {departemen?.NIP || ""}</h1>
+              <h1 className="text-white mb-3">
+                Email : {departemen?.email || ""}
+              </h1>
             </div>
-            <h2 className="mt-2 mb-5 text-xl font-semibold text-gray-800 dark:text-white md:mt-0">
-              Departemen, S.Kom, M.Kom
-            </h2>
-
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-200 p-container">
-              NIP : 1980101100123
-            </p>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-200 p-container">
-              Status : Departemen
-            </p>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-200 p-container">
-              No.HP : 08512345
-            </p>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-200 p-container">
-              Alamat : Semarang
-            </p>
-
-            {/* <div className="flex justify-end mt-4">
-            <a href="#" className="text-lg font-medium text-blue-600 dark:text-blue-300" tabIndex={0} role="link">John Doe</a>
-          </div> */}
+            <div className="h-full flex flex-row items-end mb-3">
+              <Link to={`/departemen/profil/update/`}>
+                <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
+                  Update Data
+                </button>
+              </Link>
+            </div>
           </div>
+
+          <div className="flex items-center mb-4"></div>
         </div>
       </div>
     </>

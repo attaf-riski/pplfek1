@@ -3,3 +3,8 @@ export { default as SidebarDepPage } from "./SidebarDep";
 export { default as PencarianPage } from "./Pencarian";
 export { default as HasilCariPage } from "./HasilCari";
 export { default as ProfilDepart } from "./ProfilDepart";
+export { default as RekapPKL } from "./RekapPKL";
+export { default as RekapPKLDetail } from "./RekapPKLDetail";
+export { default as RekapSkripsi } from "./RekapSkripsi";
+export { default as RekapSkripsiDetail } from "./RekapSkripsiDetail";
+export { default as RekapStatus } from "./RekapStatus";

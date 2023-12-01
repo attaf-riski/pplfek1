@@ -55,12 +55,20 @@ const CreateKHS = () => {
       }
     );
     if (result.status === 200) {
-      console.log(result.data?.data);
       setdataKHS(result.data?.data);
     }
   };
 
   const onSubmit = async (e: any) => {
+    if (dataKHS.verified) {
+      Swal.fire({
+        icon: "error",
+        title: "Gagal",
+        text: "KHS sudah diverifikasi, hubungi dosen wali untuk perubahan",
+      });
+      return;
+    }
+
     setLoading(true);
     const newDataIRS = {
       semesterAktif: Number(dataKHS.semesterAktif),
@@ -147,6 +155,9 @@ const CreateKHS = () => {
         ) : (
           <div className="flex-1 flex flex-col p-4">
             <h1 className="text-4xl font-bold">Detail KHS</h1>
+            <h2 className={`text-xl ${dataKHS.verified ? "" : "hidden"}`}>
+              Sudah diverfikasi dosen wali, hubungi dosen wali untuk perubahan
+            </h2>
             <div>
               <div className="mb-5 mr-4 ml-4 mt-8">
                 <CustomInput

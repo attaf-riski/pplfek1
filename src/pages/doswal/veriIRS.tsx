@@ -153,7 +153,6 @@ const VeriIRS: FC = () => {
         },
       });
       if (result.status === 200) {
-        console.log(result.data?.data);
         setDataIRS(result.data?.data);
       }
     } catch (error: any) {

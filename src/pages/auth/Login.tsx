@@ -9,6 +9,8 @@ import AuthUser from "../../helpers/AuthUser";
 import Swal from "sweetalert2";
 import LokalMahasiswa from "../../helpers/LokalMahasiswa";
 import LokalDoswal from "../../helpers/LokalDoswal";
+import LokalOperator from "../../helpers/LokalOperator";
+import LokalDepartemen from "../../helpers/LokalDepartemen";
 
 interface DataLogin {
   username?: string | null;
@@ -91,8 +93,22 @@ const Login: FC = () => {
         if (responseData.roleId === 1) {
           navigate("/*");
         } else if (responseData.roleId === 2) {
+          const result = await Http.get("/operator/" + responseData.id, {
+            headers: {
+              Authorization: `Bearer ${responseData.token}`,
+              "Content-Type": "application/json",
+            },
+          });
+          LokalOperator.SetOperator(result.data.data);
           navigate("/dashboardoperator");
         } else if (responseData.roleId === 3) {
+          const result = await Http.get("/departemen/" + responseData.id, {
+            headers: {
+              Authorization: `Bearer ${responseData.token}`,
+              "Content-Type": "application/json",
+            },
+          });
+          LokalDepartemen.SetDepartemen(result.data.data);
           navigate("/dashboarddepart");
         } else if (responseData.roleId === 4) {
           const result = await Http.get("/doswal/" + responseData.id, {
@@ -154,57 +170,60 @@ const Login: FC = () => {
   /* ---------------------------- End On Validation --------------------------- */
 
   return (
-    <div className="container">
-      <div className="card w-96 bg-gray-200 shadow-xl">
-        <figure>
-          <img
-            src="/images/logo.png"
-            alt="Logo"
-            width="150"
-            height="150"
-            className="d-inline-block align-text-top me-0 mt-5"
-          />
-        </figure>
-        <br></br>
-        <h4 className="font-bold text-center text-2xl text-menu-label mb-2 mt-2">
-          Login
-        </h4>
-        <p className=" text-center font-normal mb-4">
-          Sistem Monitoring dan Evaluasi
-        </p>
-        <hr className="horizontal-line" />
-        <div className="mb-5 mr-4 ml-4 mt-8">
-          <CustomInput
-            name="username"
-            label="username"
-            required={true}
-            type="username"
-            value={data.username ?? ""}
-            error={errData.username}
-            onChange={onChange}
-          />
-        </div>
-        <div className="mb-5 mr-4 ml-4">
-          <CustomInput
-            name="password"
-            label="Password"
-            required={true}
-            type="password"
-            value={data.password ?? ""}
-            error={errData.password}
-            onChange={onChange}
-          />
-        </div>
+    <div className="flex justify-start items-center h-screen bg-[url('informatikawebprofile.png')] bg-opacity-50">
+      <div className="w-6/12 h-screen flex justify-center items-center  bg-slate-200 ">
+        <div className="card w-96 h-4/6 ">
+          <figure>
+            <img
+              src="/images/logo.png"
+              alt="Logo"
+              width="150"
+              height="150"
+              className="d-inline-block align-text-top me-0 mt-5"
+            />
+          </figure>
+          <br></br>
+          <h4 className="font-bold text-center text-2xl text-menu-label mb-2 mt-2">
+            Login
+          </h4>
+          <p className=" text-center font-normal mb-4">
+            Sistem Monitoring dan Evaluasi
+          </p>
+          <hr className="horizontal-line" />
+          <div className="mb-5 mr-4 ml-4 mt-8">
+            <CustomInput
+              name="username"
+              label="username"
+              required={true}
+              type="username"
+              value={data.username ?? ""}
+              error={errData.username}
+              onChange={onChange}
+            />
+          </div>
+          <div className="mb-5 mr-4 ml-4">
+            <CustomInput
+              name="password"
+              label="Password"
+              required={true}
+              type="password"
+              value={data.password ?? ""}
+              error={errData.password}
+              onChange={onChange}
+            />
+          </div>
 
-        <div className="flex justify-content-center items-center mr-4 ml-4 mb-5">
-          <button
-            onClick={onSubmit}
-            className=" btn btn-primary normal-case mx-auto w-full font-bold"
-          >
-            LOGIN
-          </button>
+          <div className="flex justify-content-center items-center mr-4 ml-4 mb-5">
+            <button
+              onClick={onSubmit}
+              className=" btn btn-primary normal-case mx-auto w-full font-bold"
+            >
+              LOGIN
+            </button>
+          </div>
         </div>
       </div>
+      <div className="w-6/12 h-screen"></div>
     </div>
   );
 };

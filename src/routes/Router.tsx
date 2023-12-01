@@ -8,6 +8,11 @@ import {
   HasilCariPage,
   PencarianPage,
   ProfilDepart,
+  RekapPKL,
+  RekapPKLDetail,
+  RekapSkripsi,
+  RekapSkripsiDetail,
+  RekapStatus,
 } from "../pages/departemen";
 import {
   ProfilDoswalPage,
@@ -25,6 +30,7 @@ import {
   DetailPKLPage,
   DetailSkripsiPage,
   LihatSkripsiPage,
+  IRSKHS,
 } from "../pages/doswal";
 import ProtectRouteOperator from "./ProtectedRouteOperator";
 import {
@@ -43,12 +49,12 @@ import {
   GenerateManualPage,
 } from "../pages/operator";
 
-import { SidebarDepPage } from "../pages/departemen";
 import ProtectRouteDepartemen from "./ProtectedRouteDepartemen";
 import ProtectRouteKelengkapanDataMahasiswa from "./ProtectedRouteKelengkapanDataMahasiswa";
 import { CreateKHS, DetailKHS, ListKHS } from "../pages/mahasiswa/khs";
 import ProtectRouteDoswal from "./ProtectedRouteDoswal";
 import { ProgressStudiPage } from "../pages/doswal";
+import RekapStatusDetail from "../pages/departemen/RekapStatusDetail";
 
 const Router = () => {
   return (
@@ -89,7 +95,26 @@ const Router = () => {
           </ProtectRoute>
         }
       />
-      <Route path="/doswal/pencariandoswal" element={<PencarianDoswalPage />} />
+      <Route
+        path="/doswal/pencariandoswal"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDoswal>
+              <PencarianDoswalPage />
+            </ProtectRouteDoswal>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/doswal/pencariandoswal/detail/:NIM"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDoswal>
+              <ProgressStudiPage />
+            </ProtectRouteDoswal>
+          </ProtectRoute>
+        }
+      />
       <Route
         path="/doswal/verifikasi"
         element={
@@ -200,8 +225,34 @@ const Router = () => {
           </ProtectRoute>
         }
       />
-      <Route path="/operator/GenerateManual" element={<GenerateManualPage />} />
-      <Route path="/doswal/ProgressStudi" element={<ProgressStudiPage />} />
+      <Route
+        path="/operator/GenerateManual"
+        element={
+          <ProtectRoute>
+            <GenerateManualPage />
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/doswal/ProgressStudi"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDoswal>
+              <ProgressStudiPage />
+            </ProtectRouteDoswal>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/doswal/irskhs/:NIM&:semester"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDoswal>
+              <IRSKHS />
+            </ProtectRouteDoswal>
+          </ProtectRoute>
+        }
+      />
       {/* departemen */}
       <Route
         path="/dashboarddepart"
@@ -228,7 +279,6 @@ const Router = () => {
         element={<DashboardDepartPage />}
       />
       <Route path="/departemen/hasilcari" element={<HasilCariPage />} />
-      <Route path="/departemen/sidebardepart" element={<SidebarDepPage />} />
       <Route
         path="/dashboarddepart/pencarian"
         element={
@@ -240,8 +290,64 @@ const Router = () => {
         }
       />
       <Route
-        path="/dashboarddepart/sidebardepart"
-        element={<SidebarDepPage />}
+        path="/departemen/rekapPKL"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDepartemen>
+              <RekapPKL />
+            </ProtectRouteDepartemen>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/departemen/rekapPKL/detail/:angkatan&:status"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDepartemen>
+              <RekapPKLDetail />
+            </ProtectRouteDepartemen>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/departemen/rekapskripsi"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDepartemen>
+              <RekapSkripsi />
+            </ProtectRouteDepartemen>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/departemen/rekapskripsi/detail/:angkatan&:status"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDepartemen>
+              <RekapSkripsiDetail />
+            </ProtectRouteDepartemen>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/departemen/rekapstatus"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDepartemen>
+              <RekapStatus />
+            </ProtectRouteDepartemen>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/departemen/rekapstatus/detail/:tahun&:status"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDepartemen>
+              <RekapStatusDetail />
+            </ProtectRouteDepartemen>
+          </ProtectRoute>
+        }
       />
       {/* Operator */}
       <Route

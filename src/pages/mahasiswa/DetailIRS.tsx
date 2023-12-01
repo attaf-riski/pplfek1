@@ -52,13 +52,20 @@ const DetailIRS = () => {
       }
     );
     if (result.status === 200) {
-      console.log(result.data?.data);
       setDataIRS(result.data?.data);
     }
   };
 
   const onSubmit = async (e: any) => {
-    console.log(dataIRS);
+    if (dataIRS.verified) {
+      await Swal.fire({
+        icon: "error",
+        title: "Gagal",
+        text: "IRS Sudah Diverifikasi",
+      });
+      return;
+    }
+
     setLoading(true);
     e.preventDefault();
     try {
@@ -136,6 +143,9 @@ const DetailIRS = () => {
         ) : (
           <div className="flex-1 flex flex-col p-4">
             <h1 className="text-4xl font-bold">Detail IRS</h1>
+            <h2 className={`text-xl ${dataIRS.verified ? "" : "hidden"}`}>
+              Sudah diverfikasi dosen wali, hubungi dosen wali untuk perubahan
+            </h2>
             <div className="p-5">
               <div className="mb-5 mr-4 ml-4 mt-8">
                 <CustomInput

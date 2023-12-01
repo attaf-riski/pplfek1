@@ -1,0 +1,103 @@
+"filename", "language", "TypeScript", "TypeScript JSX", "XML", "JavaScript", "CSS", "JSON with Comments", "JSON", "HTML", "Markdown", "comment", "blank", "total"
+"/Users/attaf-riski/Desktop/ppl/pplfek1/README.md", "Markdown", 0, 0, 0, 0, 0, 0, 0, 0, 26, 0, 21, 47
+"/Users/attaf-riski/Desktop/ppl/pplfek1/package-lock.json", "JSON", 0, 0, 0, 0, 0, 0, 31183, 0, 0, 0, 1, 31184
+"/Users/attaf-riski/Desktop/ppl/pplfek1/package.json", "JSON", 0, 0, 0, 0, 0, 0, 59, 0, 0, 0, 1, 60
+"/Users/attaf-riski/Desktop/ppl/pplfek1/postcss.config.js", "JavaScript", 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+"/Users/attaf-riski/Desktop/ppl/pplfek1/public/index.html", "HTML", 0, 0, 0, 0, 0, 0, 0, 20, 0, 23, 1, 44
+"/Users/attaf-riski/Desktop/ppl/pplfek1/public/manifest.json", "JSON", 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 1, 26
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/App.css", "CSS", 0, 0, 0, 0, 33, 0, 0, 0, 0, 0, 6, 39
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/App.test.tsx", "TypeScript JSX", 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 2, 10
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/App.tsx", "TypeScript JSX", 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 4, 15
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/components/index.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/components/input/CustomInput.tsx", "TypeScript JSX", 0, 41, 0, 0, 0, 0, 0, 0, 0, 0, 4, 45
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/components/input/CustomTextarea.tsx", "TypeScript JSX", 0, 46, 0, 0, 0, 0, 0, 0, 0, 0, 4, 50
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/components/input/index.js", "JavaScript", 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1, 3
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/components/layouts/LoadingLayout.tsx", "TypeScript JSX", 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 3, 14
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/components/layouts/MainLayout.tsx", "TypeScript JSX", 0, 75, 0, 0, 0, 0, 0, 0, 0, 19, 4, 98
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/components/layouts/Navbar.tsx", "TypeScript JSX", 0, 63, 0, 0, 0, 0, 0, 0, 0, 2, 8, 73
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/components/layouts/Sidebar.tsx", "TypeScript JSX", 0, 44, 0, 0, 0, 0, 0, 0, 0, 2, 9, 55
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/components/layouts/index.js", "JavaScript", 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 2, 6
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/helpers/AuthUser.ts", "TypeScript", 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 27
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/helpers/Fetch.ts", "TypeScript", 49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 61
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/helpers/FetchKabKota.ts", "TypeScript", 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 17
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/helpers/FetchMultiform.ts", "TypeScript", 59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 71
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/helpers/InputValidation.ts", "TypeScript", 81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 90
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/helpers/LokalDepartemen.ts", "TypeScript", 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 28
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/helpers/LokalDoswal.ts", "TypeScript", 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 28
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/helpers/LokalMahasiswa.ts", "TypeScript", 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 28
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/helpers/LokalOperator.ts", "TypeScript", 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 28
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/index.css", "CSS", 0, 0, 0, 0, 4, 0, 0, 0, 0, 13, 2, 19
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/index.tsx", "TypeScript JSX", 0, 10, 0, 0, 0, 0, 0, 0, 0, 3, 3, 16
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/inteface/AuthUserInterface.ts", "TypeScript", 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 13
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/inteface/DepartemenInterface.ts", "TypeScript", 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 9
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/inteface/DoswalInterface.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 8
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/inteface/IRSInterface.ts", "TypeScript", 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 10
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/inteface/KHSInterface.ts", "TypeScript", 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 13
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/inteface/MahasiswaInterface.ts", "TypeScript", 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 17
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/inteface/OperatorInterface.ts", "TypeScript", 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 9
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/inteface/PKLInterface.ts", "TypeScript", 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 12
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/inteface/SkripsiInterface.ts", "TypeScript", 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 12
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/logo.svg", "XML", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/LandingPage.tsx", "TypeScript JSX", 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 2, 11
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/NotFoundPage.tsx", "TypeScript JSX", 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 3, 13
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/auth/Coba.css", "CSS", 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 3, 19
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/auth/Coba.tsx", "TypeScript JSX", 0, 70, 0, 0, 0, 0, 0, 0, 0, 4, 11, 85
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/auth/Login.tsx", "TypeScript JSX", 0, 160, 0, 0, 0, 0, 0, 0, 0, 53, 16, 229
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/auth/Register.tsx", "TypeScript JSX", 0, 96, 0, 0, 0, 0, 0, 0, 0, 4, 11, 111
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/auth/index.js", "JavaScript", 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 1, 4
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/departemen/DashboardDepart.tsx", "TypeScript JSX", 0, 75, 0, 0, 0, 0, 0, 0, 0, 1, 10, 86
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/departemen/HasilCari.tsx", "TypeScript JSX", 0, 105, 0, 0, 0, 0, 0, 0, 0, 8, 10, 123
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/departemen/Pencarian.tsx", "TypeScript JSX", 0, 56, 0, 0, 0, 0, 0, 0, 0, 0, 7, 63
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/departemen/ProfilDepart.tsx", "TypeScript JSX", 0, 43, 0, 0, 0, 0, 0, 0, 0, 0, 5, 48
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/departemen/SidebarDep.tsx", "TypeScript JSX", 0, 134, 0, 0, 0, 0, 0, 0, 0, 2, 11, 147
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/departemen/index.js", "JavaScript", 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 1, 6
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/DashboardDoswal.tsx", "TypeScript JSX", 0, 75, 0, 0, 0, 0, 0, 0, 0, 2, 9, 86
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/DetailIRS.tsx", "TypeScript JSX", 0, 74, 0, 0, 0, 0, 0, 0, 0, 1, 8, 83
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/DetailKHS.tsx", "TypeScript JSX", 0, 77, 0, 0, 0, 0, 0, 0, 0, 9, 10, 96
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/DetailPKL.tsx", "TypeScript JSX", 0, 345, 0, 0, 0, 0, 0, 0, 0, 3, 16, 364
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/DetailSkripsi.tsx", "TypeScript JSX", 0, 347, 0, 0, 0, 0, 0, 0, 0, 3, 16, 366
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/IRSKHS.tsx", "TypeScript JSX", 0, 275, 0, 0, 0, 0, 0, 0, 0, 9, 14, 298
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/LihatIRS.tsx", "TypeScript JSX", 0, 87, 0, 0, 0, 0, 0, 0, 0, 3, 11, 101
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/LihatKHS.tsx", "TypeScript JSX", 0, 87, 0, 0, 0, 0, 0, 0, 0, 10, 10, 107
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/LihatPKL.tsx", "TypeScript JSX", 0, 85, 0, 0, 0, 0, 0, 0, 0, 10, 10, 105
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/LihatSkripsi.tsx", "TypeScript JSX", 0, 85, 0, 0, 0, 0, 0, 0, 0, 10, 10, 105
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/ProgressStudi.tsx", "TypeScript JSX", 0, 185, 0, 0, 0, 0, 0, 0, 0, 0, 20, 205
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/SidebarDoswal.tsx", "TypeScript JSX", 0, 114, 0, 0, 0, 0, 0, 0, 0, 2, 10, 126
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/index.js", "JavaScript", 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 1, 18
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/pencariandoswal.tsx", "TypeScript JSX", 0, 80, 0, 0, 0, 0, 0, 0, 0, 9, 9, 98
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/profildoswal.tsx", "TypeScript JSX", 0, 39, 0, 0, 0, 0, 0, 0, 0, 1, 5, 45
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/veriIRS.tsx", "TypeScript JSX", 0, 235, 0, 0, 0, 0, 0, 0, 0, 5, 13, 253
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/veriKHS.tsx", "TypeScript JSX", 0, 264, 0, 0, 0, 0, 0, 0, 0, 8, 12, 284
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/doswal/verifikasi.tsx", "TypeScript JSX", 0, 92, 0, 0, 0, 0, 0, 0, 0, 8, 10, 110
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/index.js", "JavaScript", 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 1, 4
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/CreateIRS.tsx", "TypeScript JSX", 0, 195, 0, 0, 0, 0, 0, 0, 0, 4, 10, 209
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/DashboardMahasiswa.tsx", "TypeScript JSX", 0, 27, 0, 0, 0, 0, 0, 0, 0, 0, 3, 30
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/DetailIRS.tsx", "TypeScript JSX", 0, 183, 0, 0, 0, 0, 0, 0, 0, 5, 12, 200
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/ListIRS.tsx", "TypeScript JSX", 0, 95, 0, 0, 0, 0, 0, 0, 0, 0, 7, 102
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/PKL.tsx", "TypeScript JSX", 0, 540, 0, 0, 0, 0, 0, 0, 0, 6, 18, 564
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/SidebarMahasiswa.tsx", "TypeScript JSX", 0, 132, 0, 0, 0, 0, 0, 0, 0, 1, 11, 144
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/Skripsi.tsx", "TypeScript JSX", 0, 557, 0, 0, 0, 0, 0, 0, 0, 6, 18, 581
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/UpdataDataMahasiswa.tsx", "TypeScript JSX", 0, 385, 0, 0, 0, 0, 0, 0, 0, 2, 24, 411
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/index.js", "JavaScript", 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 1, 8
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/khs/CreateKHS.tsx", "TypeScript JSX", 0, 236, 0, 0, 0, 0, 0, 0, 0, 7, 10, 253
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/khs/DetailKHS.tsx", "TypeScript JSX", 0, 228, 0, 0, 0, 0, 0, 0, 0, 8, 12, 248
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/khs/ListKHS.tsx", "TypeScript JSX", 0, 103, 0, 0, 0, 0, 0, 0, 0, 0, 7, 110
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/mahasiswa/khs/index.js", "JavaScript", 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 1, 4
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/operator/DashboardOperator.tsx", "TypeScript JSX", 0, 20, 0, 0, 0, 0, 0, 0, 0, 2, 4, 26
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/operator/GenerateManual.tsx", "TypeScript JSX", 0, 264, 0, 0, 0, 0, 0, 0, 0, 2, 25, 291
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/operator/SidebarOp.tsx", "TypeScript JSX", 0, 91, 0, 0, 0, 0, 0, 0, 0, 1, 9, 101
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/operator/UploudCSV.tsx", "TypeScript JSX", 0, 128, 0, 0, 0, 0, 0, 0, 0, 2, 9, 139
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/pages/operator/index.js", "JavaScript", 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 1, 5
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/react-app-env.d.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/reportWebVitals.ts", "TypeScript", 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 16
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/routes/ProtectedRoute.tsx", "TypeScript JSX", 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 5, 17
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/routes/ProtectedRouteDepartemen.tsx", "TypeScript JSX", 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 5, 23
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/routes/ProtectedRouteDoswal.tsx", "TypeScript JSX", 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 5, 23
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/routes/ProtectedRouteKelengkapanDataMahasiswa.tsx", "TypeScript JSX", 0, 40, 0, 0, 0, 0, 0, 0, 0, 0, 5, 45
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/routes/ProtectedRouteMahasiswa.tsx", "TypeScript JSX", 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 5, 23
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/routes/ProtectedRouteOperator.tsx", "TypeScript JSX", 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 5, 23
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/routes/Router.tsx", "TypeScript JSX", 0, 408, 0, 0, 0, 0, 0, 0, 0, 16, 3, 427
+"/Users/attaf-riski/Desktop/ppl/pplfek1/src/setupTests.ts", "TypeScript", 1, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1, 6
+"/Users/attaf-riski/Desktop/ppl/pplfek1/tailwind.config.js", "JavaScript", 0, 0, 0, 100, 0, 0, 0, 0, 0, 1, 8, 109
+"/Users/attaf-riski/Desktop/ppl/pplfek1/tsconfig.json", "JSON with Comments", 0, 0, 0, 0, 0, 26, 0, 0, 0, 0, 1, 27
+"Total", "-", 402, 7329, 1, 154, 53, 26, 31267, 20, 26, 295, 687, 40260

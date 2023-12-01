@@ -26,7 +26,7 @@ const Skripsi = () => {
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(false);
   const [dataSkripsi, setDataSkripsi] = useState<dataSkripsi>({
-    status: "",
+    status: "Lulus",
     nilai: "Kosong",
     scanBeritaAcara: "",
     tanggalSidang: "2002-7-28",
@@ -50,13 +50,10 @@ const Skripsi = () => {
         },
       });
       if (result.status === 200) {
-        console.log(result.data?.data);
         setDataSkripsi(result.data?.data);
         setEditMode(true);
-        console.log("masuk");
         setDataSkripsisudahAda(true);
       } else {
-        console.log("masuk");
         setDataSkripsisudahAda(false);
       }
     } catch (error: any) {
@@ -72,12 +69,11 @@ const Skripsi = () => {
   };
 
   const onSubmit = async (e: any) => {
-    console.log(dataSkripsi);
     dataSkripsi.NIM = mahasiswa?.NIM || "";
 
     const newDataSkripsi = {
       NIM: dataSkripsi.NIM,
-      status: dataSkripsi.status,
+      status: "Lulus",
       nilai: dataSkripsi.nilai,
       scanBeritaAcara: "",
       tanggalSidang: dataSkripsi.tanggalSidang,
@@ -146,6 +142,15 @@ const Skripsi = () => {
   };
 
   const onUpdate = async (e: any) => {
+    if (dataSkripsi.verified) {
+      await Swal.fire({
+        icon: "error",
+        title: "Gagal",
+        text: "Skripsi Sudah Diverifikasi",
+      });
+      return;
+    }
+
     dataSkripsi.NIM = mahasiswa?.NIM || "";
 
     const newDataSkripsi = {
@@ -214,7 +219,6 @@ const Skripsi = () => {
         setLoading(false);
       }
     } catch (error: any) {
-      console.log();
       await Swal.fire({
         icon: "error",
         title: "Gagal",
@@ -238,31 +242,7 @@ const Skripsi = () => {
           editMode ? (
             <div className="flex-1 flex flex-col p-4">
               <h1 className="text-4xl font-bold">Skripsi</h1>
-              <div className="mr-4 ml-4 mt-8">
-                <label className={`text-sm text-slate-400`}>
-                  Status Skripsi
-                </label>
-                <select
-                  name="status"
-                  className="bg-white text-black input input-bordered input-primary w-full"
-                  onChange={onChangeSelect}
-                >
-                  {dataSkripsi.status === "" ? (
-                    <option>Pilih Status</option>
-                  ) : (
-                    <option>{dataSkripsi.status}</option>
-                  )}
-                  <option key={1} value="Belum Ambil">
-                    Belum Ambil
-                  </option>
-                  <option key={2} value="Sedang Ambil">
-                    Sedang Ambil
-                  </option>
-                  <option key={3} value="Lulus">
-                    Lulus
-                  </option>
-                </select>
-              </div>
+
               <div
                 className={`${
                   dataSkripsi.status !== "Lulus" ? "hidden" : ""
@@ -316,7 +296,6 @@ const Skripsi = () => {
                       ...dataSkripsi,
                       tanggalSidang: e.target.value,
                     });
-                    console.log(dataSkripsi.tanggalSidang);
                   }}
                   // error={errData.username}
                 />
@@ -439,35 +418,15 @@ const Skripsi = () => {
         ) : (
           <div className="flex-1 flex flex-col p-4">
             <h1 className="text-4xl font-bold">Skripsi</h1>
-            <div className="mr-4 ml-4 mt-8">
-              <label className={`text-sm text-slate-400`}>Status Skripsi</label>
-              <select
-                name="status"
-                className="bg-white text-black input input-bordered input-primary w-full"
-                onChange={onChangeSelect}
-              >
-                {dataSkripsi.status === "" ? (
-                  <option>Pilih Status</option>
-                ) : (
-                  <option>{dataSkripsi.status}</option>
-                )}
-                <option key={1} value="Belum Ambil">
-                  Belum Ambil
-                </option>
-                <option key={2} value="Sedang Ambil">
-                  Sedang Ambil
-                </option>
-                <option key={3} value="Lulus">
-                  Lulus
-                </option>
-              </select>
-            </div>
+            <h2 className={`text-xl ${dataSkripsi.verified ? "" : "hidden"}`}>
+              Sudah diverfikasi dosen wali, hubungi dosen wali untuk perubahan
+            </h2>
             <div
               className={`${
                 dataSkripsi.status !== "Lulus" ? "hidden" : ""
               } mr-4 ml-4 mt-4`}
             >
-              <label className={`text-sm text-slate-400`}>Status Skripsi</label>
+              <label className={`text-sm text-slate-400`}>Nilai Skripsi</label>
               <select
                 name="nilai"
                 className="bg-white text-black input input-bordered input-primary w-full"
@@ -517,7 +476,6 @@ const Skripsi = () => {
                     ...dataSkripsi,
                     tanggalSidang: e.target.value,
                   });
-                  console.log(dataSkripsi.tanggalSidang);
                 }}
                 // error={errData.username}
               />

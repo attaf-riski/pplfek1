@@ -41,7 +41,6 @@ const UploudCSV = () => {
         setLoading(true);
         setTimeout(r, 3000);
       });
-      console.log(response.data?.data?.link);
       if (response.status === 200) {
         const responseDownload = await Http.get(
           "/uploud/" + response.data?.data.link,

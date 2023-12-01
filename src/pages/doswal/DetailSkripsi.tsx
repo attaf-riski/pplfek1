@@ -84,10 +84,8 @@ const DetailSkripsi: FC = () => {
         },
       });
       if (result.status === 200) {
-        console.log(result.data?.data);
         setDataSkripsi(result.data?.data);
       } else {
-        console.log("masuk");
       }
     } catch (error: any) {
       Swal.fire({

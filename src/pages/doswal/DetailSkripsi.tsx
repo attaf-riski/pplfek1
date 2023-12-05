@@ -13,7 +13,7 @@ import { CustomInput } from "../../components/input";
 const DetailSkripsi: FC = () => {
   const user = AuthUser.GetAuth();
   const doswal = LokalDoswal.GetDoswal();
-  const { NIM } = useParams();
+  const { NIM, type } = useParams();
   const [dataSkripsiLokal, setDataSkripsi] = useState<dataSkripsi>({
     NIM: "",
     status: "",
@@ -35,7 +35,7 @@ const DetailSkripsi: FC = () => {
     e.preventDefault();
 
     const data = {
-      statusApprove: true,
+      statusApprove: type === "true" ? false : true,
     };
 
     try {
@@ -50,14 +50,20 @@ const DetailSkripsi: FC = () => {
         await Swal.fire({
           icon: "success",
           title: "Berhasil",
-          text: "Skripsi Berhasil Diverifikasi",
+          text:
+            type === "true"
+              ? "Skripsi berhasil diCopot"
+              : "Skripsi Berhasil DiVerifikasi",
         });
         setLoading(false);
       } else {
         await Swal.fire({
           icon: "error",
           title: "Gagal",
-          text: "Skripsi Gagal Diverifikasi" + response.data?.message,
+          text:
+            type === "true"
+              ? "Skripsi gagal diCopot"
+              : "Skripsi gagal DiVerifikasi" + response.data?.message,
         });
         setLoading(false);
       }
@@ -340,12 +346,12 @@ const DetailSkripsi: FC = () => {
                 name="scanBeritaAcara"
               />
             </div>
-            <div className="flex justify-end mb-3 mt-3">
+            <div className="flex justify-end mb-3 mt-3 gap-2">
               <button
                 className="bg-[#FBBF24] rounded-xl px-4 py-2"
                 onClick={onSubmitSetuju}
               >
-                Verifikasi
+                {type === "true" ? "Copot" : "Verifikasi"}
               </button>
               <button
                 className="bg-[#FBBF24] rounded-xl px-4 py-2"

@@ -15,7 +15,7 @@ import { LoadingLayout } from "../../components/layouts";
 const VeriKHS: FC = () => {
   const user = AuthUser.GetAuth();
   const doswal = LokalDoswal.GetDoswal();
-  const { NIM, semester } = useParams();
+  const { NIM, semester, type } = useParams();
   const [dataKHSLokal, setDataKHS] = useState<DataKHS>();
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -37,7 +37,7 @@ const VeriKHS: FC = () => {
     e.preventDefault();
 
     const data = {
-      statusApprove: true,
+      statusApprove: type === "true" ? false : true,
     };
 
     try {
@@ -56,14 +56,20 @@ const VeriKHS: FC = () => {
         await Swal.fire({
           icon: "success",
           title: "Berhasil",
-          text: "KHS Berhasil Diverifikasi",
+          text:
+            type === "true"
+              ? "KHS Berhasil Dicopot"
+              : "KHS Berhasil Diverifikasi",
         });
         setLoading(false);
       } else {
         await Swal.fire({
           icon: "error",
           title: "Gagal",
-          text: "KHS Gagal Diverifikasi" + response.data?.message,
+          text:
+            type === "true"
+              ? "KHS Gagal Dicopot"
+              : "KHS Gagal Diverifikasi" + response.data?.message,
         });
         setLoading(false);
       }
@@ -262,7 +268,7 @@ const VeriKHS: FC = () => {
                   className="bg-[#162953] text-white rounded-xl px-4 py-2 mt-4 mr-5"
                   onClick={onSubmitSetuju}
                 >
-                  Setujui
+                  {type === "true" ? "Copot Verifikasi" : "Verifikasi"}
                 </button>
                 <button
                   className="bg-[#162953] text-white rounded-xl px-4 py-2 mt-4 mr-5"

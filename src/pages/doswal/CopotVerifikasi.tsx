@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import "../auth/Coba.css";
 import LokalDoswal from "../../helpers/LokalDoswal";
 
-const Verifikasi: FC = () => {
+const CopotVerifikasi: FC = () => {
   const user = AuthUser.GetAuth();
   const doswal = LokalDoswal.GetDoswal();
 
@@ -30,7 +30,7 @@ const Verifikasi: FC = () => {
       <div className="w-full flex h-screen">
         <SidebarDoswal name={doswal?.nama || ""} />
         <div className="flex-1 flex flex-col p-4">
-          <h1 className="text-4xl font-bold mb-4">Verifikasi</h1>
+          <h1 className="text-4xl font-bold mb-4">Copot Verifikasi</h1>
 
           {/* <Link
             to="/dashboardmahasiswa/irs/create"
@@ -49,7 +49,7 @@ const Verifikasi: FC = () => {
                   <h1 className="text-white">( Isian Rencana Studi )</h1>
                 </div>
                 <div className="flex flex-row">
-                  <Link to={`/doswal/LihatIRS/false`}>
+                  <Link to={`/doswal/LihatIRS/true`}>
                     <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
                       Lihat
                     </button>
@@ -62,7 +62,7 @@ const Verifikasi: FC = () => {
                   <h1 className="text-white">( Kartu Hasil Studi )</h1>
                 </div>
                 <div className="flex flex-row">
-                  <Link to={`/doswal/LihatKHS/false`}>
+                  <Link to={`/doswal/LihatKHS/true`}>
                     <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
                       Lihat
                     </button>
@@ -76,7 +76,7 @@ const Verifikasi: FC = () => {
                   <h1 className="text-white">( Praktik Kerja Lapangan )</h1>
                 </div>
                 <div className="flex flex-row">
-                  <Link to={`/doswal/LihatPKL/false`}>
+                  <Link to={`/doswal/LihatPKL/true`}>
                     <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
                       Lihat
                     </button>
@@ -90,7 +90,7 @@ const Verifikasi: FC = () => {
                   <h1 className="text-white">( Tugas Akhir )</h1>
                 </div>
                 <div className="flex flex-row">
-                  <Link to={`/doswal/LihatSkripsi/false`}>
+                  <Link to={`/doswal/LihatSkripsi/true`}>
                     <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
                       Lihat
                     </button>
@@ -106,4 +106,4 @@ const Verifikasi: FC = () => {
   );
 };
 
-export default Verifikasi;
+export default CopotVerifikasi;

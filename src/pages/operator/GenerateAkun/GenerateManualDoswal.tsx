@@ -1,61 +1,28 @@
-import React, {
-  FC,
-  MutableRefObject,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import Http from "../../helpers/Fetch";
-import AuthUser from "../../helpers/AuthUser";
+import React, { useEffect, useState } from "react";
+import Http from "../../../helpers/Fetch";
+import AuthUser from "../../../helpers/AuthUser";
 import Swal from "sweetalert2";
-import LokalMahasiswa from "../../helpers/LokalMahasiswa";
-import LokalOperator from "../../helpers/LokalOperator";
-import Navbar from "../../components/layouts/Navbar";
-import SidebarOp from "./SidebarOp";
-import { CustomInput } from "../../components/input";
-import DataDoswal from "../../inteface/DoswalInterface";
+import LokalDoswal from "../../../helpers/LokalDoswal";
+import LokalOperator from "../../../helpers/LokalOperator";
+import Navbar from "../../../components/layouts/Navbar";
+import SidebarOp from "../SidebarOp";
+import { CustomInput } from "../../../components/input";
+import DataDoswal from "../../../inteface/DoswalInterface";
 
-const GenerateManual = () => {
+const GenerateManualDoswal = () => {
   const user = AuthUser.GetAuth();
   const operator = LokalOperator.GetOperator();
   const [loading, setLoading] = useState<boolean>(false);
-  const [listDosenWali, setListDosenWali] = useState<DataDoswal[]>([]);
 
-  const [data, setData] = useState({
-    NIM: "",
+  const [data, setData] = useState<DataDoswal>({
+    NIP: "",
     nama: "",
-    angkatan: 0,
-    dosenWaliNIP: "",
-    status: "Aktif",
+    email: "",
   });
-
-  useEffect(() => {
-    getDosenWaliList();
-  }, []);
-
-  const getDosenWaliList = async () => {
-    const result = await Http.get("/doswal/listdoswal", {
-      headers: {
-        Authorization: `Bearer ${user?.token}`,
-        "Content-Type": "application/json",
-      },
-    });
-    setListDosenWali(result.data.data);
-  };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    const { name, value } = e.target;
-
-    setData({
-      ...data,
-      [name]: value,
-    });
-  };
-
-  const onChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    e.preventDefault();
     const { name, value } = e.target;
 
     setData({
@@ -69,10 +36,8 @@ const GenerateManual = () => {
 
     // baru data json
 
-    data.angkatan = parseInt(data.angkatan.toString());
-
     try {
-      const response = await Http.post("/mahasiswa/create", data, {
+      const response = await Http.post("/doswal/create", data, {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${user?.token}`,
@@ -80,8 +45,8 @@ const GenerateManual = () => {
         },
       });
 
-      if (response.status === 200) {
-        LokalMahasiswa.SetMahasiswa(response.data.data);
+      if (response.status === 201) {
+        LokalDoswal.SetDoswal(response.data.data);
         Swal.fire({
           title: "Berhasil",
           text:
@@ -115,12 +80,12 @@ const GenerateManual = () => {
             <div className="grid grid-cols-1 w-full mt-2 gap-1">
               <div className="mb-2">
                 <CustomInput
-                  name="NIM"
-                  label="NIM"
+                  name="NIP"
+                  label="NIP"
                   required={true}
                   type="text"
                   readOnly={false}
-                  value={data.NIM ?? ""}
+                  value={data.NIP ?? ""}
                   onChange={onChange}
                 />
               </div>
@@ -136,32 +101,14 @@ const GenerateManual = () => {
               </div>
               <div className="mb-2">
                 <CustomInput
-                  name="angkatan"
-                  label="Angkatan"
+                  name="email"
+                  label="Email"
                   required={true}
                   type="text"
-                  value={data.angkatan ?? ""}
+                  value={data.email ?? ""}
                   readOnly={false}
                   onChange={onChange}
                 />
-              </div>
-
-              <div className="mb-2">
-                <label className={`text-sm text-slate-400`}>Dosen Wali</label>
-                <select
-                  name="dosenWaliNIP"
-                  className="bg-white text-black input input-bordered input-primary w-full"
-                  onChange={onChangeSelect}
-                >
-                  <option>Pilih Dosen Wali</option>
-                  {listDosenWali.map((item, index) => {
-                    return (
-                      <option key={item.NIP} value={item.NIP || ""}>
-                        {item.nama}
-                      </option>
-                    );
-                  })}
-                </select>
               </div>
             </div>
             <div className="w-full flex justify-end items-end">
@@ -179,4 +126,4 @@ const GenerateManual = () => {
   );
 };
 
-export default GenerateManual;
+export default GenerateManualDoswal;

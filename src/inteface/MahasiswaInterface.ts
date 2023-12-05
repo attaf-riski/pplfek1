@@ -11,6 +11,7 @@ interface DataMahasiswa {
   status?: string | null;
   photo?: string | null;
   dosenWaliNIP?: string | null;
+  userId?: number | null;
 }
 
 export default DataMahasiswa;

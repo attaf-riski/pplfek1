@@ -2,24 +2,25 @@ import React, { FC, useEffect, useState } from "react";
 import Http from "../../helpers/Fetch";
 import AuthUser from "../../helpers/AuthUser";
 import Navbar from "../../components/layouts/Navbar";
+import Sidebar from "../../components/layouts/Sidebar";
 import { Link } from "react-router-dom";
 import "../auth/Coba.css";
-import LokalDepartemen from "../../helpers/LokalDepartemen";
 import DataMahasiswa from "../../inteface/MahasiswaInterface";
-import SidebarDep from "./SidebarDep";
+import SidebarOp from "./SidebarOp";
+import LokalOperator from "../../helpers/LokalOperator";
 
-const HasilCari: FC = () => {
+const PencarianMahasiswaOperator: FC = () => {
   const user = AuthUser.GetAuth();
-  const departemen = LokalDepartemen.GetDepartemen();
+  const operator = LokalOperator.GetOperator();
   const [dataMahasiswa, setDataMahasiswa] = useState<DataMahasiswa[]>([]);
 
   useEffect(() => {
     getMahasiswaByNIP("0");
   }, []);
 
-  // get all mahasiswa by NIP departemen
+  // get all mahasiswa by NIP operator
   const getMahasiswaByNIP = async (keyword: string) => {
-    const result = await Http.get("/pencarianmahasiswa/departemen/" + keyword, {
+    const result = await Http.get("/operator/listmahasiswa/" + keyword, {
       headers: {
         Authorization: `Bearer ${user?.token}`,
         "Content-Type": "application/json",
@@ -38,14 +39,14 @@ const HasilCari: FC = () => {
     <>
       <Navbar></Navbar>
       <div className="w-full flex h-screen">
-        <SidebarDep name={departemen?.nama || ""} />
+        <SidebarOp name={operator?.nama || ""} />
         <div className="flex-1 flex flex-col p-4">
           <h1 className="text-4xl font-bold mb-4">Pencarian</h1>
-          <div className="flex items-center mb-4">
+          <div className="flex items-center mb-4 ">
             <input
               type="text"
-              placeholder="Cari..."
-              className="border-2 border-gray-300 p-2 rounded-md"
+              placeholder="Cari berdasarkan NIM, Nama, Angkatan"
+              className="border-2 border-gray-300 p-2 rounded-md w-96"
               onChange={pencarian}
             />
           </div>
@@ -72,10 +73,10 @@ const HasilCari: FC = () => {
                   </div>
                   <div className="flex flex-row">
                     <Link
-                      to={`/doswal/pencariandoswal/detail/${mahasiswa.NIM}`}
+                      to={`/operator/pencarianoperator/atur/${mahasiswa.NIM}`}
                     >
                       <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
-                        Lihat Detail
+                        Atur
                       </button>
                     </Link>
                   </div>
@@ -90,4 +91,4 @@ const HasilCari: FC = () => {
   );
 };
 
-export default HasilCari;
+export default PencarianMahasiswaOperator;

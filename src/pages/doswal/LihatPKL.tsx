@@ -3,7 +3,7 @@ import Http from "../../helpers/Fetch";
 import AuthUser from "../../helpers/AuthUser";
 import Navbar from "../../components/layouts/Navbar";
 import SidebarDoswal from "./SidebarDoswal";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../auth/Coba.css";
 import LokalDoswal from "../../helpers/LokalDoswal";
 import Swal from "sweetalert2";
@@ -13,6 +13,8 @@ const LihatPKL: FC = () => {
   const user = AuthUser.GetAuth();
   const doswal = LokalDoswal.GetDoswal();
 
+  const { type } = useParams();
+
   const [daftarMahasiswa, setDaftarMahasiswa] = useState<DataMahasiswa[]>([]);
 
   useEffect(() => {
@@ -21,7 +23,7 @@ const LihatPKL: FC = () => {
 
   const GetMahasiswaByPKLNotVerified = async () => {
     try {
-      const res = await Http.get("/doswal/pkl/" + doswal?.NIP, {
+      const res = await Http.get("/doswal/pkl/" + doswal?.NIP + "&" + type, {
         headers: { Authorization: `Bearer ${user?.token}` },
       });
 
@@ -53,7 +55,10 @@ const LihatPKL: FC = () => {
             </button>
           </div>
           <h4 className=" font-normal mb-4">
-            Jumlah Mahasiswa Perwalian : {daftarMahasiswa.length}
+            {type === "true"
+              ? "Mahasiswa yang sudah diverifikasi"
+              : "Mahasiswa yang belum diverifikasi"}
+            {" " + daftarMahasiswa.length}
           </h4>
           {/* <Link
             to="/dashboardmahasiswa/irs/create"
@@ -84,7 +89,9 @@ const LihatPKL: FC = () => {
                     <h1 className="text-white">NIM : {mahasiswa.NIM}</h1>
                   </div>
                   <div className="flex flex-row">
-                    <Link to={`/doswal/DetailPKL/` + mahasiswa.NIM}>
+                    <Link
+                      to={`/doswal/DetailPKL/` + mahasiswa.NIM + "&" + type}
+                    >
                       <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
                         Lihat PKL
                       </button>

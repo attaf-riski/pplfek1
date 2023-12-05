@@ -13,7 +13,7 @@ const DetailIRS: FC = () => {
   const user = AuthUser.GetAuth();
   const doswal = LokalDoswal.GetDoswal();
 
-  const { NIM } = useParams();
+  const { NIM, type } = useParams();
   const [daftarIRS, setDaftarIRS] = useState<DataIRS[]>([]);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const DetailIRS: FC = () => {
 
   const GetIRSByNIM = async () => {
     try {
-      const res = await Http.get("/doswal/listirs/" + NIM, {
+      const res = await Http.get("/doswal/listirs/" + NIM + "&" + type, {
         headers: { Authorization: `Bearer ${user?.token}` },
       });
 
@@ -60,7 +60,12 @@ const DetailIRS: FC = () => {
                   <div className="flex flex-row">
                     <Link
                       to={
-                        `/doswal/veriIRS/` + item.NIM + "&" + item.semesterAktif
+                        `/doswal/veriIRS/` +
+                        item.NIM +
+                        "&" +
+                        item.semesterAktif +
+                        "&" +
+                        type
                       }
                     >
                       <button className="bg-[#FBBF24] rounded-xl px-4 py-2">

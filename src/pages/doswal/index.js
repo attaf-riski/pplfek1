@@ -15,3 +15,4 @@ export { default as LihatSkripsiPage } from "./LihatSkripsi";
 export { default as DashboardDoswalPage } from "./DashboardDoswal";
 export { default as ProgressStudiPage } from "./ProgressStudi";
 export { default as IRSKHS } from "./IRSKHS";
+export { default as CopotVerifikasi } from "./CopotVerifikasi";

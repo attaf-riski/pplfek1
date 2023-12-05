@@ -15,7 +15,7 @@ import { LoadingLayout } from "../../components/layouts";
 const VeriIRS: FC = () => {
   const user = AuthUser.GetAuth();
   const doswal = LokalDoswal.GetDoswal();
-  const { NIM, semester } = useParams();
+  const { NIM, semester, type } = useParams();
   const [dataIRSLokal, setDataIRS] = useState<DataIRS>();
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -37,7 +37,7 @@ const VeriIRS: FC = () => {
     e.preventDefault();
 
     const data = {
-      statusApprove: true,
+      statusApprove: type === "true" ? false : true,
     };
 
     try {
@@ -56,7 +56,10 @@ const VeriIRS: FC = () => {
         await Swal.fire({
           icon: "success",
           title: "Berhasil",
-          text: "IRS Berhasil Diverifikasi",
+          text:
+            type === "true"
+              ? "IRS berhasil di Copot Verifikasi"
+              : "IRS berhasil di Verifikasi",
         });
         setLoading(false);
       } else {
@@ -203,7 +206,7 @@ const VeriIRS: FC = () => {
                     className="bg-[#162953] text-white rounded-xl px-4 py-2 mt-4 mr-5"
                     onClick={onSubmitSetuju}
                   >
-                    Setujui
+                    {type === "true" ? "Copot Verifikasi" : "Verifikasi"}
                   </button>
                   <button
                     className="bg-[#162953] text-white rounded-xl px-4 py-2 mt-4 mr-5"

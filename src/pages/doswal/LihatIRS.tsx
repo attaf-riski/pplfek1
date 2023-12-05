@@ -4,7 +4,7 @@ import AuthUser from "../../helpers/AuthUser";
 import Navbar from "../../components/layouts/Navbar";
 import Sidebar from "../../components/layouts/Sidebar";
 import SidebarDoswal from "./SidebarDoswal";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../auth/Coba.css";
 import LokalDoswal from "../../helpers/LokalDoswal";
 import DataMahasiswa from "../../inteface/MahasiswaInterface";
@@ -15,6 +15,7 @@ import Swal from "sweetalert2";
 const LihatIRS: FC = () => {
   const user = AuthUser.GetAuth();
   const doswal = LokalDoswal.GetDoswal();
+  const { type } = useParams();
 
   const [daftarMahasiswa, setDaftarMahasiswa] = useState<DataMahasiswa[]>([]);
 
@@ -24,7 +25,7 @@ const LihatIRS: FC = () => {
 
   const GetMahasiswaByIRSNotVerified = async () => {
     try {
-      const res = await Http.get("/doswal/irs/" + doswal?.NIP, {
+      const res = await Http.get("/doswal/irs/" + doswal?.NIP + "&" + type, {
         headers: { Authorization: `Bearer ${user?.token}` },
       });
 
@@ -44,7 +45,9 @@ const LihatIRS: FC = () => {
       <div className="w-full flex h-screen">
         <SidebarDoswal name={doswal?.nama || ""} />
         <div className="flex-1 flex flex-col p-4">
-          <h1 className="text-4xl font-bold mb-4">Verifikasi IRS</h1>
+          <h1 className="text-4xl font-bold mb-4">
+            {type === "true" ? "Copot Verifikasi IRS" : "Verifikasi IRS"}
+          </h1>
           <div className="flex items-center mb-4">
             <input
               type="text"
@@ -56,7 +59,9 @@ const LihatIRS: FC = () => {
             </button>
           </div>
           <h4 className=" font-normal mb-4">
-            Jumlah Mahasiswa Perwalian IRS perlu diverifikasi :{" "}
+            {type === "true"
+              ? "Mahasiswa yang sudah terverifikasi : "
+              : "Mahasiswa yang belum terverifikasi : "}
             {daftarMahasiswa.length}
           </h4>
 
@@ -80,7 +85,9 @@ const LihatIRS: FC = () => {
                     <h1 className="text-white">NIM : {mahasiswa.NIM}</h1>
                   </div>
                   <div className="flex flex-row">
-                    <Link to={`/doswal/DetailIRS/` + mahasiswa.NIM}>
+                    <Link
+                      to={`/doswal/DetailIRS/` + mahasiswa.NIM + `&` + type}
+                    >
                       <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
                         Lihat IRS
                       </button>

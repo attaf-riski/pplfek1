@@ -4,7 +4,7 @@ import AuthUser from "../../helpers/AuthUser";
 import Navbar from "../../components/layouts/Navbar";
 import Sidebar from "../../components/layouts/Sidebar";
 import SidebarDoswal from "./SidebarDoswal";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../auth/Coba.css";
 import LokalDoswal from "../../helpers/LokalDoswal";
 import Swal from "sweetalert2";
@@ -13,6 +13,7 @@ import DataMahasiswa from "../../inteface/MahasiswaInterface";
 const LihatKHS: FC = () => {
   const user = AuthUser.GetAuth();
   const doswal = LokalDoswal.GetDoswal();
+  const { type } = useParams();
 
   const [daftarMahasiswa, setDaftarMahasiswa] = useState<DataMahasiswa[]>([]);
 
@@ -22,7 +23,7 @@ const LihatKHS: FC = () => {
 
   const GetMahasiswaByKHSNotVerified = async () => {
     try {
-      const res = await Http.get("/doswal/khs/" + doswal?.NIP, {
+      const res = await Http.get("/doswal/khs/" + doswal?.NIP + "&" + type, {
         headers: { Authorization: `Bearer ${user?.token}` },
       });
 
@@ -54,7 +55,9 @@ const LihatKHS: FC = () => {
             </button>
           </div>
           <h4 className=" font-normal mb-4">
-            Jumlah Mahasiswa Perwalian KHS perlu diverifikasi :{" "}
+            {type === "true"
+              ? "Mahasiswa yang sudah terverifikasi : "
+              : "Mahasiswa yang belum terverifikasi : "}
             {daftarMahasiswa.length}
           </h4>
           {/* <Link
@@ -86,7 +89,9 @@ const LihatKHS: FC = () => {
                     <h1 className="text-white">NIM : {mahasiswa.NIM}</h1>
                   </div>
                   <div className="flex flex-row">
-                    <Link to={`/doswal/DetailKHS/` + mahasiswa.NIM}>
+                    <Link
+                      to={`/doswal/DetailKHS/` + mahasiswa.NIM + "&" + type}
+                    >
                       <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
                         Lihat KHS
                       </button>

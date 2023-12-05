@@ -14,7 +14,7 @@ const DetailKHS: FC = () => {
   const user = AuthUser.GetAuth();
   const doswal = LokalDoswal.GetDoswal();
 
-  const { NIM } = useParams();
+  const { NIM, type } = useParams();
   const [daftarKHS, setDaftarKHS] = useState<DataKHS[]>([]);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const DetailKHS: FC = () => {
 
   const GetKHSByNIM = async () => {
     try {
-      const res = await Http.get("/doswal/listkhs/" + NIM, {
+      const res = await Http.get("/doswal/listkhs/" + NIM + "&" + type, {
         headers: { Authorization: `Bearer ${user?.token}` },
       });
 
@@ -73,7 +73,12 @@ const DetailKHS: FC = () => {
                   <div className="flex flex-row">
                     <Link
                       to={
-                        `/doswal/veriKHS/` + item.NIM + "&" + item.semesterAktif
+                        `/doswal/veriKHS/` +
+                        item.NIM +
+                        "&" +
+                        item.semesterAktif +
+                        "&" +
+                        type
                       }
                     >
                       <button className="bg-[#FBBF24] rounded-xl px-4 py-2">

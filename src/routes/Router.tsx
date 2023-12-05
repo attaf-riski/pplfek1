@@ -31,6 +31,7 @@ import {
   DetailSkripsiPage,
   LihatSkripsiPage,
   IRSKHS,
+  CopotVerifikasi,
 } from "../pages/doswal";
 import ProtectRouteOperator from "./ProtectedRouteOperator";
 import {
@@ -46,7 +47,16 @@ import ProtectRouteMahasiswa from "./ProtectedRouteMahasiswa";
 import {
   DashboardOperatorPage,
   UploudCSV,
-  GenerateManualPage,
+  GenerateManualMahasiswa,
+  GenerateAkun,
+  ManajemenAkun,
+  UpdataDataMahasiswaByOperator,
+  PencarianDoswalOperator,
+  UpdataDataDoswalByOperator,
+  PencarianDepartemenOperator,
+  UpdateDataDepartemenByOperator,
+  GenerateManualDoswal,
+  GenerateManualDepartemen,
 } from "../pages/operator";
 
 import ProtectRouteDepartemen from "./ProtectedRouteDepartemen";
@@ -55,6 +65,7 @@ import { CreateKHS, DetailKHS, ListKHS } from "../pages/mahasiswa/khs";
 import ProtectRouteDoswal from "./ProtectedRouteDoswal";
 import { ProgressStudiPage } from "../pages/doswal";
 import RekapStatusDetail from "../pages/departemen/RekapStatusDetail";
+import PencarianMahasiswaOperator from "../pages/operator/PencarianMahasiswaOperator";
 
 const Router = () => {
   return (
@@ -126,7 +137,17 @@ const Router = () => {
         }
       />
       <Route
-        path="/doswal/LihatIRS"
+        path="/doswal/copotverifikasi"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDoswal>
+              <CopotVerifikasi />
+            </ProtectRouteDoswal>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/doswal/LihatIRS/:type"
         element={
           <ProtectRoute>
             <ProtectRouteDoswal>
@@ -136,7 +157,7 @@ const Router = () => {
         }
       />
       <Route
-        path="/doswal/DetailIRS/:NIM"
+        path="/doswal/DetailIRS/:NIM&:type"
         element={
           <ProtectRoute>
             <ProtectRouteDoswal>
@@ -146,7 +167,7 @@ const Router = () => {
         }
       />
       <Route
-        path="/doswal/veriIRS/:NIM&:semester"
+        path="/doswal/veriIRS/:NIM&:semester&:type"
         element={
           <ProtectRoute>
             <ProtectRouteDoswal>
@@ -156,7 +177,7 @@ const Router = () => {
         }
       />
       <Route
-        path="/doswal/LihatKHS"
+        path="/doswal/LihatKHS/:type"
         element={
           <ProtectRoute>
             <ProtectRouteDoswal>
@@ -166,7 +187,7 @@ const Router = () => {
         }
       />
       <Route
-        path="/doswal/DetailKHS/:NIM"
+        path="/doswal/DetailKHS/:NIM&:type"
         element={
           <ProtectRoute>
             <ProtectRouteDoswal>
@@ -176,7 +197,7 @@ const Router = () => {
         }
       />
       <Route
-        path="/doswal/veriKHS/:NIM&:semester"
+        path="/doswal/veriKHS/:NIM&:semester&:type"
         element={
           <ProtectRoute>
             <ProtectRouteDoswal>
@@ -186,7 +207,7 @@ const Router = () => {
         }
       />
       <Route
-        path="/doswal/LihatPKL"
+        path="/doswal/LihatPKL/:type"
         element={
           <ProtectRoute>
             <ProtectRouteDoswal>
@@ -196,7 +217,7 @@ const Router = () => {
         }
       />
       <Route
-        path="/doswal/DetailPKL/:NIM"
+        path="/doswal/DetailPKL/:NIM&:type"
         element={
           <ProtectRoute>
             <ProtectRouteDoswal>
@@ -206,7 +227,7 @@ const Router = () => {
         }
       />
       <Route
-        path="/doswal/LihatSkripsi"
+        path="/doswal/LihatSkripsi/:type"
         element={
           <ProtectRoute>
             <ProtectRouteDoswal>
@@ -216,7 +237,7 @@ const Router = () => {
         }
       />
       <Route
-        path="/doswal/DetailSkripsi/:NIM"
+        path="/doswal/DetailSkripsi/:NIM&:type"
         element={
           <ProtectRoute>
             <ProtectRouteDoswal>
@@ -229,7 +250,39 @@ const Router = () => {
         path="/operator/GenerateManual"
         element={
           <ProtectRoute>
-            <GenerateManualPage />
+            <ProtectRouteOperator>
+              <GenerateAkun />
+            </ProtectRouteOperator>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/operator/generatemanual/mahasiswa"
+        element={
+          <ProtectRoute>
+            <ProtectRouteOperator>
+              <GenerateManualMahasiswa />
+            </ProtectRouteOperator>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/operator/generatemanual/doswal"
+        element={
+          <ProtectRoute>
+            <ProtectRouteOperator>
+              <GenerateManualDoswal />
+            </ProtectRouteOperator>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/operator/generatemanual/departemen"
+        element={
+          <ProtectRoute>
+            <ProtectRouteOperator>
+              <GenerateManualDepartemen />
+            </ProtectRouteOperator>
           </ProtectRoute>
         }
       />
@@ -366,6 +419,76 @@ const Router = () => {
           <ProtectRoute>
             <ProtectRouteOperator>
               <UploudCSV />
+            </ProtectRouteOperator>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/dashboardoperator/manajemenakun"
+        element={
+          <ProtectRoute>
+            <ProtectRouteOperator>
+              <ManajemenAkun />
+            </ProtectRouteOperator>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/operator/pencarianmahasiswa"
+        element={
+          <ProtectRoute>
+            <ProtectRouteOperator>
+              <PencarianMahasiswaOperator />
+            </ProtectRouteOperator>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/operator/pencarianoperator/atur/:NIM"
+        element={
+          <ProtectRoute>
+            <ProtectRouteOperator>
+              <UpdataDataMahasiswaByOperator />
+            </ProtectRouteOperator>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/operator/pencariandoswal"
+        element={
+          <ProtectRoute>
+            <ProtectRouteOperator>
+              <PencarianDoswalOperator />
+            </ProtectRouteOperator>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/operator/pencariandoswal/atur/:NIP"
+        element={
+          <ProtectRoute>
+            <ProtectRouteOperator>
+              <UpdataDataDoswalByOperator />
+            </ProtectRouteOperator>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/operator/pencariandepartemen"
+        element={
+          <ProtectRoute>
+            <ProtectRouteOperator>
+              <PencarianDepartemenOperator />
+            </ProtectRouteOperator>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/operator/pencariandepartemen/atur/:NIP"
+        element={
+          <ProtectRoute>
+            <ProtectRouteOperator>
+              <UpdateDataDepartemenByOperator />
             </ProtectRouteOperator>
           </ProtectRoute>
         }

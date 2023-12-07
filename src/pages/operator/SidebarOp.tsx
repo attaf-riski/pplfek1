@@ -19,7 +19,7 @@ const SidebarOp: FC<SidebarOperatorAttributes> = ({ name }) => {
         <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200">
           Hai,
         </h4>
-        <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400 text-center">
+        <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">
           {user?.username}
         </p>
       </div>
@@ -61,7 +61,7 @@ const SidebarOp: FC<SidebarOperatorAttributes> = ({ name }) => {
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z"
               />
             </svg>
 
@@ -83,7 +83,12 @@ const SidebarOp: FC<SidebarOperatorAttributes> = ({ name }) => {
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                d="M21.75 6.75a4.5 4.5 0 01-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 11-3.586-3.586l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 016.336-4.486l-3.276 3.276a3.004 3.004 0 002.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4.867 19.125h.008v.008h-.008v-.008z"
               />
             </svg>
 
@@ -105,7 +110,7 @@ const SidebarOp: FC<SidebarOperatorAttributes> = ({ name }) => {
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
               />
             </svg>
 

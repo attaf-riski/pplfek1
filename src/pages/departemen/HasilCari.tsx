@@ -72,7 +72,7 @@ const HasilCari: FC = () => {
                   </div>
                   <div className="flex flex-row">
                     <Link
-                      to={`/doswal/pencariandoswal/detail/${mahasiswa.NIM}`}
+                      to={`/doswal/pencariandoswal/detail/${mahasiswa.NIM}&${mahasiswa.dosenWaliNIP}`}
                     >
                       <button className="bg-[#FBBF24] rounded-xl px-4 py-2">
                         Lihat Detail

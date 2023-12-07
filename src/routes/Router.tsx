@@ -5,6 +5,7 @@ import ProtectRoute from "./ProtectedRoute";
 
 import {
   DashboardDepartPage,
+  EditDataDepartemen,
   HasilCariPage,
   PencarianPage,
   ProfilDepart,
@@ -13,9 +14,9 @@ import {
   RekapSkripsi,
   RekapSkripsiDetail,
   RekapStatus,
+  UbahPasswordDepartemen,
 } from "../pages/departemen";
 import {
-  ProfilDoswalPage,
   SidebarDoswalPage,
   PencarianDoswalPage,
   VerifikasiPage,
@@ -32,6 +33,8 @@ import {
   LihatSkripsiPage,
   IRSKHS,
   CopotVerifikasi,
+  UbahPasswordDoswal,
+  EditDataDoswal,
 } from "../pages/doswal";
 import ProtectRouteOperator from "./ProtectedRouteOperator";
 import {
@@ -41,6 +44,7 @@ import {
   ListIRS,
   PKL,
   Skripsi,
+  UbahPasswordMahasiswa,
   UpdataDataMahasiswa,
 } from "../pages/mahasiswa";
 import ProtectRouteMahasiswa from "./ProtectedRouteMahasiswa";
@@ -57,6 +61,7 @@ import {
   UpdateDataDepartemenByOperator,
   GenerateManualDoswal,
   GenerateManualDepartemen,
+  UbahPasswordOperator,
 } from "../pages/operator";
 
 import ProtectRouteDepartemen from "./ProtectedRouteDepartemen";
@@ -87,21 +92,11 @@ const Router = () => {
         }
       />
       <Route
-        path="/dashboarddoswal/profildoswal"
+        path="/doswal/editdatadoswal/:NIP"
         element={
           <ProtectRoute>
             <ProtectRouteDoswal>
-              <ProfilDoswalPage />
-            </ProtectRouteDoswal>
-          </ProtectRoute>
-        }
-      />
-      <Route
-        path="/doswal/profildoswal"
-        element={
-          <ProtectRoute>
-            <ProtectRouteDoswal>
-              <ProfilDoswalPage />
+              <EditDataDoswal />
             </ProtectRouteDoswal>
           </ProtectRoute>
         }
@@ -117,12 +112,12 @@ const Router = () => {
         }
       />
       <Route
-        path="/doswal/pencariandoswal/detail/:NIM"
+        path="/doswal/pencariandoswal/detail/:NIM&:NIP"
         element={
           <ProtectRoute>
-            <ProtectRouteDoswal>
-              <ProgressStudiPage />
-            </ProtectRouteDoswal>
+            {/* <ProtectRouteDoswal> */}
+            <ProgressStudiPage />
+            {/* </ProtectRouteDoswal> */}
           </ProtectRoute>
         }
       />
@@ -247,6 +242,56 @@ const Router = () => {
         }
       />
       <Route
+        path="/doswal/ubahpassword"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDoswal>
+              <UbahPasswordDoswal />
+            </ProtectRouteDoswal>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/operator/ubahpassword"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDepartemen>
+              <UbahPasswordOperator />
+            </ProtectRouteDepartemen>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/departemen/ubahpassword"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDepartemen>
+              <UbahPasswordDepartemen />
+            </ProtectRouteDepartemen>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/departemen/editdatadepartemen/:NIP"
+        element={
+          <ProtectRoute>
+            <ProtectRouteDepartemen>
+              <EditDataDepartemen />
+            </ProtectRouteDepartemen>
+          </ProtectRoute>
+        }
+      />
+      <Route
+        path="/operator/ubahpassword"
+        element={
+          <ProtectRoute>
+            <ProtectRouteOperator>
+              <UbahPasswordOperator />
+            </ProtectRouteOperator>
+          </ProtectRoute>
+        }
+      />
+      <Route
         path="/operator/GenerateManual"
         element={
           <ProtectRoute>
@@ -292,16 +337,6 @@ const Router = () => {
           <ProtectRoute>
             <ProtectRouteDoswal>
               <ProgressStudiPage />
-            </ProtectRouteDoswal>
-          </ProtectRoute>
-        }
-      />
-      <Route
-        path="/doswal/irskhs/:NIM&:semester"
-        element={
-          <ProtectRoute>
-            <ProtectRouteDoswal>
-              <IRSKHS />
             </ProtectRouteDoswal>
           </ProtectRoute>
         }
@@ -494,6 +529,16 @@ const Router = () => {
         }
       />
       {/* Mahasiswa */}
+      <Route
+        path="/mahasiswa/ubahpassword"
+        element={
+          <ProtectRoute>
+            <ProtectRouteMahasiswa>
+              <UbahPasswordMahasiswa />
+            </ProtectRouteMahasiswa>
+          </ProtectRoute>
+        }
+      />
       <Route
         path="/dashboardmahasiswa"
         element={

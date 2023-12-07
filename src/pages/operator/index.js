@@ -11,3 +11,4 @@ export { default as GenerateAkun } from "./GenerateAkun";
 export { default as GenerateManualMahasiswa } from "./GenerateAkun/GenerateManualMahasiswa";
 export { default as GenerateManualDoswal } from "./GenerateAkun/GenerateManualDoswal";
 export { default as GenerateManualDepartemen } from "./GenerateAkun/GenerateManualDepartemen";
+export { default as UbahPasswordOperator } from "./UbahPasswordOperator";

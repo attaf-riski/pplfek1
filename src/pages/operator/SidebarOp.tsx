@@ -19,7 +19,7 @@ const SidebarOp: FC<SidebarOperatorAttributes> = ({ name }) => {
         <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200">
           Hai,
         </h4>
-        <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">
+        <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400 text-center">
           {user?.username}
         </p>
       </div>

@@ -13,14 +13,20 @@ import DataIRS from "../../inteface/IRSInterface";
 import { LoadingLayout } from "../../components/layouts";
 import DataKHS from "../../inteface/KHSInterface";
 
-const IRSKHS: FC = () => {
+interface Props {
+  NIM: string;
+  semester: string;
+  closePopup: Function;
+}
+
+const IRSKHS: FC<Props> = ({ NIM, semester, closePopup }) => {
   const user = AuthUser.GetAuth();
   const doswal = LokalDoswal.GetDoswal();
-  const { NIM, semester } = useParams();
   const [dataIRSLokal, setDataIRS] = useState<DataIRS>();
   const [dataKHSLokal, setDataKHS] = useState<DataKHS>();
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [khsToggle, setKHSToggle] = useState(false);
 
   useEffect(() => {
     GetIRSByNIMAndSemester();
@@ -190,55 +196,46 @@ const IRSKHS: FC = () => {
 
   return (
     <>
-      <Navbar></Navbar>
-      <div className="w-full flex h-screen">
-        <SidebarDoswal name={doswal?.nama || ""} />
-        <div className="flex-1 flex flex-col p-4">
-          <h1 className="text-4xl font-bold">IRS dan KHS</h1>
-          {loading ? (
-            <LoadingLayout></LoadingLayout>
-          ) : (
-            <div className="flex flex-row p-4">
-              <div className=" w-6/12">
-                <div className="p-5">
-                  <div className="mb-5 mr-4">
-                    <CustomInput
-                      name="semesterAktif"
-                      label="Semester Aktif"
-                      required={true}
-                      type="text"
-                      value={semester ?? 0}
-                      readOnly={true}
-                      // error={errData.username}
-                    />
-                  </div>
-                  <div className="mb-5 mr-4 mt-8">
-                    <CustomInput
-                      name="jumlahSks"
-                      label="Jumlah SKS"
-                      required={true}
-                      type="text"
-                      value={dataIRSLokal?.jumlahSks ?? 0}
-                      onChange={onChangeInput}
-                      // error={errData.username}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="w-6/12 h-4/6">
-                <div className="mb-5 mr-4 ml-4 mt-5">
-                  <CustomInput
-                    name="semesterAktif"
-                    label="Semester"
-                    required={true}
-                    type="text"
-                    value={dataKHSLokal?.semesterAktif ?? 0}
-                    onChange={onChangeInput}
-                    readOnly={true}
-                    // error={errData.username}
-                  />
-                </div>
-                <div className="mb-5 mr-4 ml-4 mt-8">
+      <div className="flex flex-col p-4 bg-[#EFF2FB] rounded-md w-[500px] h-[600px]">
+        <div className="flex">
+          <div className="flex space-x-3">
+            <div
+              className="text-4xl font-bold text-white bg-blue-400 p-2 rounded-sm cursor-pointer"
+              onClick={() => {
+                setKHSToggle(false);
+              }}
+            >
+              IRS
+            </div>
+            <div
+              className="text-4xl font-bold text-white bg-blue-400 p-2 rounded-sm cursor-pointer"
+              onClick={() => {
+                setKHSToggle(true);
+              }}
+            >
+              KHS
+            </div>
+            <div className="text-5xl font-bold text-black p-2 ">
+              Sem.{semester}
+            </div>
+          </div>
+          {/* buat button close */}
+          <button
+            onClick={() => {
+              closePopup(false);
+            }}
+            className="ml-auto bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          >
+            X
+          </button>
+        </div>
+        {loading ? (
+          <LoadingLayout></LoadingLayout>
+        ) : (
+          <div className="flex flex-row p-4">
+            {khsToggle ? (
+              <div className="w-full h-full">
+                <div className="mb-5 mr-4 ml-4">
                   <CustomInput
                     name="jumlahSksSemester"
                     label="Jumlah SKS Semester"
@@ -249,18 +246,7 @@ const IRSKHS: FC = () => {
                     // error={errData.username}
                   />
                 </div>
-                <div className="mb-5 mr-4 ml-4 mt-8">
-                  <CustomInput
-                    name="jumlahSksKumulatif"
-                    label="Jumlah SKS Kumulatif"
-                    required={true}
-                    type="text"
-                    value={dataKHSLokal?.jumlahSksKumulatif ?? 0}
-                    onChange={onChangeInput}
-                    // error={errData.username}
-                  />
-                </div>
-                <div className="mb-5 mr-4 ml-4 mt-8">
+                <div className="mb-5 mr-4 ml-4">
                   <CustomInput
                     name="IPS"
                     label="IPS"
@@ -272,7 +258,19 @@ const IRSKHS: FC = () => {
                     // error={errData.username}
                   />
                 </div>
-                <div className="mb-5 mr-4 ml-4 mt-8">
+                <div className="mb-5 mr-4 ml-4">
+                  <CustomInput
+                    name="jumlahSksKumulatif"
+                    label="Jumlah SKS Kumulatif"
+                    required={true}
+                    type="text"
+                    value={dataKHSLokal?.jumlahSksKumulatif ?? 0}
+                    onChange={onChangeInput}
+                    // error={errData.username}
+                  />
+                </div>
+
+                <div className="mb-5 mr-4 ml-4">
                   <CustomInput
                     name="IPK"
                     label="IPK"
@@ -284,12 +282,45 @@ const IRSKHS: FC = () => {
                     // error={errData.username}
                   />
                 </div>
+
+                {/* tambahkan tombol lihat detail */}
+                <div className="flex flex-row justify-center">
+                  <a
+                    href={
+                      "http://localhost:5502/pdf/" + dataIRSLokal?.scanIRS || ""
+                    }
+                    target="_blank"
+                    rel="noreferrer"
+                    className="bg-blue-400 text-white rounded-xl px-4 py-2 mt-4 mr-5"
+                  >
+                    Lihat Detail
+                  </a>
+                </div>
               </div>
-            </div>
-          )}
-        </div>
+            ) : (
+              <div className="flex flex-col justify-center items-center w-full h-96 gap-5">
+                <h1 className=" text-9xl">{dataIRSLokal?.jumlahSks} SKS </h1>
+                <div className="flex flex-row justify-center">
+                  <div className="flex flex-row justify-center">
+                    <a
+                      href={
+                        "http://localhost:5502/pdf/" + dataKHSLokal?.scanKHS ||
+                        ""
+                      }
+                      target="_blank"
+                      rel="noreferrer"
+                      // beri style
+                      className="bg-blue-400 text-white rounded-xl px-4 py-2 mt-4 mr-5"
+                    >
+                      Lihat Detail
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
-      ;
     </>
   );
 };

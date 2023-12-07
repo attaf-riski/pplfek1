@@ -8,3 +8,5 @@ export { default as RekapPKLDetail } from "./RekapPKLDetail";
 export { default as RekapSkripsi } from "./RekapSkripsi";
 export { default as RekapSkripsiDetail } from "./RekapSkripsiDetail";
 export { default as RekapStatus } from "./RekapStatus";
+export { default as UbahPasswordDepartemen } from "./UbahPasswordDepartemen";
+export { default as EditDataDepartemen } from "./EditDataDepartemen";

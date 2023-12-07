@@ -9,11 +9,20 @@ import "../auth/Coba.css";
 import LokalDoswal from "../../helpers/LokalDoswal";
 import { CustomInput, CustomTextarea } from "../../components/input";
 import DataMahasiswa from "../../inteface/MahasiswaInterface";
+import IRSKHS from "./IRSKHS";
+import DataDoswal from "../../inteface/DoswalInterface";
+import SidebarDep from "../departemen/SidebarDep";
+import DataDepartemen from "../../inteface/DepartemenInterface";
+import LokalDepartemen from "../../helpers/LokalDepartemen";
 
 const ProgressStudi: FC = () => {
   const user = AuthUser.GetAuth();
-  const doswal = LokalDoswal.GetDoswal();
-  const { NIM } = useParams();
+  const { NIM, NIP } = useParams();
+  const [popup, setPopup] = useState(false);
+  const [doswal, setDoswal] = useState<DataDoswal>({
+    nama: "",
+  });
+  const departemen = LokalDepartemen.GetDepartemen();
 
   const [dataMahasiswa, setDataMahasiswa] = useState<DataMahasiswa>({
     NIM: "",
@@ -24,7 +33,10 @@ const ProgressStudi: FC = () => {
   });
 
   const [dataColorBox, setDataColorBox] = useState([{ i: 1 }]);
-  const [stringdataColorBox, stringsetDataColorBox] = useState([{}]);
+  const [dataPopup, setDataPopup] = useState({
+    NIM: "",
+    semester: "",
+  });
 
   useEffect(() => {
     GetMahasiswaByNIM();
@@ -44,6 +56,21 @@ const ProgressStudi: FC = () => {
 
     if (result.status === 200) {
       setDataMahasiswa(result.data?.data);
+      let NIP = result.data?.data.dosenWaliNIP;
+      GetDoswalByNIP(NIP);
+    }
+  };
+
+  const GetDoswalByNIP = async (NIP: any) => {
+    const result = await Http.get("/operator/listdoswal/detail/" + NIP, {
+      headers: {
+        Authorization: `Bearer ${user?.token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (result.status === 200) {
+      setDoswal(result.data?.data);
     }
   };
 
@@ -64,10 +91,29 @@ const ProgressStudi: FC = () => {
     <>
       <Navbar></Navbar>
       <div className="w-full flex h-screen">
-        <SidebarDoswal name={doswal?.nama || ""} />
-        <div className="flex-1 flex flex-col p-4">
+        {user?.roleId === 4 ? (
+          <SidebarDoswal name={doswal?.nama || ""} />
+        ) : (
+          <SidebarDep name={departemen?.nama || ""} />
+        )}
+
+        {popup && (
+          <div className="absolute h-[1100px] w-screen bg-[#00000060] z-10"></div>
+        )}
+        <div className={`flex-1 flex flex-col p-4`}>
           <h1 className="text-4xl font-bold mb-4">Progress Studi</h1>
-          <div className="p-4 mt-5 rounded-2xl bg-[#EFF2FB] flex flex-col justify-center items-center">
+          <div
+            className={`relative p-4 mt-5 rounded-2xl bg-[#EFF2FB] flex flex-col justify-center items-center`}
+          >
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+              {popup && (
+                <IRSKHS
+                  NIM={dataPopup.NIM}
+                  semester={dataPopup.semester}
+                  closePopup={setPopup}
+                />
+              )}
+            </div>
             <div className="relative w-32 h-32">
               <img
                 className="object-cover w-24 h-24 mx-2 rounded-full border bg-gray-200 border-gray-100 shadow-sm"
@@ -130,15 +176,18 @@ const ProgressStudi: FC = () => {
                       <span className="text-white font-bold">{index + 1}</span>
                     </div>
                   ) : color.i === 2 ? (
-                    <Link to={`/doswal/irskhs/${NIM}&${index + 1}`}>
-                      <div
-                        className={`w-20 h-20  mb-4 mr-4 flex items-center justify-center bg-blue-400 }`}
-                      >
-                        <span className="text-white font-bold">
-                          {index + 1}
-                        </span>
-                      </div>
-                    </Link>
+                    <div
+                      className={`w-20 h-20  mb-4 mr-4 flex items-center justify-center bg-blue-400 }`}
+                      onClick={() => {
+                        setDataPopup({
+                          NIM: dataMahasiswa.NIM || "",
+                          semester: String(index + 1),
+                        });
+                        setPopup(true);
+                      }}
+                    >
+                      <span className="text-white font-bold">{index + 1}</span>
+                    </div>
                   ) : color.i === 3 ? (
                     <div
                       className={`w-20 h-20  mb-4 mr-4 flex items-center justify-center bg-yellow-400 }`}

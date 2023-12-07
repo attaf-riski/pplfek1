@@ -13,21 +13,9 @@ import Http from "../../helpers/Fetch";
 import AuthUser from "../../helpers/AuthUser";
 import Swal from "sweetalert2";
 import LokalMahasiswa from "../../helpers/LokalMahasiswa";
-
-interface DataMahasiswa {
-  NIM?: string | null;
-  nama?: string | null;
-  alamat?: string | null;
-  provinsi?: string | null;
-  kabkota?: string | null;
-  angkatan?: number | null;
-  jalurMasuk?: string | null;
-  email?: string | null;
-  noHP?: string | null;
-  status?: string | null;
-  photo?: string | null;
-  dosenWaliNIP?: string | null;
-}
+import DataMahasiswa from "../../inteface/MahasiswaInterface";
+import AuthAttributes from "../../inteface/AuthUserInterface";
+import { Link } from "react-router-dom";
 
 const UpdataDataMahasiswa: FC = () => {
   const user = AuthUser.GetAuth();
@@ -211,7 +199,17 @@ const UpdataDataMahasiswa: FC = () => {
       <div className="w-full flex h-screen">
         <SidebarMahasiswa name={data.nama || ""} photo={data.photo} />
         <div className="flex-1 flex flex-col p-4">
-          <h1 className="text-4xl font-bold">Update Data Mahasiswa</h1>
+          <div className="flex justify-between items-center">
+            <h1 className="text-4xl font-bold">Update Data Mahasiswa</h1>
+            <div className="flex-1 flex justify-end items-center">
+              <Link
+                to={"/mahasiswa/ubahpassword"}
+                className="bg-[#162953] text-white rounded-xl px-4 py-2 mt-4 mr-5"
+              >
+                Ubah Password
+              </Link>
+            </div>
+          </div>
           <div className="p-4 mt-5 rounded-2xl bg-[#EFF2FB] flex flex-col justify-center items-center">
             <div className="relative w-32 h-32">
               <img
@@ -246,6 +244,17 @@ const UpdataDataMahasiswa: FC = () => {
                   type="text"
                   readOnly={true}
                   value={data.NIM ?? ""}
+                  onChange={onChange}
+                />
+              </div>
+              <div className="mb-2">
+                <CustomInput
+                  name="username"
+                  label="Username"
+                  required={true}
+                  type="text"
+                  readOnly={true}
+                  value={user?.username ?? ""}
                   onChange={onChange}
                 />
               </div>

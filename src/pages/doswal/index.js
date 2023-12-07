@@ -1,5 +1,4 @@
 export { default as SidebarDoswalPage } from "./SidebarDoswal";
-export { default as ProfilDoswalPage } from "./profildoswal";
 export { default as PencarianDoswalPage } from "./pencariandoswal";
 export { default as VerifikasiPage } from "./verifikasi";
 export { default as LihatIRSPage } from "./LihatIRS";
@@ -16,3 +15,5 @@ export { default as DashboardDoswalPage } from "./DashboardDoswal";
 export { default as ProgressStudiPage } from "./ProgressStudi";
 export { default as IRSKHS } from "./IRSKHS";
 export { default as CopotVerifikasi } from "./CopotVerifikasi";
+export { default as UbahPasswordDoswal } from "./UbahPasswordDoswal";
+export { default as EditDataDoswal } from "./EditDataDoswal";

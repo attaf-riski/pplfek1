@@ -9,7 +9,7 @@ import { LoadingLayout } from "../../../components/layouts";
 import { CustomInput } from "../../../components/input";
 
 interface DataKHS {
-  semesterAktif?: number | 0;
+  semesterAktif?: number | 1;
   jumlahSksSemester?: number | 0;
   jumlahSksKumulatif?: number | 0;
   IPS?: number | 0;
@@ -96,7 +96,12 @@ const CreateKHS = () => {
         });
         setLoading(false);
       }
-    } catch (error) {
+    } catch (error: any) {
+      await Swal.fire({
+        icon: "error",
+        title: "Gagal",
+        text: "KHS Gagal Ditambahkan " + error?.response?.data?.message,
+      });
       setLoading(false);
       console.log(error);
     }

@@ -36,6 +36,7 @@ const Skripsi = () => {
 
   useEffect(() => {
     getSkripsiByNIM();
+    GetDashboardMahasiswa();
   }, []);
 
   const handleChange = (e: any) => {
@@ -228,6 +229,127 @@ const Skripsi = () => {
     }
   };
 
+  const onDelete = async (e: any) => {
+    if (dataSkripsi.verified) {
+      await Swal.fire({
+        icon: "error",
+        title: "Gagal",
+        text: "Skripsi Sudah Diverifikasi",
+      });
+      return;
+    }
+
+    dataSkripsi.NIM = mahasiswa?.NIM || "";
+
+    const newDataSkripsi = {
+      NIM: dataSkripsi.NIM,
+      status: dataSkripsi.status,
+      nilai: dataSkripsi.nilai,
+      scanBeritaAcara: dataSkripsi.scanBeritaAcara,
+      tanggalSidang: dataSkripsi.tanggalSidang,
+      semesterLulus: Number(dataSkripsi.lamaStudi),
+      verified: false,
+    };
+
+    setLoading(true);
+    //uploud json
+    try {
+      const response = await Http.delete("/skripsi/delete/" + mahasiswa?.NIM, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${user?.token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.status === 200) {
+        // uploud scan
+        const fd = new FormData();
+        if (file) {
+          fd.append("pdf", file);
+          const response2 = await Http.post(
+            "/skripsi/scan/" + mahasiswa?.NIM,
+            fd,
+            {
+              withCredentials: true,
+              headers: {
+                Authorization: `Bearer ${user?.token}`,
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
+          if (response2.status === 200) {
+            await Swal.fire({
+              icon: "success",
+              title: "Berhasil",
+              text: "Skripsi Berhasil Dihapus",
+            });
+            setLoading(false);
+          }
+        } else {
+          await Swal.fire({
+            icon: "success",
+            title: "Berhasil",
+            text: "Skripsi Berhasil Dihapus",
+          });
+          setLoading(false);
+          setEditMode(false);
+          setDataSkripsisudahAda(false);
+        }
+      } else {
+        await Swal.fire({
+          icon: "error",
+          title: "Gagal",
+          text: "Skripsi Gagal Dihapus",
+        });
+        setLoading(false);
+      }
+    } catch (error: any) {
+      await Swal.fire({
+        icon: "error",
+        title: "Gagal",
+        text: "Skripsi Gagal Dihapus " + error?.response?.data?.message,
+      });
+    }
+  };
+
+  const [dataDashboard, setDataDashboard]: any = useState({
+    DosenWali: "",
+    StatusAkedemik: "",
+    IPK: 0,
+    SKSk: 0,
+    Skripsi: "Sudah",
+    PKL: "Belum",
+  });
+
+  const constraintKHS100 = async () => {
+    if (dataDashboard.SKSk >= 100) {
+      setEditMode(true);
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Gagal",
+        text: "SKS yang diambil belum mencapai 100",
+      });
+    }
+  };
+
+  const GetDashboardMahasiswa = async () => {
+    try {
+      const res = await Http.get("/dashboardmahasiswa/" + mahasiswa?.NIM, {
+        headers: { Authorization: `Bearer ${user?.token}` },
+      });
+
+      setDataDashboard(res.data?.data);
+    } catch (error: any) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.response?.data?.message,
+      });
+    }
+  };
+
   return (
     <>
       <Navbar></Navbar>
@@ -406,9 +528,7 @@ const Skripsi = () => {
                 <h2>Belum Ada Data Skripsi yang Ditambahkan</h2>
                 <button
                   className="bg-[#FBBF24] rounded-xl px-4 py-2"
-                  onClick={() => {
-                    setEditMode(true);
-                  }}
+                  onClick={constraintKHS100}
                 >
                   Tambahkan Data Skripsi
                 </button>
@@ -574,9 +694,15 @@ const Skripsi = () => {
                 name="scanBeritaAcara"
               />
             </div>
-            <div className="flex justify-end mb-3 mt-3">
+            <div className="flex justify-start  mr-4 ml-4 mb-5 mt-2 gap-2 ">
               <button
-                className="bg-[#FBBF24] rounded-xl px-4 py-2"
+                className=" bg-[#fb3924] text-white  rounded-xl px-4 py-2"
+                onClick={onDelete}
+              >
+                Hapus
+              </button>
+              <button
+                className="bg-[#162953] text-white rounded-xl px-4 py-2"
                 onClick={onUpdate}
               >
                 Perbarui

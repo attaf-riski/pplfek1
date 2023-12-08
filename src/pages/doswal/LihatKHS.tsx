@@ -43,7 +43,9 @@ const LihatKHS: FC = () => {
       <div className="w-full flex h-screen">
         <SidebarDoswal name={doswal?.nama || ""} />
         <div className="flex-1 flex flex-col p-4">
-          <h1 className="text-4xl font-bold mb-4">Verifikasi KHS</h1>
+          <h1 className="text-4xl font-bold mb-4">
+            {type === "true" ? "Copot Verifikasi KHS" : "Verifikasi KHS"}
+          </h1>
           <div className="flex items-center mb-4">
             <input
               type="text"

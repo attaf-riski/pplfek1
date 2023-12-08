@@ -7,7 +7,7 @@ import Navbar from "../../../components/layouts/Navbar";
 import SidebarMahasiswa from "../SidebarMahasiswa";
 import { LoadingLayout } from "../../../components/layouts";
 import { CustomInput } from "../../../components/input";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 interface DataKHS {
   semesterAktif?: number | 0;
@@ -21,6 +21,7 @@ interface DataKHS {
 }
 
 const CreateKHS = () => {
+  const navigate = useNavigate();
   const { semester } = useParams();
   const mahasiswa = LokalMahasiswa.GetMahasiswa();
   const user = AuthUser.GetAuth();
@@ -76,13 +77,13 @@ const CreateKHS = () => {
       jumlahSksKumulatif: Number(dataKHS.jumlahSksKumulatif),
       IPS: Number(dataKHS.IPS),
       IPK: Number(dataKHS.IPK),
+      NIM: mahasiswa?.NIM || "",
+      verified: false,
     };
     e.preventDefault();
     try {
       // uploud json
-      dataKHS.semesterAktif = dataKHS.semesterAktif || 1;
-      dataKHS.NIM = mahasiswa?.NIM || "";
-      dataKHS.verified = false;
+
       const response2 = await Http.post(
         "/khs/update/" + mahasiswa?.NIM + "&" + semester,
         newDataIRS,
@@ -132,6 +133,54 @@ const CreateKHS = () => {
           icon: "error",
           title: "Gagal",
           text: "KHS Gagal Ditambahkan" + response2.data?.message,
+        });
+        setLoading(false);
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+    setLoading(false);
+  };
+
+  const onDelete = async () => {
+    if (dataKHS.verified) {
+      Swal.fire({
+        icon: "error",
+        title: "Gagal",
+        text: "KHS sudah diverifikasi, hubungi dosen wali untuk perubahan",
+      });
+      return;
+    }
+
+    setLoading(true);
+    try {
+      // uploud json
+
+      const response2 = await Http.delete(
+        "/khs/delete/" + mahasiswa?.NIM + "&" + semester,
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response2.status === 200) {
+        await Swal.fire({
+          icon: "success",
+          title: "Berhasil",
+          text: "KHS Berhasil Dihapus",
+        });
+
+        setLoading(false);
+        navigate("/dashboardmahasiswa/khs");
+      } else {
+        await Swal.fire({
+          icon: "error",
+          title: "Gagal",
+          text: "KHS Gagal Dihapus" + response2.data?.message,
         });
         setLoading(false);
       }
@@ -241,12 +290,20 @@ const CreateKHS = () => {
                   name="scanKHS"
                 />
               </div>
-              <button
-                className="bg-[#162953] text-white rounded-xl px-4 py-2 mt-4 mr-5"
-                onClick={onSubmit}
-              >
-                Perbarui
-              </button>
+              <div className="flex justify-content-center items-center mr-4 ml-4 mb-5">
+                <button
+                  onClick={onDelete}
+                  className="bg-[#fb3924] text-white rounded-xl px-4 py-2 mt-4 mr-5"
+                >
+                  Hapus
+                </button>
+                <button
+                  className="bg-[#162953] text-white rounded-xl px-4 py-2 mt-4 mr-5"
+                  onClick={onSubmit}
+                >
+                  Perbarui
+                </button>
+              </div>
             </div>
           </div>
         )}

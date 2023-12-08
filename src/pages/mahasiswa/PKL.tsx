@@ -36,6 +36,7 @@ const PKL = () => {
 
   useEffect(() => {
     getPKLByNIM();
+    GetDashboardMahasiswa();
   }, []);
 
   const handleChange = (e: any) => {
@@ -61,15 +62,41 @@ const PKL = () => {
     }
   };
 
-  const onChangeSelect = (e: any) => {
-    dataPKL.status = e.target.value;
-    if (e.target.name !== "Lulus") {
-      setDataPKL({ ...dataPKL, nilai: "Kosong" });
+  const [dataDashboard, setDataDashboard]: any = useState({
+    DosenWali: "",
+    StatusAkedemik: "",
+    IPK: 0,
+    SKSk: 0,
+    Skripsi: "Sudah",
+    PKL: "Belum",
+  });
+
+  const constraintKHS100 = async () => {
+    if (dataDashboard.SKSk >= 100) {
+      setEditMode(true);
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Gagal",
+        text: "SKS yang diambil belum mencapai 100",
+      });
     }
   };
 
-  const onChangeInput = (e: any) => {
-    setDataPKL({ ...dataPKL, [e.target.name]: e.target.value });
+  const GetDashboardMahasiswa = async () => {
+    try {
+      const res = await Http.get("/dashboardmahasiswa/" + mahasiswa?.NIM, {
+        headers: { Authorization: `Bearer ${user?.token}` },
+      });
+
+      setDataDashboard(res.data?.data);
+    } catch (error: any) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.response?.data?.message,
+      });
+    }
   };
 
   const onSubmit = async (e: any) => {
@@ -136,6 +163,64 @@ const PKL = () => {
     } catch (error: any) {
       setLoading(false);
     }
+  };
+
+  const onDelete = async () => {
+    if (dataPKL.verified) {
+      Swal.fire({
+        icon: "error",
+        title: "Gagal",
+        text: "PKL Sudah Diverifikasi",
+      });
+      return;
+    }
+
+    Swal.fire({
+      title: "Apakah anda yakin?",
+      text: "Data PKL akan dihapus",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Ya, hapus",
+      cancelButtonText: "Tidak, batalkan",
+      reverseButtons: true,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await Http.delete("/pkl/delete/" + mahasiswa?.NIM, {
+            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${user?.token}`,
+              "Content-Type": "application/json",
+            },
+          });
+
+          if (response.status === 200) {
+            await Swal.fire({
+              icon: "success",
+              title: "Berhasil",
+              text: "PKL Berhasil Dihapus",
+            });
+            setLoading(false);
+            setDataPKLsudahAda(false);
+            setEditMode(false);
+          } else {
+            await Swal.fire({
+              icon: "error",
+              title: "Gagal",
+              text: "PKL Gagal Dihapus",
+            });
+            setLoading(false);
+          }
+        } catch (error: any) {
+          await Swal.fire({
+            icon: "error",
+            title: "Gagal",
+            text: "PKL Gagal Dihapus " + error?.response?.data?.message,
+          });
+          setLoading(false);
+        }
+      }
+    });
   };
 
   const onUpdate = async (e: any) => {
@@ -394,9 +479,7 @@ const PKL = () => {
                 <h2>Belum Ada Data PKL yang Ditambahkan</h2>
                 <button
                   className="bg-[#FBBF24] rounded-xl px-4 py-2"
-                  onClick={() => {
-                    setEditMode(true);
-                  }}
+                  onClick={constraintKHS100}
                 >
                   Tambahkan Data PKL
                 </button>
@@ -404,7 +487,7 @@ const PKL = () => {
             </div>
           )
         ) : (
-          <div className="flex-1 flex flex-col p-4">
+          <div className="w-full flex flex-col p-4">
             <h1 className="text-4xl font-bold">PKL</h1>
             <h2 className={`text-xl ${dataPKL.verified ? "" : "hidden"}`}>
               Sudah diverfikasi dosen wali, hubungi dosen wali untuk perubahan
@@ -557,9 +640,15 @@ const PKL = () => {
                 name="scanBeritaAcara"
               />
             </div>
-            <div className="flex justify-end mb-3 mt-3">
+            <div className="flex justify-start  mr-4 ml-4 mb-5 mt-2 gap-2 ">
               <button
-                className="bg-[#FBBF24] rounded-xl px-4 py-2"
+                className=" bg-[#fb3924] text-white  rounded-xl px-4 py-2"
+                onClick={onDelete}
+              >
+                Hapus
+              </button>
+              <button
+                className="bg-[#162953] text-white rounded-xl px-4 py-2"
                 onClick={onUpdate}
               >
                 Perbarui

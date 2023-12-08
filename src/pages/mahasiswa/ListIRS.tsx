@@ -44,15 +44,14 @@ const ListIRS = () => {
           photo={mahasiswa?.photo}
         />
         <div className="flex-1 flex flex-col p-4">
-          <h1 className="text-4xl font-bold">Daftar IRS</h1>
-          <Link
-            to="/dashboardmahasiswa/irs/create"
-            className="flex items-center justify-end px-4 py-2 mt-4 text-gray-700  rounded-lg dark:bg-gray-800 dark:text-gray-200"
-          >
-            <button className="bg-[#162953] text-white rounded-xl px-4 py-2 mt-4 mr-5">
-              Tambahkan IRS
-            </button>
-          </Link>
+          <div className="flex justify-between items-center ">
+            <h1 className="text-4xl font-bold">Daftar IRS</h1>
+            <Link to="/dashboardmahasiswa/irs/create">
+              <button className="bg-[#162953] text-white rounded-xl px-4 py-2">
+                Tambahkan IRS
+              </button>
+            </Link>
+          </div>
 
           <div className="flex flex-col mt-4">
             <div className="flex flex-col mt-4">
@@ -73,7 +72,16 @@ const ListIRS = () => {
                           Total SKS : {item.jumlahSks}
                         </h1>
                       </div>
-                      <div className="flex flex-row">
+                      <div className="flex flex-row gap-2">
+                        {item.verified ? (
+                          <div className="bg-[#2bfb24] rounded-xl px-4 py-2">
+                            Verified
+                          </div>
+                        ) : (
+                          <div className="bg-[#fb3924] rounded-xl px-4 py-2">
+                            Unverified
+                          </div>
+                        )}
                         <Link
                           to={
                             `/dashboardmahasiswa/irs/detail/` +

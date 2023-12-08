@@ -7,7 +7,7 @@ import AuthUser from "../../helpers/AuthUser";
 import { CustomInput } from "../../components/input";
 import Swal from "sweetalert2";
 import { LoadingLayout } from "../../components/layouts";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 interface DataIRS {
   semesterAktif?: number | 1;
@@ -18,6 +18,7 @@ interface DataIRS {
 }
 
 const DetailIRS = () => {
+  const navigate = useNavigate();
   const { semester } = useParams();
   const mahasiswa = LokalMahasiswa.GetMahasiswa();
   const user = AuthUser.GetAuth();
@@ -130,6 +131,49 @@ const DetailIRS = () => {
     setLoading(false);
   };
 
+  const onDelete = async () => {
+    if (dataIRS.verified) {
+      await Swal.fire({
+        icon: "error",
+        title: "Gagal",
+        text: "IRS Sudah Diverifikasi",
+      });
+      return;
+    }
+    setLoading(true);
+    try {
+      const response = await Http.delete(
+        "/irs/delete/" + mahasiswa?.NIM + "&" + semester,
+        {
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.status === 200) {
+        await Swal.fire({
+          icon: "success",
+          title: "Berhasil",
+          text: "IRS Berhasil Dihapus",
+        });
+        setLoading(false);
+        navigate("/dashboardmahasiswa/irs");
+      } else {
+        await Swal.fire({
+          icon: "error",
+          title: "Gagal",
+          text: "IRS Gagal Dihapus" + response.data?.message,
+        });
+        setLoading(false);
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+    setLoading(false);
+  };
+
   return (
     <>
       <Navbar></Navbar>
@@ -141,7 +185,7 @@ const DetailIRS = () => {
         {loading ? (
           <LoadingLayout></LoadingLayout>
         ) : (
-          <div className="flex-1 flex flex-col p-4">
+          <div className="flex-1 flex flex-col p-4 ">
             <h1 className="text-4xl font-bold">Detail IRS</h1>
             <h2 className={`text-xl ${dataIRS.verified ? "" : "hidden"}`}>
               Sudah diverfikasi dosen wali, hubungi dosen wali untuk perubahan
@@ -174,31 +218,45 @@ const DetailIRS = () => {
                 <label className={`text-sm text-slate-400`}>
                   Scan IRS - PDF
                 </label>
-                <object
-                  data={
-                    file
-                      ? URL.createObjectURL(file)
-                      : "http://localhost:5502/pdf/" + dataIRS.scanIRS
-                  }
-                  type="application/pdf"
-                  className={`w-full h-screen`}
-                >
-                  <p>Scan IRS</p>
-                </object>
-                <input
-                  type="file"
-                  accept="application/pdf"
-                  className="bg-white text-black input input-bordered input-primary w-full mt-2"
-                  onChange={handleChange}
-                  name="scanIRS"
-                />
+                {dataIRS.scanIRS !== "" ? (
+                  <>
+                    <object
+                      data={
+                        file
+                          ? URL.createObjectURL(file)
+                          : "http://localhost:5502/pdf/" + dataIRS.scanIRS
+                      }
+                      type="application/pdf"
+                      className={`w-full h-screen`}
+                    >
+                      <p>Scan IRS</p>
+                    </object>
+                    <input
+                      type="file"
+                      accept="application/pdf"
+                      className="bg-white text-black input input-bordered input-primary w-full mt-2"
+                      onChange={handleChange}
+                      name="scanIRS"
+                    />
+                  </>
+                ) : (
+                  <h2>Scan KHS Kosong</h2>
+                )}
               </div>
-              <button
-                className="bg-[#162953] text-white rounded-xl px-4 py-2 mt-4 mr-5"
-                onClick={onSubmit}
-              >
-                Perbarui
-              </button>
+              <div className="flex justify-content-center items-center mr-4 ml-4 mb-5">
+                <button
+                  onClick={onDelete}
+                  className="bg-[#fb3924] text-white rounded-xl px-4 py-2 mt-4 mr-5"
+                >
+                  Hapus
+                </button>
+                <button
+                  className="bg-[#162953] text-white rounded-xl px-4 py-2 mt-4 mr-5"
+                  onClick={onSubmit}
+                >
+                  Perbarui
+                </button>
+              </div>
             </div>
           </div>
         )}

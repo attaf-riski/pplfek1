@@ -87,7 +87,12 @@ const CreateIRS = () => {
         });
         setLoading(false);
       }
-    } catch (error) {
+    } catch (error: any) {
+      await Swal.fire({
+        icon: "error",
+        title: "Gagal",
+        text: "IRS Gagal Ditambahkan " + error?.response?.data?.message,
+      });
       setLoading(false);
       console.log(error);
     }

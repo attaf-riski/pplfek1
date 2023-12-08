@@ -62,6 +62,7 @@ import {
   GenerateManualDoswal,
   GenerateManualDepartemen,
   UbahPasswordOperator,
+  EditDataOperator,
 } from "../pages/operator";
 
 import ProtectRouteDepartemen from "./ProtectedRouteDepartemen";
@@ -255,9 +256,9 @@ const Router = () => {
         path="/operator/ubahpassword"
         element={
           <ProtectRoute>
-            <ProtectRouteDepartemen>
+            <ProtectRouteOperator>
               <UbahPasswordOperator />
-            </ProtectRouteDepartemen>
+            </ProtectRouteOperator>
           </ProtectRoute>
         }
       />
@@ -448,6 +449,16 @@ const Router = () => {
           </ProtectRoute>
         }
       ></Route>
+      <Route
+        path="/operator/editdataoperator/:NIP"
+        element={
+          <ProtectRoute>
+            <ProtectRouteOperator>
+              <EditDataOperator />
+            </ProtectRouteOperator>
+          </ProtectRoute>
+        }
+      />
       <Route
         path="/dashboardoperator/uploudcsv"
         element={

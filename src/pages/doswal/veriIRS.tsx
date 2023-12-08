@@ -81,6 +81,46 @@ const VeriIRS: FC = () => {
     setLoading(false);
   };
 
+  const onDelete = async (e: any) => {
+    setLoading(true);
+    e.preventDefault();
+    try {
+      const response = await Http.delete(
+        "/irs/delete/" + NIM + "&" + semester,
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.status === 200) {
+        await Swal.fire({
+          icon: "success",
+          title: "Berhasil",
+          text: "IRS Berhasil Dihapus",
+        });
+        setLoading(false);
+      } else {
+        await Swal.fire({
+          icon: "error",
+          title: "Gagal",
+          text: "IRS Gagal Dihapus" + response.data?.message,
+        });
+        setLoading(false);
+      }
+    } catch (error: any) {
+      setLoading(false);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+      });
+    }
+    setLoading(false);
+  };
+
   const onSubmit = async (e: any) => {
     setLoading(true);
     e.preventDefault();
@@ -213,6 +253,12 @@ const VeriIRS: FC = () => {
                     onClick={onSubmit}
                   >
                     Perbarui
+                  </button>
+                  <button
+                    className=" bg-[#e24848] text-white rounded-xl px-4 py-2 mt-4 mr-5"
+                    onClick={onDelete}
+                  >
+                    Hapus
                   </button>
                 </div>
               </div>
